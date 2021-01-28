@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="keyword" content="" />
+		<meta name="description" content="" />
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<link rel="stylesheet" type="text/css" href="../css/gonggong.css" />
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vant@2.12/lib/index.css" />
+		<link rel="stylesheet" type="text/css" href="../css/swiper.min.css" />
+		<link rel="stylesheet" type="text/css" href="../css/font.css" />
+		<link rel="stylesheet" type="text/css" href="../css/index.css" />
+		<style>
+	html {
+		background-color: #f7f7f7;
+	}
+	
+	.ls_tx {
+		width: 3.4375rem;
+		height: 3.4375rem;
+		border: 0.3125rem solid #d7e7e1;
+		border-radius: 100%;
+		margin-right: 1rem;
+	}
+	
+	.my_top_left {
+		display: flex;
+	}
+	
+	.my_top {
+		display: flex;
+		justify-content: space-between;
+		padding: 0.9375rem;
+		background-color: #ffffff;
+	}
+	
+	.renzheng {
+		width:3.75rem;
+		text-align: center;
+		line-height: 0.9375rem;
+		height: 0.9375rem;
+		background-color: #ffad2b;
+		border-radius: 0.5rem;
+		margin-top: 0.625rem;
+	}
+	
+	.my_top_left_r {
+		padding-top: 0.625rem;
+	}
+	
+	.my_name {
+		display: flex;
+	}
+	
+	.my_top_right {
+		margin-top:0.1875rem;
+	}
+	
+	.my_ziliao_item {
+		text-align: center;
+		width: 25%;
+	}
+	
+	.my_ziliao {
+		display: flex;
+		justify-content: space-between;
+		background-color: #ffffff;
+		padding-bottom: 0.9375rem;
+	}
+	
+	.my_title {
+		height: 100rpx;
+		line-height: 100rpx;
+		border-bottom: solid 1px #e2e2e2;
+		margin-bottom: 1.0625rem;
+	}
+	
+	.my_guanli {
+		background-color: #ffffff;
+		margin-top: 0.625rem;
+		padding: 0 0.875rem 1.1875rem;
+	}
+	
+	.jiedan_item {
+		text-align: center;
+		width: 20%;
+	}
+	
+	.jiedan_item img {
+		width: 2.4375rem;
+		height: 2.5rem;
+		margin-bottom: 0.625rem;
+	}
+	
+	.my_list {
+		display: flex;
+		/* justify-content: space-between; */
+		flex-wrap: wrap;
+	}
+	.my_bottom {
+		padding: 0 0.9375rem;
+	}
+	.ls_item {
+		text-align: center;
+		width: 33.33%;
+		margin-bottom: 1.875rem;
+	}
+	
+	.ls_item img {
+		margin-bottom: 0.5rem;
+	}
+	
+	.zixun_guanli {
+		padding-bottom: 0rpx;
+	}
+	
+	.zhanghao_guanli {
+		margin-bottom:0.9375rem;
+		padding-bottom: 0;
+	}
+	
+	.zhanghao_item {
+		width: 33.33%;
+		text-align: center;
+		margin-bottom: 1.875rem;
+	}
+	
+	.zhanghao_guanli .zhanghao_item {
+		margin-bottom: 1.1875rem;
+	}
+	.zhanghao_item img {
+		margin-bottom: 0.5rem;
+	}
+	.zhanghao_guanli .zhanghao_item img {
+		margin-bottom: 0.25rem;
+	}
+	.xianshi {
+		height: 2.5625rem;
+		position: relative;
+		display: flex;
+	}
+	.jiage {
+		position: absolute;
+		right:-1rem;
+		top: 26%;
+		text-align: center;
+		line-height: 1.5rem;
+		transform: translate(-0%, -50%);
+		width: 8.75rem;
+		height: 1.5rem;
+		background-color: #ffad2b;
+		border-radius: 0.75rem;
+		transform: scale(0.7);
+		
+	
+	}
+	.xianshi img {
+		width: 100%;
+		height: 100%;
+	}
+	.zhanghao_guanli .my_title {
+		margin-bottom: 1.5625rem;
+	}
+	.tuiguang_guanli {
+		padding-bottom: 0.9375rem;
+	}
+	.my_top_weoienglu{
+		display: flex;
+		align-items: center;
+		}
+	
+		.go_denglu{
+			margin-right:0.625rem;
+			border: 1px solid #EEEEEE;
+			border-radius: 0.1875rem;
+			width: 3.75rem;
+			height: 1.5625rem;
+			line-height:1.5625rem;
+			text-align: center;
+		}
+		.go_zhuce{
+			border-radius:0.1875rem;
+			width: 3.75rem;
+			height:1.5625rem;
+			line-height:1.5625rem;
+			border: 1px solid #EEEEEE;
+			text-align: center;
+		}
+		</style>
+	</head>
+	<body>
+
+		<div id="app">
+			<div class="body">
+
+				<div class="my_top">
+					<div class="my_top_left">
+						<img :src= img_url+user.photourl mode="" class="ls_tx" v-if="user"></img>
+						<img src="../static/lsimg/moren_tx.png" class="ls_tx" v-if="!user">
+						<div class="my_top_left_r" v-if="is_login">
+							<div class="my_name hei_9_bold">{{user.nickname}}</div>
+							<div class="renzheng bai_7">普通用户</div>
+						</div>
+						<div class="my_top_weoienglu hei_8" v-if="!is_login">
+							<a href="../login/login.html" class="go_denglu">登录</a>
+							<a url="zhuce" class="go_denglu">注册</a>
+						</div>
+					</div>
+					<div class="my_top_right hei_9_bold" @click="qiehuan">切换到律师中心</div>
+				</div>
+				<div class="my_ziliao">
+					<a url="guanzhu" class="my_ziliao_item">
+						<div class="my_ziliao_item_top hei_9">{{geshu.guanzhu}}</div>
+						<div class="my_ziliao_item_bottom hei_7">关注</div>
+					</a>
+					<a url="shoucang" class="my_ziliao_item">
+						<div class="my_ziliao_item_top hei_9">{{geshu.shoucang}}</div>
+						<div class="my_ziliao_item_bottom hei_7">收藏</div>
+					</a>
+					<a url="tuandui" class="my_ziliao_item">
+						<div class="my_ziliao_item_top hei_9">{{geshu.tuandui}}</div>
+						<div class="my_ziliao_item_bottom hei_7">团队</div>
+					</a>
+					<a url="chongzhi" class="my_ziliao_item">
+						<div class="my_ziliao_item_top hei_9">{{user.rmb}}</div>
+						<div class="my_ziliao_item_bottom hei_7">余额</div>
+					</a>
+				
+				
+				</div>
+				<div class="my_bottom">
+					<a url="zhineng_pay?type=1" class="xianshi">
+							<img src="../static/img/hy_guanggao.png" mode=""></img>
+							<div class="jiage hei_7">限时{{baojia.zaixianprice}}元/{{baojia.zaixiantime}}小时</div>
+					</a>
+				
+					<div class="my_guanli zixun_guanli">
+						<div class="my_title hei_9_bold">咨询管理</div>
+						<div class="my_list">
+							<a url="tiwen" class="ls_item">
+									<img src="../static/img/hy_tiwen_icon.png" mode="" style="width: 1.1875rem;height: 1.25rem;"></img>
+									<div class="hei_7 ">我要提问</div>
+							</a>
+							<a url="tiwen_list" class="ls_item">
+								<img src="../static/img/hy_tiwen_jilu_icon.png" mode="" style="width: 1.0625rem;height: 1.25rem;"></img>
+								<div class="hei_7 ">提问记录</div>
+							</a>
+						
+							<a url="zixun_jilu" class="ls_item">
+								<img src="../static/img/hy_zixun_jilu.png" mode="" style="width: 1.125rem;height: 1.25rem;"></img>
+								<div class="hei_7 ">咨询记录</div>
+							</a>
+							<a url="dianhua_jilu" class="ls_item">
+								<img src="../static/img/hy_dianhua.png" mode="" style="width: 1.25rem;height: 1.25rem;"></img>
+								<div class="hei_7 ">电话咨询</div>
+							</a>
+							<a url="qita_jilu" class="ls_item">
+								<img src="../static/img/hy_other.png" mode="" style="width:1.25rem;height: 1.25rem;"></img>
+								<div class="hei_7 ">其他服务</div>
+							</a>
+							<a url="weituo_list" class="ls_item">
+								<img src="../static/img/hy_weituo.png" mode="" style="width: 1.125rem;height: 1.25rem;"></img>
+								<div class="hei_7 ">委托记录</div>
+							</a>
+						</div>
+					</div>
+				
+					<div class="my_guanli tuiguang_guanli">
+						<div class="my_title hei_9_bold">推广中心</div>
+						<div class="my_list">
+							<a url="tuanzhang" class="jiedan_item">
+								<img src="../static/img/hy_tuiguang1.png" mode=""></img>
+								<div class="hei_7 ">升级团长</div>
+							</a>
+							<a url="jiangli" class="jiedan_item">
+								<img src="../static/img/hy_tuiguang2.png" mode=""></img>
+								<div class="hei_7 ">我的奖励</div>
+							</a>
+							<a url="tuandui" class="jiedan_item">
+								<img src="../static/img/hy_tuiguang3.png" mode=""></img>
+								<div class="hei_7 ">我的团队</div>
+							</a>
+							
+							<a url="sucai?state=1" class="jiedan_item">
+								<img src="../static/img/hy_tuiguang4.png" mode=""></img>
+								<div class="hei_7 ">营销素材</div>
+							</a>
+							<a url="app_down" class="jiedan_item">
+								<img src="../static/img/hy_tuiguang5.png" mode=""></img>
+								<div class="hei_7 ">APP下载</div>
+							</a>
+						</div>
+					</div>
+				
+					<div class="my_guanli zhanghao_guanli">
+						<div class="my_title hei_9_bold">账户管理</div>
+						<div class="my_list">
+							<a url="geren_xinxi" class="zhanghao_item">
+								<img src="../static/img/hy_xinxi.png" mode="" style="width: 1.5625rem;height: 1.4375rem;"></img>
+								<div class="hei_7 ">个人信息</div>
+							</a>
+							<a url="ls_tixian" class="zhanghao_item">
+								<img src="../static/img/hy_tixian.png" mode="" style="width: 1.4375rem;height:1.625rem;"></img>
+								<div class="hei_7 ">账号提现</div>
+							</a>
+							<a url="chongzhi" class="zhanghao_item">
+								<img src="../static/img/hy_chongzhi.png" mode="" style="width: 1.75rem;height: 1.5625rem;"></img>
+								<div class="hei_7 ">我要充值</div>
+							</a>
+							<a url="ls_liushui" class="zhanghao_item">
+								<img src="../static/img/hy_liushui.png" mode="" style="width: 1.5625rem;height:1.75rem;"></img>
+								<div class="hei_7 ">流水明细</div>
+							</a>
+							<a url="help" class="zhanghao_item">
+								<img src="../static/img/hy_help.png" mode="" style="width: 1.5rem;height: 54rpx;"></img>
+								<div class="hei_7 ">帮助中心</div>
+							</a>
+							<a url="gonggao" class="zhanghao_item">
+								<img src="../static/img/hy_gonggao.png" mode="" style="width: 1.5625rem;height: 1.5625rem;"></img>
+								<div class="hei_7 ">网站公告</div>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+
+			<div class="footer hui_8">
+				<div class="footer_item" onclick="location.href='../index/index.html'">
+					<p><img src="../static/img/shouye_icon.png"></p>
+					<p>首页</p>
+				</div>
+				<div class="footer_item" onclick="location.href='../consult/wen.html'">
+					<p><img src="../static/img/zixun_icon.png"></p>
+					<p>咨询</p>
+				</div>
+				<div class="footer_item" onclick="location.href='../index/zhaolvshi.html'">
+					<p><img src="../static/img/lvshi_icon.png"></p>
+					<p >律师</p>
+				</div>
+				<div class="footer_item" onclick="location.href='../zixun/chat_list.html'">
+					<p><img src="../static/img/xiaoxi_icon.png"></p>
+					<p >消息</p>
+				</div>
+				<div class="footer_item" >
+					<p><img src="../static/img/on_my_icon.png"></p>
+					<p class="lv_8">我的</p>
+				</div>
+			</div>
+
+		</div>
+
+	</body>
+	<script src="../js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../js/vue.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../js/http.js" type="text/javascript" charset="utf-8"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vant@2.12/lib/vant.min.js"></script>
+	
+	<script type="text/javascript">
+		var app = new Vue({
+			el: "#app",
+			data() {
+				return {
+					img_url: window.localStorage.getItem('img_url'),
+					user:'',
+				    is_login:false,
+				    geshu:'',
+				    baojia:''
+				}
+			},
+
+			created() {
+				this.huiqu_login()
+			},
+			methods: {
+				qiehuan() {
+					uni.reLaunch({
+						url: '../ls/my'
+					});
+				},
+				huoqu_user(){
+					ajax('/mapi/user/user', "POST", '', (res) => { // POST或GET请求直接传参
+						this.user = res.data.user;
+					
+					}, function(err) {
+					
+						console.log("err", err);
+					})
+					// 获取用户信息
+				
+				},
+		
+        huiqu_login(){
+			
+			
+			ajax('/index/login/islogin', "POST", '', (res) => { // POST或GET请求直接传参
+				if(res.data.user!=''){
+					this.is_login=true
+					this.huoqu_user()
+					this.huoqu_geshu()
+					this.huoqu_baojia()
+					
+					ajax('/mapi/consult/messagecount', "POST", '', (res) => { // POST或GET请求直接传参
+						if(res.data.messagecount>0){
+							
+						}else{
+							 
+						}
+					
+					}, function(err) {
+					
+						console.log("err", err);
+					})
+					
+								
+					
+					
+				}else{
+					this.is_login=false
+				}
+			
+			}, function(err) {
+			
+				console.log("err", err);
+			})
+
+		},
+huoqu_geshu(){
+	ajax('/mapi/index/usercount', "POST", '', (res) => { // POST或GET请求直接传参
+		this.geshu=res.data.count
+	
+	}, function(err) {
+	
+		console.log("err", err);
+	})
+			
+		},
+		huoqu_baojia(){
+			ajax('/mapi/index/getzixun', "POST", '', (res) => { // POST或GET请求直接传参
+				this.baojia=res.data.zhan
+			
+			}, function(err) {
+			
+				console.log("err", err);
+			})
+			
+		},
+
+				// 获取list
+				huoqu_lvshi() {
+					console.log(this.page)
+					var data = {
+						page: this.page,
+						shanchangid: this.shanchang_id,
+						province: this.sheng,
+						city: this.shi,
+						type: this.type
+					}
+					console.log(data)
+					ajax('/mapi/lawyer/lvshilist', "POST", data, (res) => { // POST或GET请求直接传参
+						this.lslist = this.lslist.concat(res.data.lawyer);
+						if (res.data.lawyer.length < 10) {
+							this.is_all = true;
+						}
+						this.loading = false
+						this.isLoading = false
+
+					}, function(err) {
+
+						console.log("err", err);
+					})
+
+				},
+				// 获取跳转链接
+				huoqu_tiaozhuan() {
+
+					ajax('/mapi/index/getzixunjump', "POST", data, (res) => { // POST或GET请求直接传参
+						this.tiao_type = res.data.zhan.zixunjump;
+
+					}, function(err) {
+
+						console.log("err", err);
+					})
+
+
+				},
+
+
+				huoqu_leixing() {
+					ajax('/mapi/lawyer/getshanchang', "POST", '', (res) => { // POST或GET请求直接传参
+						var array = [];
+						for (var key in res.data.shanchang) {
+							array.push(res.data.shanchang[key]);
+						}
+						this.columns = array;
+
+					}, function(err) {
+
+						console.log("err", err);
+					})
+
+				},
+
+
+				change(e) {
+					this.btnnum = e;
+				},
+
+
+			}
+		})
+	</script>
+
+</html>

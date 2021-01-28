@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="keyword" content="" />
+		<meta name="description" content="" />
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<link rel="stylesheet" type="text/css" href="../css/gonggong.css" />
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vant@2.12/lib/index.css" />
+		<link rel="stylesheet" type="text/css" href="../css/swiper.min.css" />
+		<link rel="stylesheet" type="text/css" href="../css/font.css" />
+		<link rel="stylesheet" type="text/css" href="../css/index.css" />
+		<style>
+		html {
+			background-color: #f7f7f7;
+		}
+
+		.head {
+			border-bottom: 1px solid #e8e8e8;
+		}
+
+		.jine {
+			font-size: 1.875rem;
+			color: #ffffff;
+			font-weight: bold;
+		}
+
+		.jine_shuru {
+			display: flex;
+			border-bottom:1px solid #f7f7f7;
+			padding-bottom: 0.25rem;
+		}
+
+		.fangshi_list_pay {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			height: 3.125rem;
+			border-bottom: 1px solid #f7f7f7;
+		}
+
+		.pay_list,
+		.pay_list_top {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+		}
+		.pay_list input {
+			text-align: right;
+		}
+		.xuanshang_title {
+			display: flex;
+			align-items: center;
+			height: 3.0625rem;
+			padding-left: 0.875rem;
+		}
+		.xuanshang_title img {
+			margin-right: 0.3125rem;
+		}
+		.pay_top {
+			background-color: #ffffff;
+			padding: 0 0.9375rem;
+		}
+
+		.pay_list {
+			height: 3.125rem;
+			border-bottom: 1px solid #f7f7f7;
+		}
+
+		.pay_list_jine {
+			height: 2.875rem;
+			box-sizing: border-box;
+			padding: 0.875rem 0;
+		}
+
+		.fangshi {
+			background-color: #ffffff;
+			padding: 0 0.9375rem;
+		}
+		.xuanshang {
+			width: 10.5rem;
+			height:2.75rem;
+			background-color: #0eb77e;
+			border-radius: 1.375rem;
+			line-height: 2.75rem;
+		}
+		.zanbu {
+			width: 10.5rem;
+			height:2.75rem;
+			background-color: #dcdcdc;
+			border-radius: 1.375rem;
+			line-height:2.75rem;
+		}
+		.tuijian {
+			border: 1px solid #fd4358;
+			width: 1.9375rem;
+			height: 0.9375rem;
+			display: inline-block;
+			line-height: 0.9375rem;
+			text-align: center;
+			margin-left:0.5rem;
+		}
+		.pay_btn {
+			padding: 0 0.9375rem;
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			margin-top: 2.1875rem;
+		}
+		.wen_list {
+			display: block;
+			padding-bottom: 0.9375rem;
+			height: auto;
+		}
+		.wen_list_top {
+			line-height:2.5rem;
+		}
+		.wen_neirong {
+			width: 100%;
+			padding: 0rpx 0.5rem 0.3125rem 0;
+			box-sizing: border-box;
+		}
+		.wen_neirong_txt {
+			height: 3.125rem;
+			overflow: auto;
+			word-break: break-all;
+		}
+		.wen_neirong_textarea {
+			height: 8.25rem;
+		}
+
+		.height_auto {
+			height: auto;
+			padding: 0.625rem 0;
+		}
+
+		.dis_fir {
+			align-items: flex-start;
+		}
+		.jine_list {
+			display: flex;
+			align-items: center;
+			flex-wrap: wrap;
+			background-color: #ffffff;
+			padding: 1.4375rem 0.9375rem 0.3125rem 0.9375rem;
+		}
+		.jine_item {
+			width:6.5625rem;
+			height: 2.8125rem;
+			background-color: #efefef;
+			border-radius: 1px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			margin: 0 0.9375rem 0.9375rem 0;
+			box-sizing: border-box;
+		}
+		.jine_item:nth-child(3n) {
+			margin-right: 0;
+		}
+		.jine_item img {
+			width: 0.8125rem;
+			height: 0.9375rem;
+			margin-right: 0.3125rem;
+		}
+		.qian_on {
+			display: none;
+		}
+		.xuan_active {
+			border: 1px solid #0eb77e;
+			color: #0eb77e;
+			background-color: #ffffff;
+			position: relative;
+		}
+		.xuan_active .qian_on {
+			display: inline-block;
+		}
+		.xuan_active .qian_no {
+			display: none;
+		}
+		.xuan_active::before {
+			content: '';
+			display: inline-block;
+			width: 1.8125rem;
+			height: 1.6875rem;
+			position: absolute;
+			bottom: 0;
+			right: 0;
+			background: url(../static/img/xuanshang_xuan.png) no-repeat;
+			background-size: 100% 100%;
+		}
+		.xuan_tishi {
+			text-align: center;
+			padding-bottom: 1.5625rem;
+			margin-top: 0.9375rem;
+		}
+		.xuan_tishi_fir {
+			margin-bottom: 0.3125rem;
+		}
+			
+		</style>
+	</head>
+	<body>
+
+		<div id="app">
+			<div class="body">
+
+				<div class="head">
+					<div class="head_back">
+						<img src="../static/img/back.png" mode="" onclick="javascript:history.back(-1);" /></img>
+					</div>
+					<div class="head_center hei_12_bold">悬赏</div>
+					<div class=" head_right"></div>
+				</div>
+
+				<div class="zi_body ">
+					<div class="xuanshang_title qian_9">
+						<img src="../static/img/xuanshang_dd.png" mode="" style="width: 0.75rem;height: 0.9375rem;"></img>
+						订单信息
+					</div>
+					<div class="pay_top">
+						<div class="pay_list">
+							<span class="qian_9">咨询地区</span>
+						    <span class="hei_9">{{data.province}}-{{data.city}}-{{data.area}}</span>
+						</div>
+						<div class="pay_list" v-if="fenlei_arry.length>0">
+							<span class="qian_9">咨询类型</span>
+							<span class="hei_9" v-if="fenlei_arry[data.typeid]&&fenlei_arry[data.typeid].typename">{{fenlei_arry[data.typeid].typename}}</span>
+						</div>
+						<!-- <div class="pay_list">
+						<span class="qian_9">手机号码</span>
+						<input type="text" value="" v-model="phone" placeholder="请输入" class="hei_30" />
+					</div> -->
+						<div class="pay_list wen_list">
+							<div class="qian_9 wen_list_top">咨询内容</div>
+							<div class="hei_9 wen_neirong "> {{data.information}}</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="xuanshang_title qian_9">
+					<img src="../static/img/xuangshang_jin.png" mode="" style="width:0.875rem;height:0.875rem;"></img>
+					请选择悬赏金额
+				</div>
+
+				<div class="jine_list qian_9">
+					<div class="" v-for="(item, index) in jine_arry" :class="['jine_item', index == xuan_index ? 'xuan_active' : '']"
+					 @click="xuan(index)">
+						<img src="../static/img/qian_on.png" mode="" class="qian_on"></img>
+						<img src="../static/img/qian_no.png" mode="" class="qian_no"></img>
+						{{ item }}元
+					</div>
+				</div>
+
+				<div class="pay_btn">
+					<button type="" class="xuanshang bai_9 " @click="save">支付</button>
+					<button type="" class="zanbu qian_9" @click="zanbu">暂不悬赏</button>
+				</div>
+				<div class="xuan_tishi qian_8">
+					<div class="xuan_tishi_fir">悬赏提问，律师一分钟内优先解答！</div>
+					<div class="">99%的问题都得到了优质解决方案！</div>
+				</div>
+
+
+			</div>
+
+
+
+		</div>
+
+	</body>
+	<script src="../js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../js/vue.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../js/http.js" type="text/javascript" charset="utf-8"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vant@2.12/lib/vant.min.js"></script>
+	<script src="../js/get.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		var app = new Vue({
+			el: "#app",
+			data() {
+				return {
+					jine_arry: ['1.00', '3.00', '5.00', '10.00', '20.00'],
+					xuan_index: 0,
+					data: '',
+					consultid: '',
+					fenlei_arry: []
+
+				}
+			},
+			created() {
+				this.huoqu_fenlei()
+                this.consultid=$_GET.consultid
+			},
+			methods: {
+				huoqu_xq() {
+					var data = {
+						consultid: this.consultid
+					}
+					ajax('/mapi/consult/zixun_xq', "POST", data, (res) => { // POST或GET请求直接传参
+						this.data = res.data.consult
+					}, function(err) {
+						console.log("err", err);
+					})
+				},
+				xuan(index) {
+					this.xuan_index = index;
+				},
+				// 获取分类
+				huoqu_fenlei() {
+
+					ajax('/mapi/index/gettype', "POST", '', (res) => { // POST或GET请求直接传参
+						var array = [];
+						for (var key in res.data.type) {
+							array.push(res.data.type[key]);
+						}
+						this.fenlei_arry = array
+                        this.huoqu_xq()
+					}, function(err) {
+						console.log("err", err);
+					})
+
+				},
+
+				save() {
+					var data = {
+						consultid: this.consultid,
+						paymoney: this.jine_arry[this.xuan_index]
+					}
+					ajax('/mapi/consult/payh5', "POST", data, (res) => { // POST或GET请求直接传参
+						if (res.code == 0) {
+							window.open('' + res.data.response);
+						}
+					}, function(err) {
+						console.log("err", err);
+					})
+				},
+				zanbu() {
+					window.location.href='../zixun/hy_tiwenlist.html'
+				}
+
+			}
+		})
+	</script>
+
+</html>

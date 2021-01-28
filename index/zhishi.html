@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="keyword" content="" />
+		<meta name="description" content="" />
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<link rel="stylesheet" type="text/css" href="../css/gonggong.css" />
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vant@2.12/lib/index.css" />
+		<link rel="stylesheet" type="text/css" href="../css/swiper.min.css" />
+		<link rel="stylesheet" type="text/css" href="../css/font.css" />
+		<link rel="stylesheet" type="text/css" href="../css/zhishi.css"/>
+		<style>
+		
+		</style>
+	</head>
+	<body>
+
+		<div id="app">
+			
+
+				<div class="head">
+					<div class="head_back">
+						<img src="../static/img/back.png" mode="" onclick="javascript:history.back(-1);" /></img>
+					</div>
+					<div class="head_center hei_12_bold">法律知识</div>
+					<div class=" head_right"></div>
+				</div>
+
+
+				<div class="zi_body ">
+					
+				
+						<div class="swiper-container index_lunbo">
+							<div class="swiper-wrapper">
+								<div class="swiper-slide" v-for="item in banner">
+									
+									<div class="swiper-item">
+										<img :src="item.img"></img>
+									</div>
+									
+									<div class="lun_txt">
+										<span class="over_fl">{{ item.text }}</span>
+										<div class="lun_num">{{ current + 1 }}/{{ banner.length }}</div>
+									</div>
+									
+								</div>
+							</div>
+						</div>
+				<van-list v-model="loading" :finished="is_all" :immediate-check="false" finished-text="没有更多了" @load="onLoad">		
+					<div class="zhishi_list">
+						<div class="zhishi_item hei_9" v-for="item in fenlei" @click="go_erji(item.knowledgetypeid)">
+							<img :src=img_url+item.pic mode="widthFix" v-if="item && item.pic"></img>
+							<div v-if="item && item.knowledgetypename">{{ item.knowledgetypename }}</div>
+						</div>
+						<div class="zhishi_item hei_9" onclick="location.href='index.html'">
+							<img src='../static/img/zhishi_back.png' mode="widthFix"></img>
+							<div>返回首页</div>
+						</div>
+					</div>
+					<!-- <div class="more_fenlei qian_26">更多分类></div> -->
+					<!-- 	<div class="jiedan_tab qian_30_bold">
+				<div :class="['jiedan_tab_item', index == active ? 'jiedan_tab_item_active' : '']" v-for="(tab, index) in tabs" @click="jiedan_qiehuan(index)">{{ tab }}</div>
+			</div> -->
+					<div class="zhishi_title hei_9">
+						<img src="../static/img/zhishi_huo.png" mode=""></img>热点知识
+					</div>
+					<div class="tuijian_list">
+						<div class="tuijian_item" v-for="item in remenlist" @click="go_xq(item.knowledgeid)">
+							<img :src="img_url+item.pic" mode="" class="tuijan_img"></img>
+							<div class="tuijian_item_right">
+								<div class="tuijian_item_top hei_8">{{item.title}}</div>
+								<div class="tuijian_item_txt qian_7" >
+									{{escape2Html(item.information)}}
+
+								</div>
+								<div class="tuijian_item_bottom qian_7">
+									<div class="tuijian_item_time ">
+										<img src="../static/img/changshi_time.png" mode=""></img>
+										{{time(item.addtime)}}
+									</div>
+									<div class="tuijian_item_liulan">
+										<img src="../static/img/changshi_liulan.png" mode=""></img>
+										{{item.readnum}}浏览
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+
+
+				</div>
+
+
+
+	</van-list>
+
+
+
+
+
+
+		</div>
+
+	</body>
+	<script src="../js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../js/vue.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../js/http.js" type="text/javascript" charset="utf-8"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vant@2.12/lib/vant.min.js"></script>
+	<script src="../js/get.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../js/swiper.min.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		var app = new Vue({
+			el: "#app",
+			data() {
+				return {
+					img_url: window.localStorage.getItem('img_url'),
+					zhifu: 1,
+
+					page: 0,
+					is_all: false,
+					banner: [{
+							img: '../static/img/changshi_banner.png',
+							text: '外商投资法解读'
+						},
+						{
+							img: '../static/img/changshi_banner.png',
+							text: '外商投资法解读2'
+						},
+						{
+							img: '../static/img/changshi_banner.png',
+							text: '外商投资法解读3'
+						},
+						{
+							img: '../static/img/changshi_banner.png',
+							text: '外商投资法解读4'
+						},
+						{
+							img: '../static/img/changshi_banner.png',
+							text: '外商投资法解读5'
+						}
+					],
+					fenlei: [],
+					btnnum: 0,
+					current: 1,
+					tabs: ['热点推荐', '最新知识'],
+					active: 0,
+					remenlist: [],
+					zuixin_list: [],
+					knowledgetypeid:'',
+					knowledgetypeid1:'',
+					knowledgetypeid2:'',
+					loading: false, //是否处于加载状态
+				}
+			},
+			created() {
+
+				if($_GET.knowledgetypeid&&$_GET.knowledgetypeid1&&$_GET.knowledgetypeid2){
+					window.location.href='zhishi3.html?knowledgetypeid='+$_GET.knowledgetypeid+'&knowledgetypeid1='+$_GET.knowledgetypeid1
+				}else if($_GET.knowledgetypeid){
+					window.location.href='zhishi2.html?knowledgetypeid='+$_GET.knowledgetypeid
+				}else{
+					this.huoqu_fenlei()
+					this.huoqu_remen()
+				}
+			},
+			methods: {
+	          onLoad() { //上拉加载
+					console.log('下拉加载')
+					if (this.is_all) {
+						vant.Toast('已加载全部');
+					} else {
+						this.page++
+						this.huoqu_remen()
+					}
+				},
+				// 获取分类
+				huoqu_fenlei() {
+
+					ajax('/mapi/index/gettype', "POST", '', (res) => { // POST或GET请求直接传参
+						var array = [];
+						for (var key in res.data.type) {
+							array.push(res.data.type[key]);
+						}
+						this.fenlei_arry = array
+
+					}, function(err) {
+						console.log("err", err);
+					})
+
+				},
+			
+				go_xq(knowledgeid) {
+					window.location.href='zhishi_xq.html?knowledgeid='+knowledgeid
+				},
+				// 跳转二级
+				go_erji(knowledgetypeid) {
+					window.location.href='zhishi2.html?knowledgetypeid='+knowledgetypeid
+				},
+
+				// 获取分类
+				huoqu_fenlei() {
+					ajax('/mapi/index/knowledgetype', "POST", '', (res) => { // POST或GET请求直接传参
+						if (res.code == 0) {
+							this.fenlei = res.data.type[1]
+						}
+					}, function(err) {
+						console.log("err", err);
+					})
+
+
+
+				},
+				// 获取热门
+				huoqu_remen() {
+
+					var data = {
+						page: this.page,
+						type: 2,
+						knowledgetypeid:this.knowledgetypeid,
+						knowledgetypeid1:this.knowledgetypeid1,
+						knowledgetypeid2:this.knowledgetypeid2
+					}
+
+					ajax('/mapi/index/knowledge', "POST", data, (res) => { // POST或GET请求直接传参
+						if (res.code == 0) {
+							this.remenlist = this.remenlist.concat(res.data.knowledgelist);
+							if (res.data.knowledgelist.length < 10) {
+								this.is_all = true;
+							}
+						}
+						this.loading=false
+					}, function(err) {
+						console.log("err", err);
+					})
+
+				},
+	
+
+			}
+		})
+		
+	var mySwiper = new Swiper('.index_lunbo', {
+		pagination: {
+			el: '.swiper-pagination',
+			clickable: true,
+		},
+		autoplay: false, //可选选项，自动滑动
+		loop: true,
+		delay: 3000,
+		slidesPerView: 1,
+		on: {
+			slideChangeTransitionStart: function(swiper, event) {
+	
+				app.current = this.realIndex;
+	
+			},
+		}
+	})	
+		
+		
+		
+	</script>
+
+</html>

@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="keyword" content="" />
+		<meta name="description" content="" />
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<link rel="stylesheet" type="text/css" href="../css/gonggong.css" />
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vant@2.12/lib/index.css" />
+		<link rel="stylesheet" type="text/css" href="../css/swiper.min.css" />
+		<link rel="stylesheet" type="text/css" href="../css/font.css" />
+		<link rel="stylesheet" type="text/css" href="../css/index.css" />
+		<style>
+			html {
+				background-color: #f7f7f7;
+			}
+
+			.tishi {
+				height:2.1875rem;
+				background-color: #fff0f2;
+				display: flex;
+				align-items: center;
+				padding: 0 0.9375rem;
+				justify-content: space-between;
+				border-bottom: 1px solid #f5f5f5;
+			}
+
+			.zixun_num {
+				padding: 0 1.75rem;
+				display: flex;
+				justify-content: space-between;
+				height: 3.625rem;
+				align-items: center;
+				margin-bottom: 0.625rem;
+				background-color: #ffffff;
+			}
+
+			.shuru {
+
+				background-color: #ffffff;
+			}
+
+			.tiwen_title {
+				line-height: 2.625rem;
+				padding-left: 0.9375rem;
+			}
+
+			.shuru_box {
+				border-bottom: 0.625rem solid #f8f8f8;
+				border-radius: 0.375rem;
+				padding: 0rem 0.94rem 0.8rem;
+				box-sizing: border-box;
+			}
+
+			.shuru_box_body {
+				background-color: #f8f8f8;
+				height: 8.84rem;
+			}
+
+			.yishuru {
+				text-align: right;
+				padding-right: 0.625rem;
+				padding-bottom: 0.625rem;
+				
+			}
+
+			.shuru_box textarea {
+				width: 100%;
+                 height: 7.5rem;
+				padding: 0.625rem;
+				box-sizing: border-box;
+				border: none;
+				outline: none;
+				background-color: #f8f8f8;
+				resize: none;
+
+			}
+
+			.jisuan_num {
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+			}
+
+			.dizhi {
+				display: flex;
+				align-items: center;
+				height: 2.6875rem;
+				background-color: #ffffff;
+
+			}
+
+			.dizhi img {
+				width: 0.6875rem;
+				height: 0.8125rem;
+				margin-right:0.5625rem;
+				vertical-align: text-bottom;
+			}
+
+			.tiwen_bottom {
+				padding: 0 0.9375rem;
+				text-align: center;
+			}
+
+			.tiwen_bottom button {
+				height: 2.75rem;
+				background-color: #0eb77e;
+				border-radius: 1.375rem;
+				line-height: 2.75rem;
+				margin: 5.125rem 0 0.5625rem;
+				width: 100%;
+			}
+
+			.xuan_list {
+				height: 2.8125rem;
+				align-content: center;
+
+			}
+
+			.zhuanchang_xuan img {
+				width: 0.4375rem;
+				height: 0.6875rem;
+				position: absolute;
+				right: 0.9375rem;
+
+			}
+
+			.xaunleibie {
+				display: flex;
+				align-items: center;
+				border-bottom: 1px solid #dcdcdc;
+			}
+
+			.xaunleibie img {
+				width: 0.875rem;
+				height: 0.875rem;
+				margin-right: 0.4375rem;
+			}
+		</style>
+	</head>
+	<body>
+
+		<div id="app">
+			<div class="body">
+
+				<div class="head">
+					<div class="head_back">
+						<img src="../static/img/back.png" mode="" onclick="javascript:history.back(-1);" /></img>
+					</div>
+					<div class="head_center hei_12_bold">我要提问</div>
+					<div class=" head_right"></div>
+				</div>
+
+				<div class="zi_body ">
+					<div class="tishi hong_7" v-if="is_tishi">
+						<span>问题紧急，现在就想得到解答？ 立即在线咨询></span>
+						<span class="hong_7_bold" @click="close">x</span>
+					</div>
+					<div class="zixun_num qian_8">
+						<div class="">
+							今日咨询人数：
+							<span class="hong_8">{{shujv.today}}</span>
+							人
+						</div>
+						<div class="">
+							今日律师解答：
+							<span class="hong_8">{{shujv.reply}}</span>
+							问题
+						</div>
+					</div>
+					<div class="shuru">
+						<div class="hei_9_bold tiwen_title">
+							问题描述
+						</div>
+						<div class="shuru_box">
+							<div class="shuru_box_body">
+								<textarea value="" placeholder="请输入您想要问的问题..." class="hei_8" @input="bianhua" v-model="shuru_txt" maxlength="5000" /></textarea>
+								<div class="yishuru qian_7">
+									{{ yishu_num }}/2000
+								</div>
+							</div>
+						</div>
+						<div class="tiwen_bottom">
+							<div class="qian_7 xuan_list xaunleibie">
+								<img src="../static/img/tiwen_lei.png" mode=""></img>
+								<div @click="tan_leibie">
+
+									<div :class="['zhuanchang_xuan',fenlei=='请选择类别'?'qian_8':'hei_8']">{{fenlei}}
+									</div>
+
+								</div>
+							</div>
+							<div class="dizhi qian_7 xuan_list">
+								<div @click="tan_chengshi">
+									<img src="../static/img/tiwen_dizhi.png" mode=""></img>
+									{{ dizhi }}
+								</div>
+							</div>
+
+						</div>
+
+					</div>
+
+					<div class="tiwen_bottom">
+						<button type="" class="bai_9" @click="tijiao">提交</button>
+						<div class="qian_7">
+							<input type="checkbox" name="" id="" :checked="isCheck" value="" />
+
+							我已阅读并同意
+							<span class="lv_7">《小虎网络服务协议》</span>
+						</div>
+					</div>
+				</div>
+
+				<div id="allmap" style="display: none;"></div>
+
+
+
+			</div>
+
+			<van-popup v-model="lei_show" round position="bottom">
+				<van-picker title="选择类别" show-toolbar :columns="fenlei_arry" @confirm="onConfirm" @cancel="onCancel" value-key='typename' />
+			</van-popup>
+			<van-popup v-model="chengshi_show" round position="bottom">
+				<van-area title="选择城市" :area-list="areaList" :columns-num="3" @confirm='city_queding' @cancel="city_quxiao" />
+			</van-popup>
+
+		</div>
+
+	</body>
+	<script src="../js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../js/vue.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../js/http.js" type="text/javascript" charset="utf-8"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vant@2.12/lib/vant.min.js"></script>
+	<script type="text/javascript" src="http://api.map.baidu.com/api?ak=PlhFWpA02aoURjAOpnWcRGqw7AI8EEyO&v=2.0&services=false"></script>
+	<script src="../js/city.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		var app = new Vue({
+			el: "#app",
+			data() {
+				return {
+					img_url: window.localStorage.getItem('img_url'),
+					dizhi: '请选择省-市-区',
+					isCheck: true,
+					shuru_txt: '',
+					yishu_num: 0,
+					shujv: '',
+					is_tishi: true,
+					fenlei: '选择类别',
+					fenlei_arry: [],
+					leiid: '',
+					lei_show: false,
+					areaList: [],
+					chengshi_show: false,
+				}
+			},
+
+			created() {
+				this.areaList = city_list()
+				this.huoqu_fenlei()
+				this.huoqu_shijv()
+			},
+			methods: {
+
+				huoqu_shijv() {
+
+					ajax('/mapi/index/wen', "POST", '', (res) => { // POST或GET请求直接传参
+
+						this.shujv = res.data.serve
+
+					}, function(err) {
+
+						console.log("err", err);
+					})
+				},
+				// 获取分类
+				huoqu_fenlei() {
+
+					ajax('/mapi/index/gettype', "POST", '', (res) => { // POST或GET请求直接传参
+						var array = [];
+						for (var key in res.data.type) {
+							array.push(res.data.type[key]);
+						}
+						this.fenlei_arry = array
+
+					}, function(err) {
+
+						console.log("err", err);
+					})
+
+				},
+				bianhua() {
+					this.yishu_num = this.shuru_txt.length;
+				},
+				tan_leibie() {
+
+					this.lei_show = true
+
+
+				},
+				// 类别确定
+				onConfirm(e) {
+					this.fenlei = e.typename
+					this.leiid = e.typeid
+					this.lei_show = false
+				},
+				// 类别取消
+				onCancel() {
+					this.lei_show = false
+				},
+				// 弹出城市选择
+				tan_chengshi() {
+					this.chengshi_show = true
+				},
+				// 城市确定
+				city_queding(e) {
+					console.log(e)
+					this.dizhi = e[0].name + '-' + e[1].name + '-' + e[2].name
+					this.chengshi_show = false
+				},
+				// 城市取消
+				city_quxiao() {
+					this.chengshi_show = false
+				},
+				change(data) {
+					console.log(data);
+					this.dizhi = data.data.join('-');
+				},
+				tijiao() {
+
+					var di = this.dizhi.split('-');
+					console.log(di)
+
+					if (this.shuru_txt == '') {
+						vant.Toast('请输入问题');
+						return false
+					}
+					if (this.fenlei == '选择类别') {
+						vant.Toast('请选择类别');
+						return false
+					}
+					if (this.dizhi == '请选择省-市-区') {
+
+						vant.Toast('请选择地址');
+						return false
+					}
+					if (this.shuru_txt.length < 10) {
+						vant.Toast('请填写10个字以上的描述');
+						return false
+
+					}
+					var data = {
+						information: this.shuru_txt,
+						typeid: this.leiid,
+						province: di[0],
+						city: di[1],
+						area: di[2]
+					}
+					ajax('/mapi/consult/addconsult', "POST", data, (res) => { // POST或GET请求直接传参
+						if (res.code == 0) {
+							window.location.href='../consult/xuanshang.html?consultid='+res.data
+						}
+					}, function(err) {
+						console.log("err", err);
+					})
+
+				},
+
+
+			}
+		})
+
+		// 定位
+		$(function() {
+			var map = new BMap.Map("allmap");
+			var point = new BMap.Point(1, 1);
+			map.centerAndZoom(point, 16)
+			var geoc = new BMap.Geocoder();
+			var geolocation = new BMap.Geolocation();
+			geolocation.getCurrentPosition(function(r) {
+				if (this.getStatus() == BMAP_STATUS_SUCCESS) {
+					var mk = new BMap.Marker(r.point);
+					map.addOverlay(mk);
+					map.panTo(r.point);
+					console.log("当前位置经度为:" + r.point.lng + "纬度为:" + r.point.lat);
+					setLocation(r.point);
+				} else {
+					console.log('无法定位到您的当前位置，导航失败，请手动输入您的当前位置！' + this.getStatus());
+				}
+			}, {
+				enableHighAccuracy: true
+			});
+
+			//获取地理位置的函数
+			function setLocation(point) {
+				geoc.getLocation(point, function(rs) {
+					var addComp = rs.addressComponents;
+					var result = addComp.province + addComp.city + addComp.district + addComp.street + addComp.streetNumber;
+					//$("#start").val(result);
+					//$("#start_location").val(result);
+					console.log(addComp)
+					app.dizhi = addComp.province + '-' + addComp.city + '-' + addComp.district
+
+				});
+			}
+		});
+	</script>
+
+</html>

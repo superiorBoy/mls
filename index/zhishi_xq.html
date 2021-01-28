@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="keyword" content="" />
+		<meta name="description" content="" />
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<link rel="stylesheet" type="text/css" href="../css/gonggong.css" />
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vant@2.12/lib/index.css" />
+		<link rel="stylesheet" type="text/css" href="../css/swiper.min.css" />
+		<link rel="stylesheet" type="text/css" href="../css/font.css" />
+		
+		<style>
+		.head {
+			border-bottom: 1px solid #f7f7f7;
+		}
+		.zhishi_xq {
+			padding-left: 0.9375rem;
+			padding-right:0.9375rem;
+		}
+		.xq_title {
+			margin: 0.4375rem 0;
+		}
+		.xq_top {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+		}
+		.xq_top_item1 img {
+			width: 0.6875rem;
+			height: 0.75rem;
+			margin-right:0.2rem;
+		}
+		.xq_top_item2 img {
+			width: 0.6875rem;
+			height: 0.75rem;
+			margin-right:0.2rem;
+		}
+		.xq_top_item3 img {
+			width: 0.9375rem;
+			height: 0.6875rem;
+			margin-right:0.2rem;
+		}
+		.zhaiyao {
+			margin: 1.125rem 0 0;
+			background-color: #eaeaea;
+			line-height: 1.25rem;
+			padding:1.125rem 0.9375rem;
+		}
+		.zhengwen {
+			line-height: 1.25rem;
+			padding-bottom: 0.9375rem;
+			margin-top: 1.125rem;
+		}
+		.zhengwen img {
+			width: 100%;
+		}
+		.xq_zhengwen_title {
+			margin:0.3125rem 0;
+		}
+		.erji_weizhi {
+			height: 2.1875rem;
+			background-color: #f9f9f9;
+			display: flex;
+			align-items: center;
+			margin: 0rpx 0 0.625rem;
+			padding-left: 0.9375rem;
+		}
+		.erji_weizhi img {
+			margin: 0 0.2rem 0 0.2rem;
+			width: 0.75rem;
+			height: 100%;
+		}
+		</style>
+	</head>
+	<body>
+
+		<div id="app">
+			
+
+				<div class="head">
+					<div class="head_back">
+						<img src="../static/img/back.png" mode="" onclick="javascript:history.back(-1);" /></img>
+					</div>
+					<div class="head_center hei_12_bold">知识详情</div>
+					<div class=" head_right"></div>
+				</div>
+					
+				<div class="zi_body ">
+					<div class="erji_weizhi hui_9_bold">
+						<span @click="go_index()">首页</span>	
+						<img src="../static/img/zhishi_weizhi.png" mode=""></img>
+						<a url="changshi">法律知识</a> 
+						<img src="../static/img/zhishi_weizhi.png" mode=""  v-if="yiji_title!=''"></img>
+						<a :url="'changshi_erji?typeid='+yiid" v-if="yiji_title!=''">{{yiji_title}} </a>
+						<img src="../static/img/zhishi_weizhi.png" mode=""  v-if="er_title!=''"></img>
+						<a :url="'changshi_sanji?erjiid='+er_id +'&yi_id='+yiid" v-if="er_title!=''">{{er_title}} </a>
+						<img src="../static/img/zhishi_weizhi.png" mode=""></img>
+						<span class="hei_9">详情</span>
+					</div>
+					<div class="zhishi_xq">
+						<div class="xq_title hei_9_bold">{{ data.title }}</div>
+						<div class="xq_top qian_7">
+							<div class="xq_top_item1">
+								<img src="../static/img/shuqian.png" mode=""></img>
+								小虎网络整理
+							</div>
+							<div class="xq_top_item2">
+								<img src="../static/img/changshi_time.png" mode=""></img>
+								{{ data.addtime | timeStamp }}
+							</div>
+							<div class="xq_top_item3">
+								<img src="../static/img/changshi_liulan.png" mode=""></img>
+								{{data.readnum}}浏览
+							</div>
+						</div>
+						<div class="zhaiyao hui_8" v-if="data.daodu != ''">{{ data.daodu }}</div>
+				
+						<div class="zhengwen hei_8" >
+							
+							
+						</div>
+					</div>
+				</div>
+				
+					
+      
+		</div>
+
+	</body>
+	<script src="../js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../js/vue.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../js/http.js" type="text/javascript" charset="utf-8"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vant@2.12/lib/vant.min.js"></script>
+	<script src="../js/get.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../js/swiper.min.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		var app = new Vue({
+			el: "#app",
+			data() {
+				return {
+				img_url: window.localStorage.getItem('img_url'),
+				knowledgeid: '',
+				data: '',
+				yiid:'',
+				yiji_title:'',
+				er_id:'',
+				er_title:''
+				}
+			},
+			created() {
+				
+				
+				if($_GET.knowledgeid){
+					this.knowledgeid=$_GET.knowledgeid
+					this.huoqu_xq()
+					
+				}
+			},
+			methods: {
+	         
+	
+				// 获取分类
+				huoqu_fenlei() {
+					ajax('/mapi/index/knowledgetype', "POST", '', (res) => { // POST或GET请求直接传参
+						for (var item in res.data.type[1]){
+								if(res.data.type[1][item].knowledgetypeid==this.data.knowledgetypeid)
+								this.yiji_title=res.data.type[1][item].knowledgetypename
+							}
+						if (this.data.knowledgetypeid1 != undefined) {
+							
+							for (var item in res.data.type[2]){
+								if(res.data.type[2][item].knowledgetypeid==this.data.knowledgetypeid1)
+								this.er_title=res.data.type[2][item].knowledgetypename
+							}
+							
+						}	
+					}, function(err) {
+						console.log("err", err);
+					})
+
+
+
+				},
+				// 获取详情
+				huoqu_xq() {
+					var data = {
+						knowledgeid: this.knowledgeid
+					}
+					ajax('/mapi/index/zhishi_xq', "POST", data, (res) => { // POST或GET请求直接传参
+						if (res.code == 0) {
+							this.data = res.data.knowledge;
+
+							$('.zhengwen').html(HTMLDecode(res.data.knowledge.information))
+						}
+						this.huoqu_fenlei()
+					}, function(err) {
+						console.log("err", err);
+					})
+
+				},
+	
+
+			}
+		})
+		
+	
+		
+		
+		
+	</script>
+
+</html>
