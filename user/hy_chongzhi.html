@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="keyword" content="" />
+		<meta name="description" content="" />
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<link rel="stylesheet" type="text/css" href="../css/gonggong.css" />
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vant@2.12/lib/index.css" />
+		<link rel="stylesheet" type="text/css" href="../css/swiper.min.css" />
+		<link rel="stylesheet" type="text/css" href="../css/font.css" />
+		<style>
+.head {
+	border-bottom: 1px solid #e8e8e8;
+}
+
+.tixian_body {
+	padding: 0 0.9375rem;
+}
+
+.tixian_top {
+	height: 7.4375rem;
+	background: url(../static/img/chongzhi_bg.png) no-repeat;
+	background-size: 100% 100%;
+	text-align: center;
+	padding-top: 2.375rem;
+	box-sizing: border-box;
+}
+
+.tixian_top img {
+	width: 0.9375rem;
+	height:0.875rem;
+	margin-right: 0.4375rem;
+}
+
+.jine {
+	font-size:1.875rem;
+	color: #ffffff;
+	font-weight: bold;
+}
+
+.tixian_btn {
+	height:2.75rem;
+	background-color: #0eb77e;
+	border-radius: 1.375rem;
+	line-height: 2.75rem;
+	margin: 8.125rem 0 1.5625rem;
+	width: 100%;
+}
+
+.jine_shuru {
+	display: flex;
+	border-bottom: 1px solid #f7f7f7;
+	padding-bottom:0.25rem;
+}
+.jine_shuru input{
+	height: 100%;
+	border: none;
+}
+.chong_txt {
+	margin: 0.9375rem 0 1.125rem;
+}
+.fangshi_txt {
+	margin: 2.1875rem 0 1.75rem;
+}
+.fangshi_left img {
+	width: 1.25rem;
+	height: 1.25rem;
+	margin-right:0.625rem;
+}
+.fangshi_list {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-bottom: 1.3125rem;
+}
+.fangshi_list input[type="radio"] {
+	width: 0.9375rem;
+	height: 0.9375rem;
+}
+
+.fangshi_list input[type="radio"]:checked {
+	width: 0.9375rem;
+	height: 0.9375rem;
+	background: url(../static/img/zhifu_xuan_bg.png) no-repeat;
+	background-size: 100% 100%;
+}
+
+		</style>
+	</head>
+	<body>
+
+		<div id="app">
+			<div class="body">
+
+				<div class="head">
+					<div class="head_back">
+						<img src="../static/img/back.png" mode="" onclick="javascript:history.back(-1);" /></img>
+					</div>
+					<div class="head_center hei_12_bold">账户充值</div>
+					<div class=" head_right hei_10_bold">
+						<a url="../ls/liushui">明细</navigator>
+					</div>
+				</div>
+
+				<div class="zi_body ">
+					<div class="tixian_top">
+						<div class="jine">{{ yue }}</div>
+						<div class="jine_xtx bai_9_bold">
+							<img src="../static/lsimg/tixian_icon.png" mode=""></img>
+							账号余额
+						</div>
+					</div>
+					<div class="tixian_body">
+						<div class="hei_9_bold chong_txt">充值金额（元）</div>
+						<div class="jine_shuru hei_9">
+							￥
+							<input type="number" value="" placeholder="请输入充值金额" class="hei_8" v-model="number" />
+						</div>
+				
+						<div class="fangshi_txt hei_9_bold">支付方式</div>
+						<div class="fangshi">
+							<!-- <div class="fangshi_list" @click="radio(1)">
+								<div class="fangshi_left hei_8">
+									<img src="@/static/img/weixin_pay.png" mode=""></img>
+									微信支付
+								</div>
+								<input type="radio" name="fs" id="" value="1" :checked="zhifu ==1"/>
+							</div> -->
+							<div class="fangshi_list" @click="radio(2)">
+								<div class="fangshi_left hei_8">
+									<img src="../static/img/zhifubao_pay.png" mode=""></img>
+									支付宝支付
+								</div>
+								<input type="radio" name="fs" id="" value="2" :checked="zhifu == 2"/>
+								
+							</div>
+						</div>
+						<button type="" class="tixian_btn bai_9_bold" @click="save">确认充值</button>
+					</div>
+				</div>
+
+
+
+
+			</div>
+
+
+
+		</div>
+
+	</body>
+	<script src="../js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../js/vue.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../js/http.js" type="text/javascript" charset="utf-8"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vant@2.12/lib/vant.min.js"></script>
+	<script type="text/javascript">
+		var app = new Vue({
+			el: "#app",
+			data() {
+				return {
+					number: '',
+					yue: '0.00',
+					zhifu: '2'
+				}
+			},
+
+			created() {
+				this.number = ''
+				this.huoqu_yue()
+
+
+			},
+			methods: {
+
+				huoqu_yue() {
+
+					ajax('/mapi/user/user', "POST", '', (res) => { // POST或GET请求直接传参
+						this.yue = res.data.user.rmb;
+					}, function(err) {
+
+						console.log("err", err);
+					})
+				},
+				all() {
+					this.jine = this.yue;
+				},
+
+
+				save() {
+
+					if (this.number == '') {
+						vant.Toast('请填写充值金额')
+						return false;
+					}
+					var data = {
+						paymoney: this.number
+					}
+					ajax('/mapi/user/chongzhih5', "POST", data, (res) => { // POST或GET请求直接传参
+						if (res.code == 0) {
+							window.open('' + res.data.response);
+						}
+					}, function(err) {
+						console.log("err", err);
+					})
+					console.log(this.number, this.zhifu);
+				},
+				radio(i) {
+					this.zhifu = i;
+				}
+
+
+			}
+		})
+	</script>
+
+</html>

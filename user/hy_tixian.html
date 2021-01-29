@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="keyword" content="" />
+		<meta name="description" content="" />
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<link rel="stylesheet" type="text/css" href="../css/gonggong.css" />
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vant@2.12/lib/index.css" />
+		<link rel="stylesheet" type="text/css" href="../css/swiper.min.css" />
+		<link rel="stylesheet" type="text/css" href="../css/font.css" />
+		<style>
+.head {
+		border-bottom: 1px solid #E8E8E8;
+	}
+
+	.tixian_body {
+		padding: 0 0.9375rem;
+	}
+
+	.tixian_top {
+		height: 7.375rem;
+		background: url(../static/lsimg/tixian_top_bg.png) no-repeat;
+		background-size: 100% 100%;
+		text-align: center;
+		padding-top: 1.75rem;
+		box-sizing: border-box;
+	}
+
+	.tixian_top img {
+		width: 0.9375rem;
+		height: 0.875rem;
+		margin-right: 0.4375rem;
+	}
+
+	.tixian_list {
+		/* padding: 1.125rem 0; */
+		height: 3.6rem;
+		border-bottom: 1px solid #E8E8E8;
+		display: flex;
+		align-items: center;
+	}
+
+	.tixian_list_left {
+		width: 4.625rem;
+	}
+
+	.tixian_list input {
+		width: 12.5rem;
+		height: 100%;
+		border: none;
+	}
+
+	.jine {
+		font-size: 1.875rem;
+		color: #FFFFFF;
+		font-weight: bold;
+	}
+
+	.all {
+		position: absolute;
+		right: 0.9375rem;
+	}
+
+	.tishi {
+		margin-top:0.3125rem;
+		display: inline-block;
+	}
+
+	.tixian_btn {
+		height: 2.75rem;
+		background-color: #f43a51;
+		border-radius: 1.375rem;
+		line-height: 2.75rem;
+		margin: 4.6875rem 0 1.5625rem;
+		width: 100%;
+	}
+
+	.tixian_shuoming_bottom {
+		margin-top: 0.625rem;
+		margin-bottom: 1.5625rem;
+		line-height: 1.25rem;
+	}
+
+		</style>
+	</head>
+	<body>
+
+		<div id="app">
+			<div class="body">
+
+				<div class="head">
+					<div class="head_back">
+						<img src="../static/img/back.png" mode="" onclick="javascript:history.back(-1);" /></img>
+					</div>
+					<div class="head_center hei_12_bold">账户提现</div>
+					<div class=" head_right hei_10_bold">
+						
+					</div>
+				</div>
+
+				<div class="zi_body ">
+				
+					<div class="tixian_top">
+						<div class="jine">
+							{{yue}}
+						</div>
+						<div class="jine_xtx bai_9_bold">
+							<img src="../static/lsimg/tixian_icon.png" mode=""></img>可提现金额
+						</div>
+					</div>
+					<div class="tixian_body">
+						<div class="tixian_list hei_9">
+							<div class="tixian_list_left">
+								用户姓名
+							</div>
+							<input type="text" value="" v-model="name" class="hei_9"placeholder="请输入用户姓名"/>
+						</div>
+						<div class="tixian_list hei_9">
+							<div class="tixian_list_left">
+								支付宝
+							</div>
+							<input type="text" value="" placeholder="请输入支付宝账号" class="hei_9" v-model="zhifubao" />
+						</div>
+						<div class="tixian_list hei_9">
+							<div class="tixian_list_left">
+								提现金额
+							</div>
+							<span class="hei_9">￥</span><input type="number" value="" class="hei_30" placeholder="请输入充值金额" v-model="jine"/>
+							<span class="hong_9 all" @click="all">全部</span>
+						</div>
+						<span class="tishi qian_8">*提现金额不能少于1元</span>
+				
+						<button type="" class="tixian_btn bai_9_bold" @click="save">立即提现</button>
+				
+				
+						<div class="tixian_shuoming hei_9">
+							提现说明
+							<div class="tixian_shuoming_bottom hui_8">
+								<div class="">
+									1.由于提现金额将存入你登录绑定的个人账号里，请确认您的个人账号已完成实名认证，否则无法成功提现；
+								</div>
+								<div class="">2.每个账户每次最少提现1元，每日最大提现次数3次；</div>
+								<div class="">3.提现申请后，请耐心等待平台处理，平台将在2小时内将提现金额存入你的支付宝里；</div>
+								<div class="">4.平台提现成功后，你可以通过账单进行查询；</div>
+								<div class="">5.在提现过程中有任何疑问，请随时联系我们的客服。</div>
+							</div>
+						</div>
+				
+					</div>
+				
+				</div>
+
+
+
+
+			</div>
+
+
+
+		</div>
+
+	</body>
+	<script src="../js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../js/vue.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../js/http.js" type="text/javascript" charset="utf-8"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vant@2.12/lib/vant.min.js"></script>
+	<script type="text/javascript">
+		var app = new Vue({
+			el: "#app",
+			data() {
+				return {
+					zhifubao: '',
+					jine: '',
+					yue: '55.00',
+					name:''
+				}
+			},
+
+			created() {
+				
+				this.huoqu_xinxi()
+
+
+			},
+			methods: {
+
+				huoqu_xinxi() {
+
+					ajax('/mapi/user/user', "POST", '', (res) => { // POST或GET请求直接传参
+						this.yue=res.data.user.rmb
+					}, function(err) {
+
+						console.log("err", err);
+					})
+				},
+				all() {
+					this.jine = this.yue;
+				},
+
+
+				save() {
+                if (this.name == '') {
+					
+					vant.Toast('请填写用户姓名')
+					return false
+				}
+				if (this.zhifubao == '') {
+				
+					vant.Toast('请填写支付宝账号')
+					return false
+				} else if (this.jine == '') {
+			
+					vant.Toast('请填写体现金额')
+					return false
+				}
+				if(this.jine<1){
+	
+					vant.Toast('金额不得少于1元')
+					return false
+				}
+					
+					var data = {
+						alipayuser:this.zhifubao,
+						rmb:this.jine,
+						myname:this.name	
+					}
+					ajax('/mapi/user/tixian', "POST", data, (res) => { // POST或GET请求直接传参
+						if (res.code == 0) {
+							this.zhifubao=''
+							this.jine=''
+							vant.Toast('提交成功')
+						}
+					}, function(err) {
+						console.log("err", err);
+					})
+					console.log(this.zhifubao, this.jine)
+				},
+				
+
+
+			}
+		})
+	</script>
+
+</html>
