@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="keyword" content="" />
+		<meta name="description" content="" />
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<link rel="stylesheet" type="text/css" href="../css/gonggong.css" />
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vant@2.12/lib/index.css" />
+		<link rel="stylesheet" type="text/css" href="../css/font.css" />
+		<link rel="stylesheet" type="text/css" href="../css/index.css" />
+		<style type="text/css">
+			.zhuce_tab_center {
+				display: flex;
+			}
+
+			.zhuce_tab_item {
+				line-height: 2rem;
+				text-align: center;
+				width: 5.3125rem;
+				height: 2rem;
+			}
+
+			.zhuce_tab_item_active {
+				background-color: #f43a51;
+				border-radius: 0.9375rem;
+				color: #FFFFFF;
+			}
+
+			.zhuce_tab {
+				display: flex;
+			}
+
+			.uni-input {
+				font-size: 0.875rem !important;
+			}
+
+			.zhuce_list {
+				border-bottom: 1px #e8e8e8 solid;
+				height: 3.4375rem;
+				display: flex;
+				align-items: center;
+
+			}
+
+			.yonghu_zhuce {
+				padding: 0 0.9375rem;
+				font-size: 0.875rem;
+				color: #777777;
+			}
+
+			.zhuce_list img {
+				width: 0.8125rem;
+				height: 0.9375rem;
+				margin-right: 0.9375rem;
+			}
+
+			.background_zhuti {
+				width: 5rem;
+				height: 1.375rem;
+				border-radius: 0.6875rem;
+				border: solid 1px #fc761f;
+				background: none;
+				line-height: 1.375rem;
+				color: #fc761f;
+				font-size: 0.75rem;
+			}
+
+			.zhuce_list_left {
+				display: flex;
+				align-items: center;
+			}
+
+			.yanjing {
+				position: absolute;
+				right: 0.9375rem;
+				width: 0.875rem !important;
+				height: 0.625rem !important;
+				margin-right: 0 !important;
+			}
+
+			.zhuce_list input {
+				width: 85% !important;
+				height: 100%;
+				border: none;
+			}
+
+			.diqu_icon {
+				width: 0.875rem !important;
+				height: 0.875rem !important;
+			}
+
+			.yanzheng_icon {
+				width: 0.9375rem !important;
+				height: 0.8125rem !important;
+			}
+
+			.yaoqing_icon {
+				width: 0.9375rem !important;
+				height: 0.9375rem !important;
+			}
+
+			.zhuce_list_yanzheng {
+				justify-content: space-between;
+				display: flex;
+				align-items: center;
+			}
+
+			.kai {
+				width: 0.9375rem !important;
+				height: 0.625rem !important;
+			}
+
+			.guan {
+				width: 0.875rem !important;
+				height: 0.4375rem !important;
+			}
+
+			button {
+				margin: 0;
+				padding: 0;
+			}
+
+			.aaaaaa {
+				min-width: 15.625rem;
+				display: inline-block;
+			}
+
+			.xieyi {
+				margin: 2.375rem 0 1.5625rem 0;
+				text-align: center;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+			}
+
+			.zhuce {
+				height: 2.75rem;
+				background-color: #f43a51;
+				border-radius: 1.375rem;
+				line-height: 2.75rem;
+				width: 100%;
+			}
+
+			.zhuce_tishi {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				margin-top: 1.25rem;
+			}
+
+			.xuandizu_icon {
+				width: 0.5rem !important;
+				height: 0.3125rem !important;
+			}
+
+			.border {
+				border: 1px solid #999999 !important;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="app">
+
+			<div class="head">
+				<div class="head_back" style="width: 10%;">
+					<img src="../static/img/back.png" mode="" onclick="javascript:history.back(-1);"></img>
+				</div>
+				<div class="head_center  zhuce_tab_center">
+					<div class="zhuce_tab qian_9_bold">
+						<div :class="['zhuce_tab_item' ,index==active?'zhuce_tab_item_active': '']" v-for="(tab,index) in tabs" @click="zhuce_qiehuan(index)">
+							{{tab}}
+						</div>
+					</div>
+
+				</div>
+				<div class="hei_9_bold head_right" style="width: 10%;">
+					<a href="login.html">登录</a>
+				</div>
+			</div>
+
+			<div class="zi_body">
+				<div class="yonghu_zhuce ">
+					<div class="zhuce_list">
+						<img src="../static/img/shouji_icon.png"></img>
+						<input type="text" value="" placeholder="手机号码" v-model="shouji" />
+					</div>
+					<div class="zhuce_list zhuce_list_yanzheng" v-if="is_xinxi==1">
+						<div class="zhuce_list_left">
+							<img src="../static/img/duanxin_icon.png" mode="" class="yanzheng_icon"></img>
+							<input type="text" placeholder="验证码" v-model="code">
+						</div>
+						<button @click="VerificationCode($event)" :class="['background_zhuti' ,isdisabled==true?'border': '']" ref='yanzheng_btn'
+						 :disabled="isdisabled">{{yan_txt}}</button>
+					</div>
+					<div class="zhuce_list">
+						<img src="../static/img/mima_icon.png" mode=""></img>
+						<input :type="type1" value="" placeholder="请设置一个最少6位的密码" @input="mimashu" />
+						<img :src="yan1_zhuangtai" mode="" @click="chakan(1)" :class="['yanjing',type1=='text'?'kai':'guan']"></img>
+					</div>
+					<div class="zhuce_list">
+						<img src="../static/img/mima_icon.png" mode=""></img>
+						<input :type="type2" value="" placeholder="请再次输入密码" @input="agamimashu" />
+						<img :src="yan2_zhuangtai" mode="" @click="chakan(2)" :class="['yanjing',type2=='text'?'kai':'guan']"></img>
+					</div>
+
+					<div class="zhuce_list">
+						<img src="../static/img/yaoqing_icon.png" mode="" class="yaoqing_icon"></img>
+						<input type="text" value="" placeholder="请输入邀请码(选填)" v-model="yaoqingma" />
+					</div>
+
+					<div class="xieyi qian_24">
+						<input type="checkbox" name="" id="" value="" :checked="isCheck" @click="checkBox($event)" style="margin-right: 0.2rem;" />
+						我已阅读并同意
+						<navigator url="xieyi" class="hong_7">《用户协议》</navigator>
+						和
+						<navigator url="yinsi" class="hong_7">《隐私政策》</navigator>
+					</div>
+					<button type="" class="zhuce bai_9" @click="zhuce">立即注册</button>
+					<div class="zhuce_tishi qian_7">
+						已有账号？<navigator url="login" class="hong_7">请登录</navigator>
+					</div>
+				</div>
+
+
+			</div>
+
+
+
+
+
+		</div>
+
+	</body>
+	<script src="../js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../js/vue.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vant@2.12/lib/vant.min.js"></script>
+	<script src="../js/http.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../js/get.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		var app = new Vue({
+			el: "#app",
+			data() {
+				return {
+					currentPage: 'ls/index',
+					tabs: ['用户注册', '律师注册'],
+					active: '0',
+					code: '',
+					mima: '',
+					agamima: '',
+					yaoqingma: '',
+					shouji: '',
+					type1: 'password',
+					type2: 'password',
+					isCheck: true,
+					name: '',
+					title: 'Hello',
+					isdisabled: false,
+					yan1_zhuangtai: '../static/lsimg/yanguan.png',
+					yan2_zhuangtai: '../static/lsimg/yanguan.png',
+					is_xinxi: '',
+					dianji: true
+
+				}
+			},
+			created() {
+				if ($_GET.state == 2) {
+					this.active = 1
+				} else {
+					this.active = 0
+				}
+			},
+			methods: {
+				zhuce_qiehuan(index) {
+					this.active = index
+
+				},
+				is_duanxin() {
+					ajax('/mapi/index/open_sms', "POST", '', (res) => { // POST或GET请求直接传参
+						if (res.code == 0) {
+							this.is_xinxi = res.data.open_sms
+						}
+					}, function(err) {
+						console.log("err", err);
+					})
+				},
+				btnCheck(e) {
+					var that = this
+					var time = 60;
+					var timer = setInterval(function() {
+						if (time == 0) {
+							clearInterval(timer);
+							that.isdisabled = false
+							that.yan_txt = '获取验证码'
+						} else {
+							that.isdisabled = true
+							that.yan_txt = time + '秒重获取'
+							time--;
+						}
+					}, 1000);
+				},
+				VerificationCode: function(e) {
+					var reg = /^1[3456789]\d{9}$/;
+					if (this.shouji == '') {
+
+						vant.Toast('请输入手机号码')
+						return false
+					}
+					if (!reg.test(this.shouji)) {
+
+						vant.Toast('手机号输入错误')
+						return false
+					}
+					var data = {
+						mobile: this.shouji
+					}
+					ajax('/index/login/sendsms', "POST", data, (res) => { // POST或GET请求直接传参
+						if (res.code == 0) {
+							this.btnCheck(e);
+						}
+					}, function(err) {
+						console.log("err", err);
+					})
+
+
+				},
+				chakan(e) {
+					if (e == 1) {
+						if (this.type1 == 'password') {
+							this.type1 = 'text',
+								this.yan1_zhuangtai = '../static/lsimg/yankai.png'
+						} else {
+							this.type1 = 'password',
+								this.yan1_zhuangtai = '../static/lsimg/yanguan.png'
+						}
+					} else {
+						if (this.type2 == 'password') {
+							this.type2 = 'text',
+								this.yan2_zhuangtai = '../static/lsimg/yankai.png'
+						} else {
+							this.type2 = 'password',
+								this.yan2_zhuangtai = '../static/lsimg/yanguan.png'
+						}
+					}
+				},
+				checkBox(e) {
+					this.isCheck = !this.isCheck
+				},
+				zhuce() {
+					var that = this
+
+					if (this.shouji == '' || this.mima == '' || this.agamima == '') {
+
+						vant.Toast('请填写完整')
+						return false
+					} else if (this.mima != this.agamima) {
+
+						vant.Toast('两次密码不一致')
+						return false
+					}
+					if (!this.isCheck) {
+						vant.Toast('请同意协议')
+						return false
+					}
+
+					if (this.dianji) {
+
+						this.dianji = false
+						var data = {
+							mobile: this.shouji,
+							password: this.mima,
+							password1: this.agamima,
+							code: this.code,
+							randcode: this.yaoqingma
+						}
+						if (this.active == "0") {
+
+							ajax('/index/login/register', "POST", data, (res) => { // POST或GET请求直接传参
+								if (res.code == 0) {
+									window.location.href = 'login.html'
+								}
+								that.dianji = true
+							}, function(err) {
+								console.log("err", err);
+							})
+
+							console.log(this.shouji, this.mima, this.agamima, )
+
+						} else if (this.active == "1") {
+
+							ajax('/lawyer/login/register', "POST", data, (res) => { // POST或GET请求直接传参
+								if (res.code == 0) {
+									window.location.href = 'login.html'
+									// ls
+								}
+								that.dianji = true
+							}, function(err) {
+								console.log("err", err);
+							})
+						}
+
+					} else {
+
+					}
+
+
+				},
+				mimashu(e) {
+					this.mima = e.target.value
+				},
+				agamimashu(e) {
+					this.agamima = e.target.value
+				},
+				change(data) {
+					console.log(data)
+					this.dizhi = data.data.join('')
+					console.log(data.data.join(''))
+				}
+
+			}
+		})
+	</script>
+
+	</script>
+	<script type="text/javascript">
+
+	</script>
+</html>

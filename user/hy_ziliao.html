@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="keyword" content="" />
+		<meta name="description" content="" />
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<link rel="stylesheet" type="text/css" href="../css/gonggong.css" />
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vant@2.12/lib/index.css" />
+		<link rel="stylesheet" type="text/css" href="../css/swiper.min.css" />
+		<link rel="stylesheet" type="text/css" href="../css/font.css" />
+		<style>
+			.head {
+					border-bottom: 1px solid #F7F7F7;
+				}
+			
+				.shiming_list {
+					height: 3.125rem;
+					display: flex;
+					align-items: center;
+					justify-content: space-between;
+					border-bottom: 1px solid #F7F7F7;
+					padding-left: 0.9375rem;
+					padding-right: 0.9375rem;
+					position: relative;
+				}
+			
+				.youshi {
+					padding-left: 0.9375rem;
+					padding-right: 0.9375rem;
+				}
+				.youshi textarea{
+					width: 100%;
+					height: 5rem;
+					padding: 0.5rem ;
+					box-sizing: border-box;
+					outline: none;
+					resize: none;
+					border: none;
+				}
+			
+				.youshi_top {
+					line-height: 3.125rem;
+				}
+			
+				.shiming_list input {
+					width: 15.625rem;
+					text-align: right;
+					border: none;
+					height: 100%;
+					background: none;
+				}
+			
+				.shiming_list_left {
+					width: 5.3125rem;
+				}
+				.shiming_list_right {
+					display: flex;
+					align-items: center;
+				}
+			
+			.tuichu{
+				text-align: center;
+				line-height: 3.125rem;
+				border-top: 1px solid #EEEEEE;
+				border-bottom: 1px solid #EEEEEE;
+				height: 3.125rem;
+			}
+		
+
+		</style>
+	</head>
+	<body>
+
+		<div id="app">
+			<div class="body">
+
+				<div class="head">
+					<div class="head_back">
+						<img src="../static/img/back.png" mode="" onclick="javascript:history.back(-1);" /></img>
+					</div>
+					<div class="head_center hei_12_bold">个人信息</div>
+					<div class=" head_right hei_10_bold">
+						<span @click="save">保存</span>
+					</div>
+				</div>
+
+				<div class="zi_body shiming_body">
+
+					<div class="shiming_list hei_9">
+						<div class="shiming_list_left">
+							账号昵称
+						</div>
+						<input type="text" value="" placeholder="" class="hei_8" v-model="name" disabled="true" />
+					</div>
+					<div class="shiming_list hei_9">
+						<div class="shiming_list_left">
+							手机号码
+						</div>
+						<input type="text" value="" placeholder="" class="hei_8" v-model="shouji" disabled="true" />
+					</div>
+					<div class="shiming_list hei_9">
+						<div class="shiming_list_left">
+							Q Q
+						</div>
+						<input type="text" value="" placeholder="请输入qq" class="hei_8" v-model="qq" />
+					</div>
+
+					<div class="shiming_list hei_9">
+						<div class="shiming_list_left">
+							微信
+						</div>
+						<input type="text" value="" placeholder="请输入微信" class="hei_8" v-model="weixin" />
+					</div>
+					<div class="shiming_list hei_9">
+						<div class="shiming_list_left">
+							电子邮箱
+						</div>
+						<input type="text" value="" placeholder="请输入电子邮箱" class="hei_8" v-model="youxiang" />
+					</div>
+					<div class="youshi">
+						<div class="youshi_top hei_9">
+							简介
+						</div>
+						<textarea value="" placeholder="请输入" class="hei_8" v-model="youshi" maxlength="5000" /></textarea>
+					</div>
+					<div class="tuichu hei_9" @click="tuichu">
+						退出登录
+					</div>
+
+
+				</div>
+
+
+
+
+
+			</div>
+
+
+
+		</div>
+
+	</body>
+	<script src="../js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../js/vue.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../js/http.js" type="text/javascript" charset="utf-8"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vant@2.12/lib/vant.min.js"></script>
+	<script src="../js/city.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		var app = new Vue({
+			el: "#app",
+			data() {
+				return {
+					name: '',
+					shouji: '',
+					qq: '',
+					weixin: '',
+					youxiang: '',
+					youshi: '',
+					data: '',
+					userid: ''
+				}
+			},
+
+			created() {
+
+				this.huoqu_xinxi()
+
+			},
+			methods: {
+
+				huoqu_xinxi() {
+
+					ajax('/mapi/user/user', "POST", '', (res) => { // POST或GET请求直接传参
+						this.data = res.data.user;
+						this.name = res.data.user.nickname
+						this.shouji = res.data.user.mobile
+						this.qq = res.data.user.qq
+						this.weixin = res.data.user.weixin
+						this.youxiang = res.data.user.email
+						this.userid = res.data.user.userid
+						this.youshi = res.data.user.beizhu
+
+					}, function(err) {
+
+						console.log("err", err);
+					})
+				},
+
+
+
+				save() {
+
+
+					var data = {
+						email: this.youxiang,
+						qq: this.qq,
+						weixin: this.weixin,
+						beizhu: this.youshi
+					}
+					ajax('/mapi/user/upuser', "POST", data, (res) => { // POST或GET请求直接传参
+						if (res.code == 0) {
+							vant.Toast('修改成功');
+						}
+					}, function(err) {
+						console.log("err", err);
+					})
+
+				},
+				// 退出登录
+				tuichu() {
+					ajax('/index/login/logout', "POST", '', (res) => { // POST或GET请求直接传参
+						if (res.code == 0) {
+							window.location.href = 'index.html'
+						}
+					}, function(err) {
+						console.log("err", err);
+					})
+				}
+
+
+			}
+		})
+	</script>
+
+</html>

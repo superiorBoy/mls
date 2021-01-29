@@ -6,9 +6,10 @@
 		<meta name="keyword" content="" />
 		<meta name="description" content="" />
 		<meta charset="utf-8">
-        <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
-	    <link rel="stylesheet" type="text/css" href="../css/gonggong.css"/>
-		<link rel="stylesheet" type="text/css" href="../css/font.css"/>
+		<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<link rel="stylesheet" type="text/css" href="../css/gonggong.css" />
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vant@2.12/lib/index.css" />
+		<link rel="stylesheet" type="text/css" href="../css/font.css" />
 		<link rel="stylesheet" type="text/css" href="../css/index.css" />
 		<style type="text/css">
 			.zhuce_list {
@@ -17,19 +18,21 @@
 				display: flex;
 				align-items: center;
 			}
+
 			.yonghu_zhuce {
 				padding: 0 0.94rem;
 				font-size: 0.8rem;
 				color: #777777;
 			}
-			
+
 			.zhuce_list img {
-			    width: 0.81rem;
+				width: 0.81rem;
 				height: 0.94rem;
 				margin-right: 0.9rem;
 			}
+
 			.background_zhuti {
-				width:5rem;
+				width: 5rem;
 				height: 1.37rem;
 				border-radius: 0.65rem;
 				border: solid 1px #fc761f;
@@ -38,10 +41,12 @@
 				color: #fc761f;
 				font-size: 0.8rem;
 			}
+
 			.zhuce_list_left {
 				display: flex;
 				align-items: center;
 			}
+
 			.yanjing {
 				position: absolute;
 				right: 0.94rem;
@@ -49,24 +54,27 @@
 				height: 0.85rem !important;
 				margin-right: 0 !important;
 			}
+
 			.zhuce_list input {
 				width: 85% !important;
 				border: none;
 			}
+
 			.yanzheng_icon {
-				width:0.9rem !important;
+				width: 0.9rem !important;
 				height: 0.8rem !important;
 			}
+
 			button {
 				margin: 0;
 				padding: 0;
 			}
-			
+
 			.xieyi {
 				margin: 2.35rem 0 1.53rem 0;
 				text-align: center;
 			}
-			
+
 			.zhuce {
 				width: 100%;
 				height: 2.75rem;
@@ -74,27 +82,27 @@
 				border-radius: 1.38rem;
 				line-height: 2.75rem;
 			}
-			
+
 			.zhuce_tishi {
 				display: flex;
 				align-items: center;
 				justify-content: center;
 				margin-top: 1.25rem;
 			}
-			
+
 			.wangji_mima {
 				text-align: right;
 				margin-top: 0.9rem;
 			}
-			.kai {
-				
-			}
+
+			.kai {}
+
 			.guan {
 				width: 0.85rem !important;
 				height: 0.42rem !important;
 			}
-				
-			.xieyi input{
+
+			.xieyi input {
 				margin-right: 0.34rem;
 			}
 		</style>
@@ -103,36 +111,41 @@
 		<div id="app">
 
 			<div class="head">
-				<div class="head_back"><img src="../static/img/back.png" mode="" @click="navigateBack()"></img></div>
+				<div class="head_back"><img src="../static/img/back.png" mode="" onclick="javascript:history.back(-1);"></img></div>
 				<div class="head_center hei_12_bold ">登录</div>
-				<div class="hei_9 head_right"><navigator url="zhuce">注册</navigator></div>
+				<div class="hei_9 head_right">
+					<a href="register.html">注册</a>
+				</div>
 			</div>
-			
+
 			<div class="zi_body">
 				<div class="yonghu_zhuce ">
 					<div class="zhuce_list">
-						<img src="../static/img/shouji_icon.png" >
+						<img src="../static/img/shouji_icon.png">
 						<input type="text" value="" placeholder="手机号码" v-model="shouji" />
 					</div>
-			
+
 					<div class="zhuce_list">
 						<img src="../static/img/mima_icon.png" mode=""></img>
 						<input :type="type1" value="" placeholder="请设置一个最少6位的密码" @input="mimashu" />
 						<img :src="yan1_zhuangtai" mode="" @click="chakan()" :class="['yanjing', type1 == 'text' ? 'kai' : 'guan']"></img>
 					</div>
-			
+
 					<div class="wangji_mima hong_9">忘记密码？</div>
-			
+
 					<div class="xieyi qian_7">
-						<input type="checkbox" name="" id="" value=""  @click="checkBox($event)"/>
+						<input type="checkbox" name="" id="" value="" @click="checkBox($event)" />
+
 						
 						我已阅读并同意
-						<span class="hong_7">《小虎律师网协议》</span>
+						<navigator url="xieyi"  class="hong_7">《用户协议》</navigator>
+						   和
+						<navigator url="yinsi"  class="hong_7">《隐私政策》</navigator>
 					</div>
 					<button type="" class="zhuce bai_9" @click="login">立即登录</button>
 					<div class="zhuce_tishi qian_7">
 						暂无账号？
-						<a  class="hong_7">请注册</a>
+						<a class="hong_7">请注册</a>
 					</div>
 				</div>
 			</div>　
@@ -146,8 +159,9 @@
 	</body>
 	<script src="../js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
 	<script src="../js/vue.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vant@2.12/lib/vant.min.js"></script>
+	<script src="../js/http.js" type="text/javascript" charset="utf-8"></script>
 	<script type="text/javascript">
-	
 		var app = new Vue({
 			el: "#app",
 			data() {
@@ -158,7 +172,7 @@
 					isCheck: true,
 					yan1_zhuangtai: '../static/lsimg/yanguan.png',
 					back: false
-					
+
 				}
 			},
 			methods: {
@@ -167,34 +181,21 @@
 				},
 				login() {
 
-					console.log(this.shouji,this.mima)
-			
-					// this.$http
-					// 	.post({
-					// 		url: '/index/login/login',
-					// 		data: {
-					// 			mobile: this.shouji,
-					// 			password: this.mima
-					// 		}
-					// 	})
-					// 	.then(res => {
-					// 		if(res.code==0){
-					// 			if(this.type==3){
-					// 				uni.reLaunch({
-					// 					url:'../ls/yaoqing'
-					// 				})
-					// 			}else if(res.data.grade==2){
-					// 			   this.ls_login()
-					// 			}else{
-					// 				uni.switchTab({
-					// 					url:'index'
-					// 				})
-					// 			}
-														
-					// 		}
-					// 		console.log(res);
-					// 	});
-				
+					console.log(this.shouji, this.mima)
+					var data = {
+						mobile: this.shouji,
+						password: this.mima
+					}
+					ajax('/index/login/login', "POST", data, (res) => { // POST或GET请求直接传参
+						if (res.code == 0) {
+							vant.Toast('登录成功');
+							location.href = '../user/index.html'
+						}
+					}, function(err) {
+						console.log("err", err);
+					})
+
+
 					console.log(this.shouji, this.mima, this.isCheck);
 				},
 				chakan() {
@@ -214,6 +215,6 @@
 
 	</script>
 	<script type="text/javascript">
-	
+
 	</script>
 </html>

@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="keyword" content="" />
+		<meta name="description" content="" />
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<link rel="stylesheet" type="text/css" href="../css/gonggong.css" />
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vant@2.12/lib/index.css" />
+		<link rel="stylesheet" type="text/css" href="../css/swiper.min.css" />
+		<link rel="stylesheet" type="text/css" href="../css/font.css" />
+		<link rel="stylesheet" type="text/css" href="../css/index.css" />
+		<style>
+			html {
+			background-color: #f7f7f7;
+		}
+
+.head {
+	border-bottom: 1px solid #e8e8e8;
+}
+.tixian_btn {
+	height: 2.75rem;
+	background-color: #0eb77e;
+	border-radius: 1.375rem;
+	line-height: 2.75rem;
+	margin: 3.875rem 0 1.5625rem;
+	width: 100%;
+}
+
+.fangshi_txt {
+	height: 3.1875rem;
+	line-height: 3.1875rem;
+	padding: 0 0.9375rem;
+}
+
+.fangshi_left {
+	display: flex;
+	align-items: center;
+}
+
+.fangshi_left img {
+	margin-right: 0.625rem;
+}
+
+.fangshi_list_pay {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	height:3.125rem;
+	border-bottom: 1px solid #f7f7f7;
+}
+.zhineng_pay_title {
+	line-height: 3.0625rem;
+	padding-left: 0.9375rem;
+}
+.pay_list {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	height: 3.125rem;
+	border-bottom: 1px solid #f7f7f7;
+	background-color: #ffffff;
+	padding: 0 0.9375rem;
+}
+.pay_list input {
+	text-align: right;
+	height: 100%;
+	border: none;
+}
+.pay_list img{
+	width: 0.38rem;
+		height: 0.66rem;
+}
+.fangshi {
+	background-color: #ffffff;
+	padding: 0 0.9375rem;
+}
+
+.tuijian {
+	border: 1px solid #fd4358;
+	width: 1.9375rem;
+	height:0.9375rem;
+	display: inline-block;
+	line-height: 0.9375rem;
+	text-align: center;
+	margin-left: 0.25rem;
+}
+.pay_btn {
+	padding: 0 0.9375rem;
+}
+.wen_list {
+	display: block;
+	padding-bottom: 0.9375rem;
+	height: auto;
+}
+.wen_list_top {
+	line-height: 2.5rem;
+}
+.wen_neirong {
+	background-color: #f8f8f8;
+	width: 100%;
+	padding: 0.3125rem 0.5rem;
+	box-sizing: border-box;
+}
+.wen_neirong_txt {
+	height: 3.125rem;
+	overflow: auto;
+	word-break: break-all;
+}
+.wen_neirong_textarea {
+	height: 8.25rem;
+	resize: none;
+	outline: none;
+	border: none;
+}
+.go_r {
+	width: 0.375rem;
+	height:0.75rem;
+	margin-left: 0.5625rem;
+}
+			
+		</style>
+	</head>
+	<body>
+
+		<div id="app">
+			<div class="body">
+
+				<div class="head">
+					<div class="head_back">
+						<img src="../static/img/back.png" mode="" onclick="javascript:history.back(-1);" /></img>
+					</div>
+					<div class="head_center hei_12_bold">支付</div>
+					<div class=" head_right"></div>
+				</div>
+
+				<div class="zi_body ">
+					<div class="zhineng_pay_title qian_9">智能匹配服务</div>
+					<div class="pay_top">
+						<div class="pay_list">
+							<span class="qian_9">服务项目</span>
+							<span class="hei_9">{{ type == 1 ? '在线咨询' : '电话咨询' }}</span>
+						</div>
+						<div class="pay_list">
+							<span class="qian_9">服务时长</span>
+							<span class="hei_9">{{ type == 1 ? time + '小时' : time + '分钟' }}</span>
+						</div>
+						<div class="pay_list">
+							<span class="qian_9">支付金额</span>
+							<span class="hong_9">￥{{ pay_money }}</span>
+						</div>
+
+						<div class="pay_list">
+							<span class="qian_9">手机号码</span>
+							<input type="text" value="" v-model="phone" placeholder="请输入手机号码" class="hei_9" />
+						</div>
+
+						<div class="pay_list">
+							<span class="qian_9">咨询类型</span>
+							<div @click="xuanze">
+								<span class="hei_9">{{ leixing == '' ? '选择咨询类型' : leixing }}</span>
+								<img src="../static/lsimg/go_r.png" mode="" style="margin-left: 0.1875rem;vertical-align: middle;"></img>
+							</div>
+						</div>
+						<div class="pay_list wen_list">
+							<div class="qian_9 wen_list_top">咨询内容</div>
+							<textarea value="" placeholder="" class="hei_9 wen_neirong wen_neirong_textarea" v-model="neirong" maxlength="5000" /></textarea>
+						</div>
+					</div>
+
+					<div class="fangshi_txt qian_9">请选择支付方式</div>
+					<div class="fangshi">
+						<!-- <div class="fangshi_list_pay" @click="radio(1)">
+							<div class="fangshi_left hei_8">
+								<img src="../static/img/pay_weixin.png" mode="" style="width:36rpx ;height: 31rpx;"></img>
+								微信支付
+								<span class="tuijian hong_22">推荐</span>
+							</div>
+							<label class="radio"><radio value="1" :checked="zhifu == 1" /></label>
+						</div> -->
+						<div class="fangshi_list_pay" @click="radio(2)">
+							<div class="fangshi_left hei_8">
+								<img src="../static/img/pay_zhifubao.png" mode="" style="width: 1.25rem;height:1.25rem;"></img>
+								支付宝支付
+							</div>
+							<input type="radio" name="fs" id="" value="2" :checked="zhifu == 2" />
+
+						</div>
+						<div class="fangshi_list_pay" @click="radio(3)">
+							<div class="fangshi_left hei_8">
+								<img src="../static/img/yue_pay.png" mode="" style="width:1.125rem ;height: 0.9375rem;"></img>
+								余额支付
+							</div>
+							<input type="radio" name="fs" id="" value="3" :checked="zhifu == 3" />
+
+						</div>
+					</div>
+					<div class="pay_btn"><button type="" class="tixian_btn bai_9" @click="save">支付</button></div>
+				</div>
+
+
+
+			</div>
+
+			<van-popup v-model="leixi_show" round position="bottom">
+				<van-picker title="选择分类" show-toolbar :columns="fenlei_arry" @confirm="onConfirm" @cancel="onCancel" value-key='typename' />
+			</van-popup>
+
+		</div>
+
+	</body>
+	<script src="../js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../js/vue.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../js/http.js" type="text/javascript" charset="utf-8"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vant@2.12/lib/vant.min.js"></script>
+	<script src="../js/get.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		var app = new Vue({
+			el: "#app",
+			data() {
+				return {
+					img_url: window.localStorage.getItem('img_url'),
+					type: 1,
+					zhifu: 2,
+					type_arry: [],
+					zhuanchang_arry: [],
+					leixing: '',
+					neirong: '',
+					phone: '',
+					typeid: '',
+					zhineng: '',
+					consultid: '',
+					pay_money: '',
+					zixun_xq: '',
+					time: '',
+					leixi_show: false
+
+				}
+			},
+			created() {
+
+				if ($_GET.consultid) {
+					this.consultid = $_GET.consultid
+					this.type = $_GET.type
+					ajax('/mapi/index/gettype', "POST", '', (res) => { // POST或GET请求直接传参
+						var array = [];
+						for (var key in res.data.type) {
+							array.push(res.data.type[key]);
+						}
+						this.fenlei_arry = array
+
+						this.huoqu_consultid()
+					}, function(err) {
+						console.log("err", err);
+					})
+
+				} else {
+					this.type = $_GET.type
+					this.huoqu_fenlei()
+				}
+
+			},
+			methods: {
+				huoqu_user() {
+
+					ajax('/mapi/user/user', "POST", '', (res) => { // POST或GET请求直接传参
+						this.phone = res.data.user.mobile;
+					}, function(err) {
+						console.log("err", err);
+					})
+				},
+
+				// 获取分类
+				huoqu_fenlei() {
+
+					ajax('/mapi/index/gettype', "POST", '', (res) => { // POST或GET请求直接传参
+						var array = [];
+						for (var key in res.data.type) {
+							array.push(res.data.type[key]);
+						}
+						this.fenlei_arry = array
+						this.huoqu_baojia()
+					}, function(err) {
+						console.log("err", err);
+					})
+
+				},
+				radio(i) {
+					this.zhifu = i;
+				},
+				huoqu_consultid() {
+					var data = {
+						consultid: this.consultid
+					}
+					ajax('/mapi/consult/consult_xq', "POST", data, (res) => { // POST或GET请求直接传参
+
+						this.time = res.data.consult.zixunshicahng;
+						this.pay_money = res.data.consult.paymoney;
+						this.phone = res.data.consult.phone;
+						this.leixing = this.fenlei_arry[res.data.consult.typeid].typename;
+						this.neirong = res.data.consult.information;
+						this.typeid = res.data.consult.typeid;
+
+					}, function(err) {
+						console.log("err", err);
+					})
+				},
+				xuanze() {
+					this.leixi_show = true
+				},
+				onConfirm(e) {
+					console.log(e)
+					this.leixing = e.typename;
+					this.typeid = e.typeid;
+					this.leixi_show = false
+				},
+				onCancel() {
+					this.leixi_show = false
+				},
+
+				huoqu_baojia() {
+					ajax('/mapi/index/getzixun', "POST", '', (res) => { // POST或GET请求直接传参
+						this.zhineng = res.data.zhan;
+						if (this.type == 1) {
+							console.log('4444')
+							this.pay_money = res.data.zhan.zaixianprice;
+							this.time = res.data.zhan.zaixiantime;
+						} else {
+							console.log('8888')
+							this.pay_money = res.data.zhan.dianhuaprice;
+							this.time = res.data.zhan.dianhuatime;
+						}
+					}, function(err) {
+						console.log("err", err);
+					})
+				},
+				save() {
+					if (this.phone == '') {
+
+						vant.Toast('请填写手机号')
+						return false;
+					}
+					if (this.neirong == '') {
+
+						vant.Toast('请填写咨询内容')
+						return false;
+					}
+					if (this.typeid == '') {
+
+						vant.Toast('请填写咨询类型')
+						return false;
+					}
+
+					var data = {
+						type: this.type,
+						information: this.neirong,
+						typeid: this.typeid,
+						phone: this.phone,
+						consultid: this.consultid
+					}
+					ajax('/index/consult/addzhinengpay', "POST", data, (res) => { // POST或GET请求直接传参
+						if (res.code == 0) {
+							this.consultid = res.data.consultid;
+
+							if (this.zhifu == 2) {
+								this.zfb_pay(res.data.consultid);
+							} else if (this.zhifu == 3) {
+								this.yue_pay(res.data.consultid);
+							}
+						}
+					}, function(err) {
+						console.log("err", err);
+					})
+				},
+				zfb_pay(consultid) {
+					var data = {
+						consultid: consultid
+					}
+					ajax('/mapi/consult/zhinengpayh5', "POST", data, (res) => { // POST或GET请求直接传参
+						if (res.code == 0) {
+							window.open('' + res.data.response);
+						}
+					}, function(err) {
+						console.log("err", err);
+					})
+
+				},
+				yue_pay(consultid) {
+					var data = {
+						consultid: consultid
+					}
+					ajax('/index/consult/zhinengaccountpay', "POST", data, (res) => { // POST或GET请求直接传参
+						if (res.code == 0) {
+							vant.Toast('支付成功')
+							setTimeout(function() {
+								history.go(-1)
+							}, 2000);
+						}
+					}, function(err) {
+						console.log("err", err);
+					})
+					this.$http
+						.post({
+							url: '/index/consult/zhinengaccountpay',
+							data: {
+								consultid: consultid
+							}
+						})
+						.then(res => {
+							if (res.code == 0) {
+
+								vant.Toast('支付成功')
+								setTimeout(function() {
+									history.go(-1)
+								}, 2000);
+							}
+						});
+				}
+
+			}
+		})
+	</script>
+
+</html>

@@ -22,7 +22,7 @@
 
 
 			<div class="head">
-				<div class="head_back" style="width: 10%;"><img src="../static/img/back.png" mode="" @click="navigateBack()"></img></div>
+				<div class="head_back" style="width: 10%;"><img src="../static/img/back.png" mode=""  onclick="javascript:history.back(-1);"></img></div>
 				<div class="head_center " style="width: 80%;">
 					<div class="hei_12_bold top_title" @click="go_zhuye()">{{ title }}</div>
 					<div class="hong_7 chat_lvsuo">剩余咨询时间:{{day}}天{{hour}}:{{minute}}:{{seconds}}</div>
@@ -80,8 +80,7 @@
 							<img :src="img_url + item.photourl_form" mode="" class="tx"></img>
 							<div class="chat_left_txt hei_9">
 								<span class="ls_name">{{ title }}</span>
-								{{replace_em(item.content)}}
-
+								<div v-html="replace_em(item.content)"></div>
 							</div>
 						</div>
 						<div class="chat_list chat_left" v-if="item.userid_from == lawyerid&&item.msgtype == 2">
@@ -264,8 +263,8 @@
 						</div>
 						<div class="chat_list chat_right" v-if="item.userid_from != lawyerid&&item.msgtype == 1">
 							<div class="chat_right_txt hei_9">
-								<!-- {{item.content}} -->{{replace_em(item.content)}}
-
+								<!-- {{item.content}} -->
+								<div v-html="replace_em(item.content)"></div>
 							</div>
 							<img :src="img_url + item.photourl_form" mode="" class="tx"></img>
 						</div>
@@ -441,22 +440,25 @@
 						</div>
 						<img src="../static/lsimg/yh_tx.png" mode="" class="tx"></img>
 					</div> -->
-					<div class="aaaaaa"></div>
-				</div>
 
+				</div>
+                
 				<div class="zhanwei" v-if="isShowEmj"></div>
 				<div class="chat_bottom">
 
 					<div class="chat_bottom_top">
 						<!-- <img src="@/static/lsimg/chat_yuyin.png" mode=""></img> -->
-						<img src="../static/lsimg/chat_biaoqing.png" mode="" @tap="showEmj"></img>
-						<input type="text" value="" v-model="chat_txt" confirm-type="send" @confirm="send" class="hei_8" @focus="huojiao" />
+						<img src="../static/lsimg/chat_biaoqing.png" mode="" @click="showEmj" class="emotion"></img>
+						<input type="text" id="saytext" value="" v-model="chat_txt" confirm-type="send" @confirm="send" class="hei_8" @focus="huojiao" />
 						<img src="../static/lsimg/chat_jia.png" mode="" @click="jia"></img>
 						<span class="fasong" @click="send()">发送</span>
 					</div>
-					<emotion @emotion="handleEmj" v-if="isShowEmj"></emotion>
-					<div class="chat_bottom_bottom hui_26" v-if="bt_show">
-						<div class="chat_bt_item" @click="up_img">
+					<div class="showEmj_zhanwei"v-if="isShowEmj">
+						
+					</div>
+					<div class="chat_bottom_bottom hui_8" v-if="bt_show">
+						<div class="chat_bt_item">
+							<input type="file" name="" id="avatarSlect" value="" accept="image/*" multiple="multiple" @click="up_img" />
 							<img src="../static/lsimg/chat_tupian.png" mode=""></img>
 							<div>发送图片</div>
 						</div>
@@ -485,7 +487,7 @@
 	<script src="../js/http.js" type="text/javascript" charset="utf-8"></script>
 	<script src="https://cdn.jsdelivr.net/npm/vant@2.12/lib/vant.min.js"></script>
 	<script src="../js/get.js" type="text/javascript" charset="utf-8"></script>
-
+    <script src="../js/jquery.qqFace.js" type="text/javascript" charset="utf-8"></script>
 	<script type="text/javascript">
 		var app = new Vue({
 			el: "#app",
@@ -520,7 +522,8 @@
 					minute: '00',
 					seconds: '00',
 					time1: '0',
-					lawyerid: ''
+					lawyerid: '',
+					
 				}
 			},
 			created() {
@@ -530,6 +533,7 @@
 					this.huoqu_xiaoxi_list()
 					this.huqu_ls_xinxi()
 					this.huqu_zhiwu()
+					this.connectSocketInit();
 				}
 
 
@@ -555,10 +559,9 @@
 						this.dianhua = res.data.user_to.mobile;
 						this.chat_xinxi = res.data.user_to;
 						setTimeout(() => {
-							$(".chat_body").animate({
-								scrollTop: $(".chat_body")[0].scrollHeight - $('.chat_body').height()
-							}, 100);
 
+							var h = $(document).height() - $(window).height();
+							$(document).scrollTop(h);
 						}, 200);
 
 						that.time1 = res.data.shijian
@@ -572,80 +575,71 @@
 							if (time < 0) {
 								clearInterval(interval);
 							} else {
-
 								var day = parseInt(time / 1000 / 60 / 60 / 24);
 								var hour = parseInt(time / 1000 / 60 / 60 % 24);
 								var minute = parseInt(time / 1000 / 60 % 60);
 								var seconds = parseInt(time / 1000 % 60);
 								if (minute <= 9) minute = '0' + minute;
 								if (seconds <= 9) seconds = '0' + seconds;
-
 								that.day = day
 								that.hour = hour
 								that.minute = minute
 								that.seconds = seconds
 							}
-
 						}, 1000);
 
 					}, function(err) {
-
 						console.log("err", err);
 					})
-
 				},
 
 				huqu_ls_xinxi() {
-
 					var data = {
 						lawyerid: this.lawyerid
 					}
 					ajax('/mapi/lawyer/lawyer', "POST", data, (res) => { // POST或GET请求直接传参
 						this.ls_xinxi = res.data.lawyer;
-
 					}, function(err) {
-
 						console.log("err", err);
 					})
 
 				},
 				huqu_zhiwu() {
-
 					var data = {
 						lawyerid: this.lawyerid
 					}
 					ajax('/mapi/lawyer/xinxi', "POST", data, (res) => { // POST或GET请求直接传参
 						this.xinxi = res.data.lawyer;
-
 					}, function(err) {
-
 						console.log("err", err);
 					})
 				},
 
-
 				showEmj() {
+					
 					let bool = !this.isShowEmj;
+					console.log(bool)
 					if (bool) {
-						this.emojiIcon = 'cuIcon-keyboard';
+						
 						this.bt_show = false;
+						
 					} else {
-						this.emojiIcon = 'cuIcon-emoji';
+						
 					}
-
 					this.isShowEmj = bool;
-					this.$emit('show');
+					
 				},
-
+           tan_hide() {
+			this.isShowEmj = false;
+			this.bt_show = false;
+		},
 				send() {
 					console.log(this.chat_txt);
+					var text=$('#saytext').val()
+					this.chat_txt=text
 					var txt = this.replace_em(this.chat_txt);
 					if (txt == '') {
-						uni.showToast({
-							title: '请输入内容',
-							duration: 2000,
-							icon: 'none'
-						});
+						vant.Toast('请输入内容');
 						return false;
 					}
 
@@ -677,21 +671,166 @@
 				},
 				huojiao() {
 					setTimeout(() => {
-						uni.pageScrollTo({
-							scrollTop: 99999,
-							duration: 0
-						});
+						var h = $(document).height() - $(window).height();
+						$(document).scrollTop(h);
 					}, 100);
 				},
 				jia() {
 					this.bt_show = !this.bt_show;
 					this.isShowEmj = false;
+						$('#facebox').hide();
+						$('#facebox').remove();
 				},
+				up_img() {
+					let that = this;
 
+
+					var formData = new FormData();
+					var files = $('#avatarSlect').get(0).files;
+					for (var i = 0; i < files.length; i++) {
+						var r = new FileReader();
+						r.onload = function() {
+							img = this.result
+
+							var data = {
+								img: img
+							}
+							ajax('/index/zixun/uploadimgmessage', "POST", data, (res) => { // POST或GET请求直接传参
+								if (res.code == 0) {
+									that.send_img(res.data.img);
+								};
+							}, function(err) {
+
+								console.log("err", err);
+							})
+
+
+
+						};
+						r.readAsDataURL(files[i]);
+					};
+
+
+				},
+				send_img(img) {
+					var that = this
+					var data = {
+						userid_to: this.lawyerid,
+						msg: img,
+						type: 2
+					}
+					ajax('/push/gatewayworker/sendmessage.html', "POST", data, (res) => { // POST或GET请求直接传参
+						if (res.code == 0) {
+							var data = {
+								content: img,
+								msgtype: 2,
+								photourl_form: that.user.photourl
+							};
+							that.message.push(data);
+							setTimeout(() => {
+								var h = $(document).height() - $(window).height();
+								$(document).scrollTop(h);
+							}, 100);
+						}
+					}, function(err) {
+
+						console.log("err", err);
+					})
+
+				},
+				call() {
+					
+                 window.location.href = 'tel://' + this.dianhua;
+
+					// uni.makePhoneCall({
+					// 	phoneNumber: this.dianhua + '',
+					// 	success: res => {
+					// 		console.log('调用成功!');
+					// 	},
+					// 	fail: res => {
+					// 		console.log(res);
+					// 		console.log('调用失败!');
+					// 	}
+					// });
+				},
+				dianzan() {
+					// uni.showToast({
+					// 	title: '点赞成功',
+					// 	duration: 2000
+					// });
+				},
+				pingjia() {
+					// uni.navigateTo({
+					// 	url: 'pingjia?lawyerid=' + this.chat_xinxi.userid
+					// });
+				},
+				connectSocketInit() {
+					let that = this;
+					var url = window.location.host;
+					var ws = new WebSocket('ws://' + url + ':3348');
+					ws.onopen = function(evt) {
+						console.log('Connection open ...');
+						// ws.send("你好");
+					};
+					ws.onmessage = function(evt) {
+						console.log('Received Message: ' + evt.data);
+						// json数据转换成js对象
+						var data = JSON.parse(evt.data);
+
+						if (data.type == 'init') {
+							console.log('init');
+							console.log('client_id', data.client_id);
+							var data = {
+								client_id: data.client_id
+							}
+							ajax('/push/gatewayworker/bind', "POST", data, (res) => { // POST或GET请求直接传参
+								if (res.code == 0) {
+									console.log(res, 'bind');
+								};
+							}, function(err) {
+
+								console.log("err", err);
+							})
+
+						} else if (data.type == 'say') {
+							console.log('say');
+							if (data.state) {
+								var xiaoxi = {
+									photourl_form: data.userid_from_pic,
+									userid_to: data.userid_to,
+									photourl_to: data.userid_to_pic,
+									content: data.msg,
+									msgtype: data.state,
+									userid_from: that.ls_id
+								};
+								that.message.push(xiaoxi);
+								setTimeout(() => {
+									var h = $(document).height() - $(window).height();
+									$(document).scrollTop(h);
+								}, 100);
+							}
+						} else {
+							console.log('else');
+						}
+					};
+					ws.onclose = function(evt) {
+						console.log('Connection closed.');
+					};
+					ws.onerror = function(evt) {
+						console.log('WebSocketError!', evt);
+					};
+				}
 
 
 			}
 		})
+		
+		$('.emotion').qqFace({
+			id: 'facebox',
+			assign: 'saytext',
+			path: '../static/bkhumor-emoji/' //表情存放的路径
+		});
+		
 	</script>
 
 </html>

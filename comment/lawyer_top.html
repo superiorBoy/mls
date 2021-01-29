@@ -1,0 +1,63 @@
+ <div class="ls_top_bg">
+				<div class="ls_top_bg_wai">
+					<div class="head2">
+						<div class="head_back"><img src="../static/img/bai_back.png" mode="" @click="navigateBack()"></img></div>
+						<div class="head_center bai_12_bold">律师主页</div>
+						<div class=" head_right hei_9_bold"></div>
+					</div>
+				</div>
+			</div>
+			<div class="ls_padd">
+						<div class="ls_top">
+							<div class="ls_tx">
+								<img :src="img_url + lvshi.photourl" mode="" class="ls_tx_img"></img>
+								<img src="../static/img/ls_ren.png" mode="" class="is_ren"></img>
+							</div>
+							<div class="hei_9_bold">{{ lvshi.nickname }}</div>
+							<div class="qian_8 ls_dizhi">
+								<span>{{ lvshi.province }}-{{ lvshi.city }}</span>
+								<span>专职律师</span>
+							</div>
+							<div class="hui_8 techang" v-if="lvshi != ''">
+							<span v-if="zhuanchang_arry[lvshi.expertise1] && zhuanchang_arry[lvshi.expertise1].shanchangname">{{zhuanchang_arry[lvshi.expertise1].shanchangname}}</span>
+							<span v-if="zhuanchang_arry[lvshi.expertise2] && zhuanchang_arry[lvshi.expertise2].shanchangname">{{zhuanchang_arry[lvshi.expertise2].shanchangname}}</span>
+							<span v-if="zhuanchang_arry[lvshi.expertise3] && zhuanchang_arry[lvshi.expertise3].shanchangname">{{zhuanchang_arry[lvshi.expertise3].shanchangname}}</span>
+							</div>
+							<div class="ls_gaikuo">
+								<div class="ls_gaikuo_item">
+									<div class="lv_9 ls_gaikuo_num">{{ lvshi.replynum }}</div>
+									<div class="qian_8">解答咨询</div>
+								</div>
+								<div class="ls_gaikuo_item">
+									<div class="lv_9 ls_gaikuo_num">{{ lvshi.likenum }}</div>
+									<div class="qian_8">获得点赞</div>
+								</div>
+								<div class="ls_gaikuo_item">
+									<div class="lv_9 ls_gaikuo_num">{{ lvshi.pingfen }}</div>
+									<div class="qian_8">综合评分</div>
+								</div>
+							</div>
+						</div>
+			
+						<div class="ls_renzheng qian_7">
+							<div class="ls_renzheng_item ren_shiming">
+								<img src="../static/img/ls_shiming.png" mode=""></img>
+								实名认证
+							</div>
+							<div class="ls_renzheng_item ren_zhiye">
+								<img src="../static/img/ls_zhiye.png" mode=""></img>
+								执业认证
+							</div>
+							<div class="ls_renzheng_item ren_pingtai">
+								<img src="../static/img/ls_ping.png" mode="w"></img>
+								平台认证
+							</div>
+						</div>
+					</div>
+					<div class="ls_tab qian_8">
+						<navigator :url="'ls_zhuye?lawyerid=' + lawyerid" class="ls_tab_item ls_tab_item_active">首页</navigator>
+						<navigator :url="'ls_zhuye_index?lawyerid=' + lawyerid" class="ls_tab_item ">律师服务</navigator>
+						<navigator :url="'ls_xinxi?lawyerid=' + lawyerid" class="ls_tab_item ">律师信息</navigator>
+						<navigator :url="'ls_anli?lawyerid=' + lawyerid" class="ls_tab_item ">律师案例</navigator>
+						<!-- <div :class="['ls_tab_item', index == active ? 'ls_tab_item_active' : '']" v-for="(tab, index) in tabs" @click="qiehuan(index)">{{ tab }}</div> -->
+					</div>
