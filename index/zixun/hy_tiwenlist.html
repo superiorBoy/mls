@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="keyword" content="" />
+		<meta name="description" content="" />
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<link rel="stylesheet" type="text/css" href="../css/gonggong.css" />
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vant@2.12/lib/index.css" />
+		<link rel="stylesheet" type="text/css" href="../css/swiper.min.css" />
+		<link rel="stylesheet" type="text/css" href="../css/font.css" />
+		
+		<style>
+      
+      	.tab_top {
+      		display: flex;
+      		align-items: center;
+      		justify-content: space-between;
+      		padding: 0.3125rem 1.1875rem;
+      		background-color: #FFFFFF;
+      		position: fixed;
+      		top: 3.125rem;
+      		width: 100%;
+      		box-sizing: border-box;
+      		z-index: 9;
+      	}
+      .tiwen_list:first-child{
+      	border-top: 0.625rem solid #F5F5F5;
+      }
+      	.tiwen_list {
+      		padding: 0.5625rem 0.9375rem;
+      		border-bottom: 0.625rem solid #f5f5f5;
+      		
+      	}
+      
+      	.head_right img {
+      		width: 1.25rem;
+      		height: 1.25rem;
+      	}
+      	.tiwen_list_bottom {
+      		height:3.25rem;
+      		display: flex;
+      		align-items: center;
+      		padding-left: 0.625rem;
+      		justify-content: space-between;
+      		margin-top: 0.375rem;
+      		border-top:1px solid #c6c6c6;
+      	}
+      .tiwen_list_bottom .shijian{
+      		width: 0.75rem;
+      		height: 0.75rem;
+      		margin-right: 0.25rem;
+      	}
+      	.tiwen_list_huida{
+      		display: flex;
+      		align-items: center;
+      		padding-left: 0.25rem;
+      	}
+      	.zhanwei{
+      		margin-left: 0.25rem;
+      	}
+      	.tiwen_list_huida img{
+      		width: 0.75rem;
+      		height: 0.75rem;
+      			border-radius: 100%;
+      			
+      			margin-left: -0.25rem;
+      	}
+      	.tiwen_list_top {
+      		display: flex;
+      		justify-content: space-between;
+      		align-items: center;
+      	}
+      
+      	.zhuangtai {
+      		height: 1.25rem;
+      		
+      		line-height: 1.25rem;
+      		padding: 0 0.25rem;
+      	}
+      	.zanwu{
+      		background-color: #f43a51;
+      	}
+      .huida{
+      		background-color: #494949;
+      }
+      	.tiwen_list_wenti {
+      		margin: 0.6875rem 0 0px;
+      	     word-break: break-all;
+      	}
+      	.tan {
+      		width: 100%;
+      		height: 23.6875rem;
+      		background-color: #FFFFFF;
+      		padding: 0 0.75rem;
+      		box-sizing: border-box;
+      		position: relative;
+      	}
+      	
+      	.tan_title {
+      		text-align: center;
+      		line-height: 3.75rem;
+      	}
+      	
+      	.tan_list {}
+      	
+      	.tan_list img {
+      		width: 0.6875rem;
+      		height: 0.375rem;
+      		margin-left: 0.3125rem;
+      		vertical-align: middle;
+      	}
+      	
+      	.tan_list_top {
+      		display: flex;
+      		align-items: center;
+      		border-bottom: 1px solid #E8E8E8;
+      		height: 3.0625rem;
+      		justify-content: space-between;
+      	}
+      	
+      	.tan_list input {
+      		text-align: right;
+			border: none;
+      	}
+      	
+      	.tan_buttom {
+      		display: flex;
+      		align-items: center;
+      		position: absolute;
+      		bottom:3.75rem;
+      	}
+      	
+      	button {
+      		margin: 0;
+      		border: none;
+      	}
+      	
+      	button::after {
+      		content: none;
+      	}
+      	
+      	.zhuanchang_arry {
+      		display: flex;
+      		margin-top: 0.625rem;
+      		flex-wrap: wrap;
+      	
+      	}
+      	
+      	.zhuanchang_arry span {
+      		border:1px solid #E8E8E8;
+      		border-radius: 0.625rem;
+      		padding:0.125rem 0.625rem;
+      		display: inline-block;
+      		margin-right: 0.875rem;
+      		margin-bottom: 0.625rem;
+      	}
+      	
+      	.zhuanchang_quer_ding {
+      		height: 2.75rem;
+      		background-color: #0eb77e;
+      		border-radius: 1.375rem;
+      		line-height: 2.75rem;
+      		position: absolute;
+      		bottom:1.5625rem;
+      		width:21.625rem;
+      		box-sizing: border-box;
+      	
+      	}
+      	
+      	.quxiao {
+      		width: 10.6875rem;
+      		height: 2.75rem;
+      		background-color: #dcfff3;
+      		border-radius: 1.375rem 0px 0px 1.375rem;
+      		line-height: 2.75rem;
+      	}
+      	
+      	.queren {
+      		width: 10.6875rem;
+      		height: 2.75rem;
+      		line-height: 2.75rem;
+      		background-color: #0eb77e;
+      		border-radius: 0px 1.375rem 1.375rem 0px;
+      	}
+      	
+      	.xuanzhong {
+      		color: #f43a51;
+      		border: 1px solid #f43a51 !important;
+      	}
+      	.zhuanchang_xuan {
+      		/* width: 500rpx; */
+      		padding-right: 0.9375rem;
+      		height: 3.125rem;
+      		display: flex;
+      		align-items: center;
+      		justify-content: right;
+      		text-align: right;
+      	}
+      	
+      	.zhuanchang_xuan img {
+      		width: 0.4375rem;
+      		height:0.75rem;
+      		position: absolute;
+      		right: 0.9375rem;
+      	
+      	}
+      	.tan_list_shijian{
+      		display: flex;
+      		align-items: center;
+      		border-bottom: 1px solid #E8E8E8;
+      		height: 3.0625rem;
+      		justify-content: space-between;
+      	}
+      	.tiwen_list_name{
+      		display: flex;
+      		align-items: center;
+      		justify-content: space-between;
+      	}
+      	.tiwen_list_name_tx {
+      			width: 2.0625rem;
+      			height: 2.0625rem;
+      			margin-right: 0.3125rem;
+      			border-radius: 100%;
+      	}
+      	.tiwen_list_name_l{
+      		display: flex;
+      	}
+      	.tiwen_list_name_right_dianhua{
+      		margin-bottom: 0.125rem;
+      	}
+      	.tiwen_list_name_right_dianhua img{
+      		width: 3.125rem;
+      		height: 0.9375rem;
+      	}
+      	.tiwen_caozuo span{
+      		display: inline-block;
+      		height: 1.75rem;
+      			background-color: #ffffff;
+      			border-radius: 0.875rem;
+      			border: solid 1px #0eb77e;
+      			line-height: 1.75rem;
+      			padding: 0 0.9375rem;
+      			margin-left: 0.5rem;
+      	}
+      	.tiwen_caozuo span:first-child{
+      		margin-left: 0;
+      	}
+      	.pingjia img{
+      			width: 0.875rem;
+      			height: 0.875rem;
+      			margin-right: 1px;
+      			vertical-align: middle;
+      			position: relative;
+      			top: -1px;
+      	}
+		</style>
+	</head>
+	<body>
+
+		<div id="app">
+			<div class="body">
+
+				<div class="head">
+				  <div class="head_back">
+					  <image src="../static/img/back.png" mode=""  onclick="javascript:history.back(-1);"></image>
+				  </div> 
+				  <div class="head_center hei_12_bold">提问记录</div> 
+				  <div class="head_right">
+					  <img src="../static/lsimg/sousuo.png" mode="" @click="tan"></img>
+				  </div> 
+				</div>
+				<div class="tab_top hui_8">
+					<span v-for="(item,index) in tab_arry" :class="['' ,index==active?'lv_8_bold': '']" @click="qiehuan(index)">{{item}}</span>
+				</div>
+				<div class="zi_body tab_zi_body">
+					
+					<van-pull-refresh v-model="isLoading" @refresh="onRefresh">
+						<van-list v-model="loading" :finished="is_all" :immediate-check="false" finished-text="没有更多了" @load="onLoad">
+							
+					
+							<div class="tiwen_list" v-for="item in jilu_list">
+								<div class="tiwen_list_name">
+									<div class="tiwen_list_name_l" @click="go_zhuye(item.reply[0].userid)">
+									<img :src="img_url+item.reply[0].photourl" mode="" v-if="item.replynum!=0" class="tiwen_list_name_tx"></img>
+									<img src="../static/img/mohu.png" mode=""v-if="item.replynum==0" class="tiwen_list_name_tx"></img>
+									<div class="tiwen_list_name_right">
+										<div class="hei_7 tiwen_list_name_right_dianhua"v-if="item.replynum!=0"  @click="go_zhuye(item.reply[0].userid)">
+										  	{{item.reply[0].mobile}}
+										</div>	
+										<div class="hei_7 tiwen_list_name_right_dianhua"v-if="item.replynum==0">
+										  	<img src="../static/img/dian_mohu.png" mode=""></img>
+										</div>	
+										<div class="hong_7">
+											悬赏：{{item.paymoney}}元
+										</div>	
+									</div>	
+									</div>	
+									<span class="hong_8">{{item.tiwenstate==2?'待悬赏':item.tiwenstate==3?'已悬赏':item.tiwenstate==4?'已完成':''}}</span>
+								</div>	
+							<!-- 	<div class="tiwen_list_top">
+									<div class="zhuangtai bai_7"  :class="['zhuangtai bai_7',zhuangtai==1?'zanwu':'huida']">
+										{{item.tiwenstate==2?'待悬赏':item.tiwenstate==2?'已悬赏':item.tiwenstate==4?'已完成':''}}
+									</div>
+									<span v-if="item.tiwenstate==4" class="hong_8_bold">悬赏{{item.paymoney}}元</span>
+								</div> -->
+								<div class="tiwen_list_wenti hei_8">
+									{{item.information}}
+								</div>
+								<div class="">
+									<span class="qian_7">{{ time(item.addtime)}}</span>
+								</div>
+								<div class="tiwen_list_bottom qian_8">
+									<div class="tiwen_list_huida_no" v-if="item.reply.length==0">
+									<img src="../static/img/shijian.png" mode="" class="shijian"></img>等待律师回复
+									</div>
+									<div class="tiwen_list_huida" v-if="item.reply.length!=0">
+										
+									         <img src="../static/img/yihui.png" mode="">
+								 
+									    
+									<span class="zhanwei"></span>等<span class="hong_8">{{item.replynum}}</span>位律师回复
+									</div>
+										<!-- <span class="lv_8" @click="xq(item.consultid)">{{item.tiwenstate==2?'去悬赏':'查看详情'}}></span> -->
+									<div class="tiwen_caozuo lv_7">
+										<span v-if="item.ispay==1" @click="pay(item.consultid)">立即支付</span>
+										<span v-if="item.tiwenstate==4" class="pingjia" @click="go_pingjia(item.reply[0].userid)"><img src="../static/img/wen_pingjia.png" mode=""></img>评价</span>
+										<span v-if="item.tiwenstate==2" @click="xq(item.consultid)">去悬赏</span>
+										<span @click="xq(item.consultid)">详情</span>
+									</div>
+								</div>
+							</div>
+				
+					</van-list>
+				
+				</van-pull-refresh>
+				
+						</div>
+				<van-popup v-model="tan_show" round position="bottom">
+		
+			
+							<div class="tan">
+								<div class="tan_title hei_9">
+									查询条件
+								</div>
+								
+								<div class="tan_list hei_8">
+									<div class="tan_list_top">
+										<span>悬赏金额</span>
+										<input type="text" value="" placeholder="请输入" v-model="name" class="hei_8" />
+									</div>
+								</div>
+				                <div class="tan_list hei_8">
+				                	<div class="tan_list_top">
+				                		<span>提问内容</span>
+				                		<input type="text" value="" placeholder="请输入" v-model="neirong" class="hei_8" />
+				                	</div>
+				                </div>
+								<div class="tan_list hei_8 tan_list_shijian">
+									<span>提问时间</span>
+								<div @click="xuan_str_time">
+								   <span :class="['',str_time==''?'qian_8':'hei_8']">	{{str_time==''?'开始时间':str_time}} </span>
+								</div>
+								<div @click="xuan_end_time">
+								   <span :class="['',time2==''?'qian_8':'hei_8']">	{{time2==''?'结束时间':time2}} </span>
+								</div>
+								 </div>
+								<div class="tan_buttom " >
+									<button type="" class="quxiao lv_9" @click="quxiao_btn">取消搜索</button>
+									<button type="" class="queren bai_9" @click="queding_btn">确认搜索</button>
+								</div>
+				
+							</div>
+			
+					</van-popup>
+				<van-popup v-model="shijian_show" round position="bottom">
+				
+				
+					<van-datetime-picker v-model="currentDate" type="date" @confirm="confirmFn" @cancel="cancelFn" />
+				</van-popup>
+				<van-popup v-model="end_time_show" round position="bottom">
+					<van-datetime-picker v-model="currentDate" type="date" @confirm="end_queding" @cancel="end_quxiao" />
+				</van-popup>
+				
+			</div>
+
+
+
+
+		</div>
+
+	</body>
+	<script src="../js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../js/vue.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../js/http.js" type="text/javascript" charset="utf-8"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vant@2.12/lib/vant.min.js"></script>
+	
+	<script type="text/javascript">
+		var app = new Vue({
+			el: "#app",
+			data() {
+				return {
+					img_url: window.localStorage.getItem('img_url'),
+		      	tab_arry: ['全部', '待付款','已付款','待悬赏','已悬赏'],
+			  zhuangtai:2,
+			  active:0,
+			  jilu_list:[],
+			  page:0,
+			  is_all:false,
+			  
+			  name:'',
+			  neirong:'',
+			  str_time:'',
+			  state:0,
+			  time2:'',
+			  loading: false, //是否处于加载状态
+			  is_all: false, //是否已加载完所有数据
+			  isLoading: false, //是否处于下拉刷新状态
+			  riqi:'',
+			  tan_show:false,
+			  end_time_show: false,
+			  currentDate: new Date(),
+			  shijian_show: false,
+				}
+			},
+			ready: function() {
+
+
+			},
+			created() {
+				
+				this.huoqu_list()
+				
+			},
+			methods: {
+				onRefresh() { //下拉刷新
+				
+					this.page=0
+					this.jilu_list=[]
+					this.name=''
+					this.neirong=''
+					this.str_time=''
+					this.time2=''
+					this.is_all=false
+					this.huoqu_list()
+					console.log('下拉刷新')
+				},
+				onLoad() { //上拉加载
+					console.log('下拉加载')
+					if (this.is_all) {
+						vant.Toast('已加载全部');
+					} else {
+						this.page++
+						this.huoqu_list()
+					}
+				},
+			
+               huoqu_list(){
+				   data={
+					   page: this.page,
+					   state:this.active,
+					   jine:this.name,
+					   neirong:this.neirong,
+					   riqi:this.riqi
+					   }
+				   ajax('/mapi/consult/tiwenlist', "POST", data, (res) => { // POST或GET请求直接传参
+				   
+					   this.jilu_list=this.jilu_list.concat(res.data.consult);
+					   if (res.data.consult.length < 10) {
+					   	this.is_all = true;
+					   }
+					   this.loading=false
+					   this.isLoading=false
+				   }, function(err) {
+				   
+				   	console.log("err", err);
+				   })
+			   },
+	
+
+qiehuan(index){
+	console.log(index)
+	this.active=index
+	this.name=''
+	this.neirong=''
+	this.str_time=''
+	this.time2=''
+	this.page=0
+	this.jilu_list=[]
+	this.is_all=false
+	this.huoqu_list()
+},
+
+			// 底部弹窗
+					tan() {
+						
+			this.tan_show=true
+					},
+	
+					xuan_str_time() {
+						this.shijian_show = true
+					},
+					confirmFn(e) {
+						console.log(this.timeFormat(e))
+						this.str_time = this.timeFormat(e)
+						this.shijian_show = false
+					},
+					cancelFn() {
+						this.shijian_show = false
+					},
+					timeFormat(time) { // 时间格式化 2019-09-08
+						let year = time.getFullYear();
+						let month = time.getMonth() + 1;
+						let day = time.getDate();
+						return year + '-' + month + '-' + day
+					},
+					
+					xuan_end_time() {
+						this.end_time_show = true
+					},
+					end_queding(e) {
+						this.time2 = this.timeFormat(e)
+						this.end_time_show = false
+					
+					},
+					end_quxiao() {
+						this.end_time_show = false
+					},
+					// 取消搜索
+						quxiao_btn() {
+							this.name = ''
+							this.neirong=''
+							this.str_time=''
+							this.tan_show=false
+						},
+						// 确定搜索
+						queding_btn() {
+							console.log(this.time,this.name, this.neirong)
+							this.tan_show=false
+							if(this.str_time!=''&&this.time2!=''){
+									 this.riqi = this.str_time+' - '+this.time2
+							}else{
+									 this.riqi = ''
+							}
+							this.page=0
+							this.jilu_list=[]
+							this.is_all=false
+							this.huoqu_list()
+							
+						},
+
+
+
+
+			}
+		})
+	</script>
+
+</html>

@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="keyword" content="" />
+		<meta name="description" content="" />
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<link rel="stylesheet" type="text/css" href="../css/gonggong.css" />
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vant@2.12/lib/index.css" />
+		<link rel="stylesheet" type="text/css" href="../css/swiper.min.css" />
+		<link rel="stylesheet" type="text/css" href="../css/font.css" />
+		<link rel="stylesheet" type="text/css" href="../css/lawyer_xinxi.css" />
+		<style>
+
+		</style>
+	</head>
+	<body>
+
+		<div id="app">
+			<div class="body">
+
+				<div class="ls_top_bg">
+					<div class="ls_top_bg_wai">
+						<div class="head2">
+							<div class="head_back"><img src="../static/img/bai_back.png" mode="" onclick="javascript:history.back(-1);"></img></div>
+							<div class="head_center bai_12_bold">律师主页</div>
+							<div class=" head_right hei_9_bold"></div>
+						</div>
+					</div>
+				</div>
+				<div class="ls_padd" v-if=" lvshi">
+					<div class="ls_top">
+						<div class="ls_tx">
+							<img :src="img_url + lvshi.photourl" mode="" class="ls_tx_img"></img>
+							<img src="../static/img/ls_ren.png" mode="" class="is_ren"></img>
+						</div>
+						<div class="hei_9_bold">{{ lvshi.nickname }}</div>
+						<div class="qian_8 ls_dizhi">
+							<span>{{ lvshi.province }}-{{ lvshi.city }}</span>
+							<span>专职律师</span>
+						</div>
+						<div class="hui_8 techang" v-if="lvshi != ''">
+							<span v-if="zhuanchang_arry[lvshi.expertise1] && zhuanchang_arry[lvshi.expertise1].shanchangname">{{zhuanchang_arry[lvshi.expertise1].shanchangname}}</span>
+							<span v-if="zhuanchang_arry[lvshi.expertise2] && zhuanchang_arry[lvshi.expertise2].shanchangname">{{zhuanchang_arry[lvshi.expertise2].shanchangname}}</span>
+							<span v-if="zhuanchang_arry[lvshi.expertise3] && zhuanchang_arry[lvshi.expertise3].shanchangname">{{zhuanchang_arry[lvshi.expertise3].shanchangname}}</span>
+						</div>
+						<div class="ls_gaikuo">
+							<div class="ls_gaikuo_item">
+								<div class="lv_9 ls_gaikuo_num">{{ lvshi.replynum }}</div>
+								<div class="qian_8">解答咨询</div>
+							</div>
+							<div class="ls_gaikuo_item">
+								<div class="lv_9 ls_gaikuo_num">{{ lvshi.likenum }}</div>
+								<div class="qian_8">获得点赞</div>
+							</div>
+							<div class="ls_gaikuo_item">
+								<div class="lv_9 ls_gaikuo_num">{{ lvshi.pingfen }}</div>
+								<div class="qian_8">综合评分</div>
+							</div>
+						</div>
+					</div>
+				
+					<div class="ls_renzheng qian_7">
+						<div class="ls_renzheng_item ren_shiming">
+							<img src="../static/img/ls_shiming.png" mode=""></img>
+							实名认证
+						</div>
+						<div class="ls_renzheng_item ren_zhiye">
+							<img src="../static/img/ls_zhiye.png" mode=""></img>
+							执业认证
+						</div>
+						<div class="ls_renzheng_item ren_pingtai">
+							<img src="../static/img/ls_ping.png" mode="w"></img>
+							平台认证
+						</div>
+					</div>
+				</div>
+				<div class="ls_tab qian_8">
+		        <p @click="tiaozhuan('index.html')"  class="ls_tab_item " >首页</p>
+				<p @click="tiaozhuan('ls_index.html')" class="ls_tab_item ">律师服务</p>
+				<p @click="tiaozhuan('xinxi.html')" class="ls_tab_item ls_tab_item_active">律师信息</p>
+				<p @click="tiaozhuan('anli.html')" class="ls_tab_item ">律师案例</p>
+				</div>
+
+				<div class="fuwu_body" v-if="ls_xinxi != ''">
+					<div class="jianjie hei_8">
+						<div class="jianjie_title hei_9_bold">律师简介：</div>
+						<div :class="['jianjie_body', is_shou ? '' : 'max_height']">{{ lvshi.miaoshu }}</div>
+						<div class="more lv_26" @click="shou">
+							{{ is_shou ? '收起全部' : '展开全部' }}
+							<img src="../static/img/jianjie_more.png" mode=""></img>
+						</div>
+					</div>
+					<div class="jiben_xixin">
+						<div class=" xixin_title hei_9_bold">基本信息</div>
+						<div class="jiben_xixin_list hei_8">
+							执业律所
+							<div class="jiben_xixin_list_right hui_8">{{ lvshi.lvsuo }}</div>
+						</div>
+						<!-- <div class="jiben_xixin_list hei_8">
+							律所规模
+							<div class="jiben_xixin_list_right hui_8">本地大所</div>
+						</div> -->
+						<div class="jiben_xixin_list hei_8">
+							职&ensp;&ensp;&ensp;&ensp;务
+							<div class="jiben_xixin_list_right hui_8">{{ ls_xinxi.lawyer.zhiwu }}</div>
+						</div>
+						<div class="jiben_xixin_list hei_8">
+							执业证号
+							<div class="jiben_xixin_list_right hui_8">{{ ls_xinxi.lawyer.zhiye }}</div>
+						</div>
+						<div class="jiben_xixin_list hei_8">
+							执业年份
+							<div class="jiben_xixin_list_right hui_8">{{ ls_xinxi.lawyer.zhiyenianfen }}年</div>
+						</div>
+						<!-- 					<div class="jiben_xixin_list hei_8">
+							团队描述
+							<div class="jiben_xixin_list_right hui_8">-</div>
+						</div> -->
+					</div>
+					<div class="lianxi">
+						<div class=" xixin_title hei_9_bold">联系方式</div>
+						<div class="jiben_xixin_list hei_8">
+							联系电话：
+							<div class="lianxi_right hui_8">{{ ls_xinxi.lawyer.mobile }}</div>
+						</div>
+						<div class="jiben_xixin_list hei_8">
+							微&ensp;&ensp;&ensp;&ensp;信：
+							<div class="lianxi_right hui_8">{{ ls_xinxi.lawyer.weixin }}</div>
+						</div>
+						<div class="jiben_xixin_list hei_8">
+							邮&ensp;&ensp;&ensp;&ensp;箱：
+							<div class="lianxi_right hui_8">{{ ls_xinxi.lawyer.email }}</div>
+						</div>
+						<div class="jiben_xixin_list hei_8">
+							联系地址：
+							<div class="lianxi_right hui_8">{{ ls_xinxi.lawyer.address }}</div>
+						</div>
+						<div class="ditu"><map style="width:100%;height:11.4375rem" :latitude="latitude" :longitude="longitude" :scale="scale"></map></div>
+					</div>
+					<div class="jiaoyu" v-if="ls_xinxi.lawyerinfos[1]">
+						<div class=" xixin_title hei_9_bold">教育背景</div>
+						<div class="jiben_xixin_list hei_8">
+							最高学历
+							<div class="jiaoyu_right hui_8">{{ xueli_type[ls_xinxi.lawyerinfos[1][0].xueli] }}</div>
+						</div>
+						<div class="jiben_xixin_list hei_8">
+							毕业院校
+							<div class="jiaoyu_right hui_8">{{ ls_xinxi.lawyerinfos[1][0].school }}</div>
+						</div>
+						<div class="jiben_xixin_list hei_8">
+							所学专业
+							<div class="jiaoyu_right hui_8">{{ ls_xinxi.lawyerinfos[1][0].zhuanye }}</div>
+						</div>
+					</div>
+					<div class="jiaoyu">
+						<div class=" xixin_title hei_9_bold">更多资料</div>
+						<div class="jiben_xixin_list hei_8">
+							性别
+							<div class="jiaoyu_right hui_8">{{ ls_xinxi.lawyer.sexid == 1 ? '男' : '女' }}性</div>
+						</div>
+						<div class="jiben_xixin_list hei_8">
+							年龄
+							<div class="jiaoyu_right hui_8">{{ nianling(ls_xinxi.lawyer.birthday) }}</div>
+						</div>
+						<div class="jiben_xixin_list hei_8">
+							民族
+							<div class="jiaoyu_right hui_8">{{ ls_xinxi.lawyer.mingzu }}</div>
+						</div>
+						<div class="jiben_xixin_list hei_8">
+							属相
+							<div class="jiaoyu_right hui_8">{{ ls_xinxi.lawyer.shuxiang }}</div>
+						</div>
+						<div class="jiben_xixin_list hei_8">
+							星座
+							<div class="jiaoyu_right hui_8">{{ ls_xinxi.lawyer.xingzuo }}</div>
+						</div>
+						<div class="jiben_xixin_list hei_8">
+							故乡
+							<div class="jiaoyu_right hui_8">{{ ls_xinxi.lawyer.hometown }}</div>
+						</div>
+						<div class="jiben_xixin_list hei_8">
+							家庭
+							<div class="jiaoyu_right hui_8">{{ ls_xinxi.lawyer.jiating }}</div>
+						</div>
+						<div class="jiben_xixin_list hei_8">
+							语言
+							<div class="jiaoyu_right hui_8">{{ ls_xinxi.lawyer.yuyan }}</div>
+						</div>
+						<div class="jiben_xixin_list hei_8">
+							政治派别
+							<div class="jiaoyu_right hui_8">{{ ls_xinxi.lawyer.mianmao }}</div>
+						</div>
+						<div class="jiben_xixin_list hei_8">
+							政治职务
+							<div class="jiaoyu_right hui_8">{{ ls_xinxi.lawyer.zzzhiwu }}</div>
+						</div>
+						<div class="jiben_xixin_list hei_8">
+							交通工具
+							<div class="jiaoyu_right hui_8">{{ ls_xinxi.lawyer.vehicle }}</div>
+						</div>
+						<div class="jiben_xixin_list hei_8">
+							兴趣爱好
+							<div class="jiaoyu_right hui_8">{{ ls_xinxi.lawyer.hobby }}</div>
+						</div>
+					</div>
+
+					<div class="rongyu" v-if="ls_xinxi.lawyerinfos[3]">
+						<div class=" xixin_title hei_9_bold" style="padding-left: 0.9375rem">荣誉奖励</div>
+						<div class="rongyu_list" v-for="item in ls_xinxi.lawyerinfos[3]">
+							<div class="rongyu_list_top hei_8_bold">{{ item.zhuanye }}</div>
+							<div class="qian_8 rongyu_time">
+								颁奖时间：
+								<text class="hui_8 rongyu_r">{{ item.starttime }}</text>
+							</div>
+							<div class="qian_8">
+								颁奖机构：
+								<text class="hui_8 rongyu_r">{{ item.zhuanye }}</text>
+							</div>
+						</div>
+					</div>
+					<div class="rongyu" v-if="ls_xinxi.lawyerinfos[2]">
+						<div class=" xixin_title hei_9_bold" style="padding-left: 0.9375rem;">社会职务</div>
+						<div class="rongyu_list" v-for="item in ls_xinxi.lawyerinfos[2]">
+							<div class="rongyu_list_top hei_8_bold">{{ item.school }}</div>
+							<div class="qian_8 rongyu_time">
+								状态：
+								<text class="hui_8 rongyu_r">{{ item.zwstate == 1 ? '曾任' : '现任' }}</text>
+							</div>
+							<div class="qian_8">
+								职务：
+								<text class="hui_8 rongyu_r">{{ item.zhuanye }}</text>
+							</div>
+						</div>
+					</div>
+					<div class="rongyu" v-if="ls_xinxi.lawyerinfos[4]">
+						<div class=" xixin_title hei_9_bold" style="padding-left: 0.9375rem;">媒体报道</div>
+						<div class="rongyu_list" v-for="item in ls_xinxi.lawyerinfos[4]">
+							<div class="rongyu_list_top hei_8_bold">{{ item.zhuanye }}</div>
+							<div class="qian_8 rongyu_time">
+								报道时间：
+								<text class="hui_8 rongyu_r">{{ item.starttime }}</text>
+							</div>
+							<div class="qian_8">
+								媒体名称：
+								<text class="hui_8 rongyu_r">{{ item.pintai }}</text>
+							</div>
+						</div>
+					</div>
+					<div class="rongyu" v-if="ls_xinxi.lawyerinfos[5]">
+						<div class=" xixin_title hei_9_bold" style="padding-left:0.9375rem;">学术成果</div>
+						<div class="rongyu_list" v-for="item in ls_xinxi.lawyerinfos[5]">
+							<div class="rongyu_list_top hei_8_bold">{{ item.zhuanye }}</div>
+							<div class="qian_8 rongyu_time">
+								成果类型：
+								<text class="hui_8 rongyu_r">{{ item.leixing }}</text>
+							</div>
+							<div class="qian_8">
+								发表时间：
+								<text class="hui_8 rongyu_r">{{ item.starttime }}</text>
+							</div>
+							<div class="qian_8">
+								文章链接：
+								<text class="lv_26 rongyu_r">{{ item.lianjie }}</text>
+							</div>
+							<div class="qian_8">
+								发表平台：
+								<text class="hui_8 rongyu_r">{{ item.pintai }}</text>
+							</div>
+						</div>
+					</div>
+
+					<!-- <div class="zhanwei2" style="height: 3.75rem;"></div> -->
+					<div class="bottom">
+						<div class="bottom_fenxiang" @click="share">
+							<img src="../static/img/share.png" mode=""></img>
+							<div class="hui_8">分享</div>
+						</div>
+						<div class="bottom_guanzhu" @click="guanzhu">
+							<img :src="type==1 ? '../static/img/guanzhu_on_icon.png' : '../static/img/guanzhu_icon.png'" mode="" style="width: 1.25rem;height: 1.1875rem;"></img>
+							<div class="hui_8">{{type==1?'已关注':'关注'}}</div>
+						</div>
+						<div class="bottom_pingjia" @click="go_chat()">
+							<img src="../static/img/siliao.png" mode=""></img>
+							<div class="hui_8">私聊</div>
+						</div>
+						<div class="dianhua lv_8">
+							<!-- <img src="../static/img/dianhua_lv.png" mode=""></img> -->
+							<div class="lv_7 bottom_jiage" v-if="baojia&&baojia.jianmian" @click="tan(0,baojia.jianmian)">
+								￥<span class="lv_10">{{baojia.jianmian}}</span>
+							</div>
+							<div class="bai_7 bottom_jiage" v-if="!baojia || !baojia.jianmian ">
+								<span class="lv_10">未报价</span>
+							</div>
+							见面咨询
+						</div>
+						<div class="zaixian bai_8">
+							<!-- <img src="../static/img/zaixian_bai.png" mode=""></img> -->
+							<div class="bai_7 bottom_jiage" v-if="baojia&&baojia.chatprice" @click="tan(1,baojia.chatprice)">
+								￥<span class="bai_10">{{baojia.chatprice}}</span>
+							</div>
+							<div class="bai_7 bottom_jiage" v-if="!baojia || !baojia.chatprice ">
+								<span class="bai_10">未报价</span>
+							</div>
+							在线咨询
+						</div>
+					</div>
+				</div>
+
+
+
+
+
+			</div>
+		<van-popup v-model="tan_show" round position="bottom">
+				<div class="tan_jiage">
+					<div class="tan_jiage_top">
+						<img :src="img_url + lvshi.photourl" mode=""></img>
+						<div class="tan_jiage_top_right">
+							<div class="hong_7">
+								￥<span class="hong_38">{{pay_money}}</span>
+							</div>
+							<div class="tan_shanchang hui_8">
+								擅长：
+								<span v-if="zhuanchang_arry[lvshi.expertise1] && zhuanchang_arry[lvshi.expertise1].shanchangname">{{zhuanchang_arry[lvshi.expertise1].shanchangname}}</span>
+								<span v-if="zhuanchang_arry[lvshi.expertise2] && zhuanchang_arry[lvshi.expertise2].shanchangname">{{zhuanchang_arry[lvshi.expertise2].shanchangname}}</span>
+								<span v-if="zhuanchang_arry[lvshi.expertise3] && zhuanchang_arry[lvshi.expertise3].shanchangname">{{zhuanchang_arry[lvshi.expertise3].shanchangname}}</span>
+							</div>
+							<div class="hui_7">
+								{{tan_jia_jianjie}}
+							</div>
+						</div>
+
+					</div>
+
+					<div class="tan_jiage_bottom" v-if="baojia">
+						<div class="tan_jiage_title hei_8_bold">
+							服务类型
+						</div>
+						<div class="tan_jiage_title_list hui_8 tan_jiage_title_leixing">
+
+							<span @click="huan_leixing(1)" :class="leixing_index==1?'tan_xuan_active':''" v-if="baojia.chatprice || baojia.zaixian3 ||baojia.zaixian30 ">在线咨询</span>
+							<span @click="huan_leixing(2)" :class="leixing_index==2?'tan_xuan_active':''" v-if="baojia.dianhua || baojia.dianhua1 || baojia.dianhua3 || baojia.dianhua30 ">电话咨询</span>
+							<span @click="huan_leixing(3)" :class="leixing_index==3?'tan_xuan_active':''" v-if="baojia.hetong_daixie || baojia.hetong_shenhe || baojia.hetong_wenshu ">合同事务</span>
+							<span @click="huan_leixing(4)" :class="leixing_index==4?'tan_xuan_active':''" v-if="baojia.lvshi_huijian || baojia.lvshihan || baojia.anjianzhidao ">诉讼委托</span>
+							<span @click="huan_leixing(0)" :class="leixing_index==0?'tan_xuan_active':''" v-if="baojia.jianmian">见面咨询</span>
+						</div>
+						<div class="tan_jiage_title hei_8_bold">
+							服务时长
+						</div>
+						<div class="tan_jiage_title_list hui_8 tan_jiage_title_list_shichang" v-if="leixing_index==0">
+							<span :class="shichang_index==1?'tan_xuan_active':''" @click="huan_shichang(1,baojia.jianmian,'1次')" v-if="baojia.jianmian">1次</span>
+						</div>
+						<div class="tan_jiage_title_list hui_8 tan_jiage_title_list_shichang" v-if="leixing_index==1">
+							<span :class="shichang_index==1?'tan_xuan_active':''" @click="huan_shichang(1,baojia.chatprice,'1天')" v-if="baojia.chatprice">1天</span>
+							<span :class="shichang_index==2?'tan_xuan_active':''" @click="huan_shichang(2,baojia.zaixian3,'3天')" v-if="baojia.zaixian3">3天</span>
+							<span :class="shichang_index==3?'tan_xuan_active':''" @click="huan_shichang(3,baojia.zaixian30,'1个月')" v-if="baojia.zaixian30">1个月</span>
+						</div>
+						<div class="tan_jiage_title_list hui_8 tan_jiage_title_list_shichang" v-if="leixing_index==2">
+							<span :class="shichang_index==1?'tan_xuan_active':''" @click="huan_shichang(1,baojia.phoneprice,'20分钟')" v-if="baojia.phoneprice">20分钟</span>
+							<span :class="shichang_index==2?'tan_xuan_active':''" @click="huan_shichang(2,baojia.dianhua1,'1天')" v-if="baojia.dianhua1">1天</span>
+							<span :class="shichang_index==3?'tan_xuan_active':''" @click="huan_shichang(3,baojia.dianhua3,'3天')" v-if="baojia.dianhua3">3天</span>
+							<span :class="shichang_index==4?'tan_xuan_active':''" @click="huan_shichang(4,baojia.dianhua30,'1个月')" v-if="baojia.dianhua30">1个月</span>
+						</div>
+						<div class="tan_jiage_title_list hui_8 tan_jiage_title_list_shichang" v-if="leixing_index==3">
+							<span :class="shichang_index==1?'tan_xuan_active':''" @click="huan_shichang(1,baojia.hetong_daixie,'合同审核')" v-if="baojia.hetong_daixie">合同审核</span>
+							<span :class="shichang_index==2?'tan_xuan_active':''" @click="huan_shichang(2,baojia.hetong_shenhe,'代写合同')" v-if="baojia.hetong_shenhe">代写合同</span>
+							<span :class="shichang_index==3?'tan_xuan_active':''" @click="huan_shichang(3,baojia.hetong_wenshu,'代写文书')" v-if="baojia.hetong_wenshu">代写文书</span>
+						</div>
+						<div class="tan_jiage_title_list hui_8 tan_jiage_title_list_shichang" v-if="leixing_index==4">
+							<span :class="shichang_index==1?'tan_xuan_active':''" @click="huan_shichang(1,baojia.lvshi_huijian,'律师会见')" v-if="baojia.lvshi_huijian">律师会见</span>
+							<span :class="shichang_index==2?'tan_xuan_active':''" @click="huan_shichang(2,baojia.lvshihan,'发律师函')" v-if="baojia.lvshihan">发律师函</span>
+							<span :class="shichang_index==3?'tan_xuan_active':''" @click="huan_shichang(3,baojia.anjianzhidao,'案件指导')" v-if="baojia.anjianzhidao">案件指导</span>
+						</div>
+					</div>
+
+					<div class="tan_jiage_btn">
+						<button type="" @click="go_pay(lawyerid,1)">立即购买</button>
+					</div>
+
+				</div>
+			</van-popup>
+
+
+		</div>
+
+	</body>
+	<script src="../js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../js/vue.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../js/http.js" type="text/javascript" charset="utf-8"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vant@2.12/lib/vant.min.js"></script>
+	<script src="../js/get.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		var app = new Vue({
+			el: "#app",
+			data() {
+				return {
+					latitude: 30.265183729389186,
+					longitude: 120.21162050135804,
+					scale: 13,
+					is_shou: false,
+					lawyerid: '',
+					lvshi: '',
+					zhuanchang_arry: '',
+					img_url: window.localStorage.getItem('img_url'),
+					ls_xinxi: '',
+					xueli_type: '',
+					type: 2,
+					leixing_index: 1,
+					shichang_arry: ['1天', '3天', '1个月'],
+					shichang_index: -1,
+					tan_jia_jianjie: '实时聊天，快速沟通，高效解答，服务期内提问100%解答，可查看聊天记录。',
+					baojia: '',
+					pay_money: 0,
+					shichang_txt: '',
+					tan_show: false
+				}
+			},
+
+			created() {
+			if ($_GET.lawyerid) {
+					this.lawyerid = $_GET.lawyerid
+					this.huoqu_shanchang()
+					this.jiance_guanzhu()
+
+				}
+				
+
+			},
+			methods: {
+
+				huoqu_shanchang() {
+
+					ajax('/mapi/lawyer/getshanchang', "POST", '', (res) => { // POST或GET请求直接传参
+						this.zhuanchang_arry = res.data.shanchang;
+						this.huoqu_lvshi();
+						this.huoqu_xinxi();
+						this.huoqu_baojia()
+					}, function(err) {
+
+						console.log("err", err);
+					})
+				},
+				all() {
+					this.jine = this.yue;
+				},
+
+				huoqu_lvshi() {
+					var data = {
+						lawyerid: this.lawyerid
+					}
+					ajax('/mapi/lawyer/lawyer', "POST", data, (res) => { // POST或GET请求直接传参
+						this.lvshi = res.data.lawyer;
+					}, function(err) {
+
+						console.log("err", err);
+					})
+				},
+				huoqu_xinxi() {
+					var data = {
+						lawyerid: this.lawyerid
+					}
+					ajax('/mapi/lawyer/xinxi', "POST", data, (res) => { // POST或GET请求直接传参
+						this.ls_xinxi = res.data;
+						this.xueli_type = res.data.xueli;
+					}, function(err) {
+
+						console.log("err", err);
+					})
+				},
+				huoqu_baojia() {
+					var data = {
+						lawyerid: this.lawyerid
+					}
+					ajax('/mapi/index/baojia', "POST", data, (res) => { // POST或GET请求直接传参
+						this.baojia = res.data.lawyer
+					}, function(err) {
+
+						console.log("err", err);
+					})
+				},
+				jiance_guanzhu() {
+					// 检测是否关注
+
+					var data = {
+						state: 2,
+						lawyerid: this.lawyerid
+					}
+					ajax('/mapi/index/findbrowse', "POST", data, (res) => { // POST或GET请求直接传参
+						this.type = res.data.type
+					}, function(err) {
+
+						console.log("err", err);
+					})
+
+				},
+				shou() {
+					this.is_shou = !this.is_shou;
+				},
+				nianling(birthday) {
+					// 获得今天的时间
+					var date = new Date();
+				
+					//            alert(birthday);
+					var startDate = new Date(birthday);
+					var newDate = date.getTime() - startDate.getTime();
+				
+					var age = Math.floor(newDate / 1000 / 60 / 60 / 24 / 365);
+					if (isNaN(age)) {
+						age = '';
+					}
+					return age;
+				},
+				// 分享
+				share() {
+					uni.navigateTo({
+						url: 'sucai?state=1'
+					});
+				},
+				guanzhu() {
+					var data = {
+				
+						lawyerid: this.lawyerid
+					}
+					ajax('/mapi/index/guanzhu', "POST", data, (res) => { // POST或GET请求直接传参
+						this.type = res.data.type
+						vant.Toast('' + res.message)
+					}, function(err) {
+				
+						console.log("err", err);
+					})
+				
+				},
+				tiaozhuan(e){
+					location.href = e+'?lawyerid=' + this.lawyerid
+				},
+				// 底部弹窗
+				tan(type, money) {
+					if (!this.baojia) {
+						return false
+					}
+					this.tan_show = true
+					this.pay_money = money
+					this.shichang_index = 1
+					this.leixing_index = type
+					if (type == 1) {
+						this.shichang_txt = '1天'
+					} else if (type == 2) {
+						this.shichang_txt = '20分钟'
+					} else {
+						this.shichang_txt = '1次'
+					}
+				
+				},
+				huan_leixing(index) {
+				
+					this.leixing_index = index
+					this.pay_money = 0
+					this.shichang_index = -1
+					if (index == 0) {
+						this.tan_jia_jianjie = ''
+				
+					}
+					if (index == 1) {
+						this.tan_jia_jianjie = '实时聊天，快速沟通，高效解答，服务期内提问100%解答，可查看聊天记录。'
+				
+					} else if (index == 2) {
+						this.tan_jia_jianjie = '实时对话，快速沟通，高效解答，服务期内提问100%解答，规定时间内不限拨打次数。'
+				
+					} else if (index == 3) {
+						this.tan_jia_jianjie = '3天内交付，7天有效期内不限修改次数。'
+				
+					} else if (index == 4) {
+						this.tan_jia_jianjie = '会见当事人，了解真实案例，监督侦察工作，提前保存证据，保障当事人合法权益。'
+				
+					}
+				},
+				huan_shichang(index, money, text) {
+					this.shichang_index = index
+					this.pay_money = money
+					this.shichang_txt = text
+				},
+				save() {
+					if (this.name == '') {
+
+						vant.Toast('请填写用户姓名')
+						return false
+					}
+					if (this.zhifubao == '') {
+
+						vant.Toast('请填写支付宝账号')
+						return false
+					} else if (this.jine == '') {
+
+						vant.Toast('请填写体现金额')
+						return false
+					}
+					if (this.jine < 1) {
+
+						vant.Toast('金额不得少于1元')
+						return false
+					}
+
+					var data = {
+						alipayuser: this.zhifubao,
+						rmb: this.jine,
+						myname: this.name
+					}
+					ajax('/mapi/user/tixian', "POST", data, (res) => { // POST或GET请求直接传参
+						if (res.code == 0) {
+							this.zhifubao = ''
+							this.jine = ''
+							vant.Toast('提交成功')
+						}
+					}, function(err) {
+						console.log("err", err);
+					})
+					console.log(this.zhifubao, this.jine)
+				},
+
+
+
+			}
+		})
+	</script>
+
+</html>

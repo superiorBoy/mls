@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="keyword" content="" />
+		<meta name="description" content="" />
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<link rel="stylesheet" type="text/css" href="../css/gonggong.css" />
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vant@2.12/lib/index.css" />
+		<link rel="stylesheet" type="text/css" href="../css/swiper.min.css" />
+		<link rel="stylesheet" type="text/css" href="../css/font.css" />
+		<style>
+			html {
+	background-color: #f7f7f7;
+}
+.head {
+	background-color: #0eb77e;
+	border-bottom: 1px solid #ffffff;
+}
+.tuijian {
+	display: flex;
+	align-items: center;
+	height: 2.4375rem;
+}
+.tuijian img {
+	width: 0.6875rem;
+	height: 0.75rem;
+	margin-right: 0.25rem;
+}
+.tuandui_top {
+	background-color: #0eb77e;
+	height: 9.0625rem;
+	padding: 0 1.375rem;
+}
+.tuijian_ren_left {
+	display: flex;
+	align-items: center;
+}
+.tuijian_ren_left img {
+	width: 2.5rem;
+	height: 2.5rem;
+	border-radius: 100%;
+	margin-right: 0.625rem;
+}
+.tuijian_ren_right {
+	display: flex;
+	align-items: center;
+}
+
+.tuijian_ren_right img {
+	width: 0.5625rem;
+	height: 0.5625rem;
+}
+.tuijian_ren {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-bottom: 0.9375rem;
+}
+.tuijian_ren_right span {
+	margin: 0 0.3125rem;
+}
+.tuandui_xuan {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+.tuandui_xuan_item {
+	width: 9.3125rem;
+	height: 3.25rem;
+	text-align: center;
+	color: #ffffff;
+	background-color: #3ec598;
+	border-radius: 0.3125rem 0.3125rem 0px 0px;
+	padding-top: 0.3125rem;
+	box-sizing: border-box;
+}
+.num {
+	font-size: 0.9375rem;
+	margin-bottom: 0.3125rem;
+}
+.tuandui_xuan_txt {
+	font-size: 0.6875rem;
+}
+.xuanzhong {
+	background-color: #ffffff;
+	color: #333333;
+}
+.tuandui_num {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	height: 3.875rem;
+	background-color: #ffffff;
+}
+.tuandui_num_item {
+	text-align: center;
+	width: 25%;
+	position: relative;
+}
+.tuandui_num_item_top {
+	margin-bottom: 0.1875rem;
+}
+.tuandui_num_item::before {
+	display: inline-block;
+	content: '';
+	height: 1.3125rem;
+	background-color: #f5f5f5;
+	width: 1px;
+	position: absolute;
+	right: 0;
+	top: 0.625rem;
+}
+.tuandui_item_tx {
+	width:2.25rem;
+	height: 2.25rem;
+	margin-right: 0.625rem;
+	border-radius: 100%;
+}
+.tuandui_item_left_r img {
+	width: 3.25rem;
+	height: 0.8125rem;
+	margin-left: 0.4375rem;
+}
+.tuandui_item_left_r_name {
+	margin-bottom: 0.3125rem;
+}
+.tuandui_item {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	background-color: #ffffff;
+	padding:0.875rem 0.625rem;
+	border-radius: 0.3125rem;
+	margin-bottom: 0.625rem;
+}
+.tuandui_item_left {
+	display: flex;
+	align-items: center;
+}
+.tuandui_list {
+	padding: 0.5rem 0.625rem 0;
+}
+.ding_num {
+	margin-bottom: 0.3125rem;
+}
+.dengji {
+	margin-left: 0.8125rem;
+}
+.tuandui_item_right span {
+	margin-left: 0.3125rem;
+}
+.dixian {
+	text-align: center;
+}
+.zanwu{
+	display: flex;
+	align-items: center;
+	margin-bottom: 0.9375rem;
+}
+.zanwu img{
+width: 2.5rem;
+	height: 2.5rem;	
+	margin-right: 0.625rem;
+}
+.add_tuijian_bottom{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.add_tuijian{
+		width: 17rem;
+		height: 10.25rem;
+		background-color: #ffffff;
+		box-shadow:0.125rem 0.1875rem 0.8125rem 0.125rem 
+			rgba(39, 39, 39, 0.26);
+		border-radius: 0.3125rem;
+		position: absolute;
+		top: 9.375rem;
+		left: 50%;
+		transform: translate(-50%,0);
+		padding: 0.9375rem 0.9375rem 0.9375rem 0.9375rem;
+		box-sizing: border-box;
+}
+.add_tuijian_title{
+	text-align: center;
+}
+.quding{
+		width: 3.875rem;
+		height: 1.25rem;
+		background-color: #0eb77e;
+		border-radius: 0.1875rem;
+		text-align: center;
+		line-height: 1.25rem;
+         margin-right: 1.125rem;
+}
+	
+.quxiao{
+		width: 3.875rem;
+		height:1.25rem;
+		background-color: #bfbfbf;
+		border-radius: 0.1875rem;
+		text-align: center;
+		line-height: 1.25rem;
+}
+.add_tuijian_shuru{
+	border-top: 1px solid #eeeeee;
+	height: 2.8125rem;
+	display: flex;
+	align-items: center;
+	margin: 0.625rem 0 1.75rem;
+	border-bottom: 1px solid #eeeeee;
+}
+.add_tuijian_shuru input{
+	height: 100%;
+	border: none;
+}
+.tuanzhang{
+	margin-left: 0.3125rem;
+	color: #b19771;
+	display: inline-block;
+	padding: 0.125rem 0.3125rem;
+	height: 0.8125rem;
+	line-height: 0.8125rem;
+	border-radius: 0.3125rem;
+	background-color: #333333;
+	font-size: 0.625rem;
+	
+		
+}
+		</style>
+	</head>
+	<body>
+
+		<div id="app">
+			<div class="body">
+
+				<div class="head">
+					<div class="head_back">
+						<img src="../static/img/back.png" mode="" onclick="javascript:history.back(-1);" /></img>
+					</div>
+					<div class="head_center hei_12_bold">我的团队</div>
+					<div class=" head_right hei_10_bold">
+					</div>
+				</div>
+
+				<div class="zi_body">
+					<div class="tuandui_top">
+						<div class="tuijian bai_7">
+							<img src="../static/img/jian.png" mode=""></img>
+							{{tuandui.recommended?'您的推荐人':"暂无推荐人"}}
+						</div>
+
+						<div class="zanwu bai_8" @click="tianjia()" v-if="!tuandui.recommended">
+							<img src="../static/img/jia_tuijian.png" mode=""></img>添加推荐人
+						</div>
+
+						<div class="tuijian_ren" v-if="tuandui.recommended">
+							<div class="tuijian_ren_left bai_8">
+								<img :src="img_url+tuandui.recommended.photourl" mode=""></img>
+								{{tuandui.recommended.nickname}}
+							</div>
+							<div class="tuijian_ren_right bai_7" @click="go_chat(tuandui.recommended.userid)">
+								联系推荐人
+								<span>{{tuandui.recommended.mobile}}</span>
+								<img src="@/static/img/tuandui_lianxi.png" mode=""></img>
+							</div>
+						</div>
+
+						<div class="tuandui_xuan" v-if="tuandui!=''">
+							<div :class="['tuandui_xuan_item',active==1?'xuanzhong':'']" @click="xuan(1)">
+								<div class="num">{{tuandui.count.invitecount}}</div>
+								<div class="tuandui_xuan_txt">直属粉丝</div>
+							</div>
+							<div :class="['tuandui_xuan_item',active==2?'xuanzhong':'']" @click="xuan(2)">
+								<div class="num">{{tuandui.count.tuanzhangcount}}</div>
+								<div class="tuandui_xuan_txt">下级团长</div>
+							</div>
+							<div :class="['tuandui_xuan_item',active==3?'xuanzhong':'']" @click="xuan(3)">
+								<div class="num">{{tuandui.count.count}}</div>
+								<div class="tuandui_xuan_txt">全部</div>
+							</div>
+						</div>
+					</div>
+					<div class="tuandui_num" v-if="tuandui!=''">
+						<div class="tuandui_num_item">
+							<div class="tuandui_num_item_top hei_9">{{tuandui.count.today}}</div>
+							<div class="tuandui_num_item_bottom hei_7">今日新增</div>
+						</div>
+						<div class="tuandui_num_item">
+							<div class="tuandui_num_item_top hei_9">{{tuandui.count.yesterday}}</div>
+							<div class="tuandui_num_item_bottom hei_7">昨日新增</div>
+						</div>
+						<div class="tuandui_num_item">
+							<div class="tuandui_num_item_top hei_9">{{tuandui.count.gen2}}</div>
+							<div class="tuandui_num_item_bottom hei_7">二代粉丝</div>
+						</div>
+						<div class="tuandui_num_item">
+							<div class="tuandui_num_item_top hei_9">{{tuandui.count.gen2after}}</div>
+							<div class="tuandui_num_item_bottom hei_7">二代以后</div>
+						</div>
+					</div>
+					<van-list v-model="loading" :finished="is_all" :immediate-check="false" finished-text="" @load="onLoad">
+						<div class="tuandui_list">
+							<div class="tuandui_item" v-for="item in list">
+								<div class="tuandui_item_left">
+									<img :src="img_url+item.photourl" mode="" class="tuandui_item_tx"></img>
+									<div class="tuandui_item_left_r">
+										<div class="hei_7 tuandui_item_left_r_name">
+											{{item.nickname}}
+											<!-- <img src="@/static/img/huiyuan.png" mode=""></img> -->
+											<span class="tuanzhang " v-if="item.istuanzhang==1">团长</span>
+										</div>
+										<div class="qian_7">
+											加入时间:{{time(item.addtime)}}
+											<span class="lv_7 dengji">{{item.grade==1?'普通用户':'律师'}}</span>
+										</div>
+									</div>
+								</div>
+								<div class="tuandui_item_right hui_7">
+									<div class="ding_num">
+										直属粉丝
+										<span>{{item.gan1}}</span>
+									</div>
+									<div class="">
+										订单数量
+										<span>{{item.consultcount}}</span>
+									</div>
+								</div>
+							</div>
+						</div>
+
+					</van-list>
+					<div class="dixian qian_7">我可是有底线的</div>
+
+					<div class="add_tuijian" v-if="is_tan">
+						<div class="add_tuijian_title hei_7">
+							添加推荐人
+						</div>
+						<div class="add_tuijian_shuru">
+							<input type="text" value="" placeholder="输入推荐码" class="hei_7" v-model="shuru" />
+						</div>
+						<div class="add_tuijian_bottom">
+							<div class="quding bai_7" @click="queren">
+								确认
+							</div>
+							<div class="quxiao hei_7" @click="quxiao">
+								取消
+							</div>
+						</div>
+					</div>
+
+				</div>
+
+
+
+
+			</div>
+
+
+
+		</div>
+
+	</body>
+	<script src="../js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../js/vue.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../js/http.js" type="text/javascript" charset="utf-8"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vant@2.12/lib/vant.min.js"></script>
+	<script type="text/javascript">
+		var app = new Vue({
+			el: "#app",
+			data() {
+				return {
+					active: 1,
+					shuru: '',
+					is_tan: false,
+					page: 0,
+					list: [],
+					is_all: false,
+					tuandui: '',
+					img_url: window.localStorage.getItem('img_url'),
+					loading: false, //是否处于加载状态
+				}
+			},
+
+			created() {
+
+				this.huoqu_list()
+				this.huoqu_tuandui()
+
+
+			},
+			methods: {
+				onLoad() { //上拉加载
+					console.log('下拉加载')
+					if (this.is_all) {
+						vant.Toast('已加载全部');
+					} else {
+						this.page++
+						this.huoqu_list()
+					}
+				},
+				huoqu_list() {
+					var data = {
+						page: this.page,
+						state: this.active
+					}
+					ajax('/mapi/user/invitelist', "POST", data, (res) => { // POST或GET请求直接传参
+						this.list = this.list.concat(res.data.invitelist)
+						if (res.data.invitelist.length < 10) {
+							this.is_all = true;
+						}
+						this.loading = false
+					}, function(err) {
+
+						console.log("err", err);
+					})
+				},
+				huoqu_tuandui() {
+
+					ajax('/mapi/user/yaoqingjilu', "POST", '', (res) => { // POST或GET请求直接传参
+						this.tuandui = res.data
+					}, function(err) {
+
+						console.log("err", err);
+					})
+				},
+
+				xuan(index) {
+					this.active = index
+
+					this.page = 0
+					this.is_all = false
+					this.list = []
+					this.huoqu_list()
+				},
+				queren() {
+
+					if (this.shuru == '') {
+
+						vant.Toast("请输入微信号")
+						return false
+					}
+					console.log(this.shuru)
+					var data = {
+						randcode: this.shuru
+					}
+					ajax('/mapi/user/addline', "POST", data, (res) => { // POST或GET请求直接传参
+						vant.Toast("添加成功")
+						this.huoqu_tuandui()
+						this.is_tan = false
+					}, function(err) {
+
+						console.log("err", err);
+					})
+
+				},
+				go_chat(lawyerid) {
+
+					location.href = '../zixun/hy_zaixianchat.html?lawyerid=' + lawyerid
+				},
+				quxiao() {
+					this.is_tan = false
+				},
+				tianjia() {
+					this.is_tan = true
+				}
+
+			}
+		})
+	</script>
+
+</html>

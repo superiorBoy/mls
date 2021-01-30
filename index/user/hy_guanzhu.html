@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="keyword" content="" />
+		<meta name="description" content="" />
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<link rel="stylesheet" type="text/css" href="../css/gonggong.css" />
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vant@2.12/lib/index.css" />
+		<link rel="stylesheet" type="text/css" href="../css/swiper.min.css" />
+		<link rel="stylesheet" type="text/css" href="../css/font.css" />
+		<style>
+
+		.head {
+			border-bottom:1px solid #e8e8e8;
+		}
+		
+		.fensi_list_tx {
+			width: 100%;
+			height: 100%;
+			border-radius: 100%;
+		}
+		
+		.fensi_list_left_tx {
+			width: 2.9375rem;
+			height: 2.9375rem;
+			position: relative;
+			margin-right: 0.5625rem;
+		}
+		.fensi_list_ren {
+			width: 0.5rem;
+			height: 0.5rem;
+			background-color: #ffffff;
+			border: solid 1px #ffffff;
+			position: absolute;
+			right: 0.1875rem;
+			bottom: 0;
+			border-radius: 100%;
+		}
+		.fensi_list_left {
+			display: flex;
+			position: relative;
+		}
+		
+		.fensi_list_name {
+			margin-bottom: 0.625rem;
+		}
+		.fensi_list {
+			padding: 0.8125rem 0.375rem 0.8125rem 0;
+			border-bottom: 1px solid #e8e8e8;
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+		}
+		.fensi_body {
+			padding: 0 0.9375rem;
+		}
+		.fensi_list_right {
+			width: 3.6875rem;
+			height: 1.625rem;
+		}
+		.yiguan {
+			background-color: #ffffff;
+			border-radius: 0.1875rem;
+			border: solid 1px #bfbfbf;
+			line-height: 1.625rem;
+			text-align: center;
+		}
+		</style>
+	</head>
+	<body>
+
+		<div id="app">
+			<div class="body">
+
+				<div class="head">
+					<div class="head_back">
+						<img src="../static/img/back.png" mode="" onclick="javascript:history.back(-1);" /></img>
+					</div>
+					<div class="head_center hei_12_bold">关注</div>
+					<div class=" head_right hei_10_bold">
+					</div>
+				</div>
+
+			<div class="zi_body ">
+				<div class="fensi_body">
+					<div class="fensi_list" v-for="item in jilu_list">
+						<div class="fensi_list_left">
+							<div class="fensi_list_left_tx" @click="go_zhuye(item.userid)">
+								<img :src="img_url + item.photourl" mode="" class="fensi_list_tx"></img>
+								<img src="../static/img/renzheng2.png" mode="" class="fensi_list_ren"></img>
+							</div>
+							<div class="fensi_list_left_r">
+								<div class="hei_8 fensi_list_name" @click="go_zhuye(item.userid)">{{ item.nickname }}</div>
+								<div class="hui_7">{{item.fensi}}个粉丝</div>
+							</div>
+						</div>
+						<div class="fensi_list_right yiguan qian_8">已关注</div>
+					</div>
+				</div>
+			</div>
+
+
+
+
+			</div>
+
+
+
+		</div>
+
+	</body>
+	<script src="../js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../js/vue.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../js/http.js" type="text/javascript" charset="utf-8"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vant@2.12/lib/vant.min.js"></script>
+	<script type="text/javascript">
+		var app = new Vue({
+			el: "#app",
+			data() {
+				return {
+				zhuangtai: 2,
+				jilu_list: [],
+				img_url: window.localStorage.getItem('img_url'),
+				}
+			},
+
+			created() {
+
+				this.huoqu_list()
+
+
+			},
+			methods: {
+
+				huoqu_list() {
+			
+					ajax('/mapi/index/guanzhulist', "POST", '', (res) => { // POST或GET请求直接传参
+					this.jilu_list = res.data.list;
+					}, function(err) {
+
+						console.log("err", err);
+					})
+				},
+
+
+
+
+			}
+		})
+	</script>
+
+</html>

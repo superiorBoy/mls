@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="keyword" content="" />
+		<meta name="description" content="" />
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<link rel="stylesheet" type="text/css" href="../css/gonggong.css" />
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vant@2.12/lib/index.css" />
+		<link rel="stylesheet" type="text/css" href="../css/swiper.min.css" />
+		<link rel="stylesheet" type="text/css" href="../css/font.css" />
+		<link rel="stylesheet" type="text/css" href="../css/index.css" />
+		<style>
+			html {
+			background-color: #f7f7f7;
+		}
+
+		.head {
+			border-bottom: 1px solid #e8e8e8;
+		}
+
+		.jine {
+			font-size: 1.875rem;
+			color: #ffffff;
+			font-weight: bold;
+		}
+
+		.jine_shuru {
+			display: flex;
+			border-bottom:1px solid #f7f7f7;
+			padding-bottom: 0.25rem;
+		}
+
+		.fangshi_list_pay {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			height: 3.125rem;
+			border-bottom: 1px solid #f7f7f7;
+		}
+
+		.pay_list,
+		.pay_list_top {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+		}
+		.pay_list input {
+			text-align: right;
+			border: none;
+		}
+		.xuanshang_title {
+			display: flex;
+			align-items: center;
+			height: 3.0625rem;
+			padding-left: 0.875rem;
+		}
+		.xuanshang_title img {
+			margin-right: 0.3125rem;
+		}
+		.pay_top {
+			background-color: #ffffff;
+			padding: 0 0.9375rem;
+		}
+
+		.pay_list {
+			height: 3.125rem;
+			border-bottom: 1px solid #f7f7f7;
+		}
+
+		.pay_list_jine {
+			height: 2.875rem;
+			box-sizing: border-box;
+			padding: 0.875rem 0;
+		}
+
+		.fangshi {
+			background-color: #ffffff;
+			padding: 0 0.9375rem;
+		}
+		.xuanshang {
+			width: 10.5rem;
+			height:2.75rem;
+			background-color: #0eb77e;
+			border-radius: 1.375rem;
+			line-height: 2.75rem;
+		}
+		.zanbu {
+			width: 10.5rem;
+			height:2.75rem;
+			background-color: #dcdcdc;
+			border-radius: 1.375rem;
+			line-height:2.75rem;
+		}
+		.tuijian {
+			border: 1px solid #fd4358;
+			width: 1.9375rem;
+			height: 0.9375rem;
+			display: inline-block;
+			line-height: 0.9375rem;
+			text-align: center;
+			margin-left:0.5rem;
+		}
+		.pay_btn {
+			padding: 0 0.9375rem;
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			margin-top: 2.1875rem;
+		}
+		.wen_list {
+			display: block;
+			padding-bottom: 0.9375rem;
+			height: auto;
+		}
+		.wen_list_top {
+			line-height:2.5rem;
+		}
+		.wen_neirong {
+			width: 100%;
+			padding: 0rpx 0.5rem 0.3125rem 0;
+			box-sizing: border-box;
+		}
+		.wen_neirong_txt {
+			height: 3.125rem;
+			overflow: auto;
+			word-break: break-all;
+		}
+		.wen_neirong_textarea {
+			height: 8.25rem;
+			border: none;
+			resize: none;
+		}
+
+		.height_auto {
+			height: auto;
+			padding: 0.625rem 0;
+		}
+
+		.dis_fir {
+			align-items: flex-start;
+		}
+		.jine_list {
+			display: flex;
+			align-items: center;
+			flex-wrap: wrap;
+			background-color: #ffffff;
+			padding: 1.4375rem 0.9375rem 0.3125rem 0.9375rem;
+		}
+		.jine_item {
+			width:6.5625rem;
+			height: 2.8125rem;
+			background-color: #efefef;
+			border-radius: 1px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			margin: 0 0.9375rem 0.9375rem 0;
+			box-sizing: border-box;
+		}
+		.jine_item:nth-child(3n) {
+			margin-right: 0;
+		}
+		.jine_item img {
+			width: 0.8125rem;
+			height: 0.9375rem;
+			margin-right: 0.3125rem;
+		}
+		.qian_on {
+			display: none;
+		}
+		.xuan_active {
+			border: 1px solid #0eb77e;
+			color: #0eb77e;
+			background-color: #ffffff;
+			position: relative;
+		}
+		.xuan_active .qian_on {
+			display: inline-block;
+		}
+		.xuan_active .qian_no {
+			display: none;
+		}
+		.xuan_active::before {
+			content: '';
+			display: inline-block;
+			width: 1.8125rem;
+			height: 1.6875rem;
+			position: absolute;
+			bottom: 0;
+			right: 0;
+			background: url(../static/img/xuanshang_xuan.png) no-repeat;
+			background-size: 100% 100%;
+		}
+		.xuan_tishi {
+			text-align: center;
+			padding-bottom: 1.5625rem;
+			margin-top: 0.9375rem;
+		}
+		.xuan_tishi_fir {
+			margin-bottom: 0.3125rem;
+		}
+			.fangshi_txt{
+				height: 3.1875rem;
+				line-height: 3.1875rem;
+				padding: 0 0.9375rem;
+				}
+				.fangshi_list_pay input[type="radio"] {
+					width:0.9375rem;
+					height: 0.9375rem;
+				}
+				
+				.fangshi_list_pay input[type="radio"]:checked {
+					width: 0.9375rem;
+					height: 0.9375rem;
+					background: url(../static/img/pay_xuan_bg.png) no-repeat;
+					background-size: 100% 100%;
+				}
+				.techang_list span {
+					line-height: 0.9375rem;
+					margin-right:0.25rem;
+					padding: 0.0625rem 0.3125rem;
+					color: #ffffff;
+					
+				}
+				.techang_list span:nth-child(1) {
+					background-color: #01af63;
+				}
+				.techang_list span:nth-child(2) {
+					background-color: #39bf84;
+				}
+				.techang_list span:nth-child(3) {
+					background-color: #7acea4;
+					margin-right: 0;
+				}
+				.ls_item{
+				
+					background-color: #f8f8f8;
+					padding: 1.0625rem 0.4375rem 0.875rem 1.4375rem;
+					width: 17.5rem;
+					box-sizing: border-box;
+				}
+				.ls_item_top{
+					display: flex;
+					align-items: center;
+				}
+				.ls_item_left{
+					margin-right: 0.5rem;
+					position: relative;
+				}
+				.ls_item_left_tx{
+						width: 2.5rem;
+						height: 2.5rem;
+						border-radius: 100%;
+				}
+				.ls_item_left_ren{
+					position: absolute;
+					right: 0.25rem;
+					bottom: 0.1875rem;
+						width: 0.5rem;
+						height: 0.5rem;
+						border: 1px solid #FFFFFF;
+						background-color: #FFFFFF;
+						border-radius: 100%;
+				}
+				.techang_list{
+					display: flex;
+					flex-wrap: wrap;
+					}
+			     .techang {
+						
+						display: flex;
+						align-items: center;
+						margin-top: 0.625rem;
+				}
+				.ls_dianhua{
+						
+						margin-left:0.625rem;
+				}
+				.ls_dianhua img{
+						width: 0.75rem;
+						height: 0.75rem;
+						margin-right:0.1875rem;
+				}
+				.dis_fir{
+						align-items: flex-start;
+					}
+					.tixian_btn {
+						height: 2.75rem;
+						background-color: #0eb77e;
+						border-radius: 1.375rem;
+						line-height: 2.75rem;
+						margin: 3.875rem 0 1.5625rem;
+						width: 100%;
+					}
+		</style>
+	</head>
+	<body>
+
+		<div id="app">
+			<div class="body">
+
+				<div class="head">
+					<div class="head_back">
+						<img src="../static/img/back.png" mode="" onclick="javascript:history.back(-1);" /></img>
+					</div>
+					<div class="head_center hei_12_bold">支付</div>
+					<div class=" head_right"></div>
+				</div>
+
+				<div class="zi_body ">
+					<div class="pay_top">
+						<div class="pay_list">
+							<span class="qian_9">服务项目</span>
+							<span class="hei_9">
+								{{type==1?'在线咨询':type==2?'电话咨询':type==3?'合同事务':type==4?'诉讼委托':'见面咨询'}}({{time}})
+							</span>
+						</div>
+
+
+						<div class="pay_list height_auto dis_fir">
+							<span class="qian_9">服务律师</span>
+							<div class="ls_item">
+								<div class="ls_item_top">
+
+									<div class="ls_item_left">
+										<img :src="img_url+lvshi.photourl" mode="" class="ls_item_left_tx"></img>
+										<img src="../static/img/renzheng2.png" mode="" class="ls_item_left_ren"></img>
+									</div>
+									<div class="ls_item_right">
+										<div class="hui_7 ls_item_right_top">
+											<span class="hei_9_bold">{{lvshi.nickname}}律师</span>
+											<span class="ls_dianhua">
+												<img src="../static/img/dianhua_icon.png" mode="" class="dianhua_dizhi"></img>{{lvshi.mobile}}
+											</span>
+										</div>
+										<div class="ls_dizhi hui_7">
+											<img src="../static/img/dianhua_dizhi.png" mode="" class="dianhua_dizhi"></img>{{lvshi.province}}-{{lvshi.city}}-{{lvshi.area}}
+										</div>
+									</div>
+
+								</div>
+								<div class="hui_8 techang">
+									<div class="shanchang">擅长:</div>
+									<div class="techang_list hui_7">
+
+										<span v-if="zhuanchang_arry[lvshi.expertise1] && zhuanchang_arry[lvshi.expertise1].shanchangname">{{zhuanchang_arry[lvshi.expertise1].shanchangname}}</span>
+										<span v-if="zhuanchang_arry[lvshi.expertise2] && zhuanchang_arry[lvshi.expertise2].shanchangname">{{zhuanchang_arry[lvshi.expertise2].shanchangname}}</span>
+										<span v-if="zhuanchang_arry[lvshi.expertise3] && zhuanchang_arry[lvshi.expertise3].shanchangname">{{zhuanchang_arry[lvshi.expertise3].shanchangname}}</span>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="pay_list">
+							<span class="qian_9">手机号码</span>
+							<input type="text" value="" v-model="phone" placeholder="请输入手机号码" class="hei_9" />
+						</div>
+						<!-- 		<div class="pay_list" v-if="typeid && fenlei[typeid]">
+							<span class="qian_9">咨询类型</span>
+							<span class="hei_9">
+								{{ fenlei[typeid].typename }}
+							</span>
+						</div> -->
+						<div class="pay_list">
+							<span class="qian_9">咨询类型</span>
+							<div   @click="tan_leixing">
+								<span class="hei_9">{{leixing==''?'选择咨询类型':leixing}}</span>
+								<img src="../static/lsimg/go_r.png" mode="" style="width: 0.375rem;height: 0.625rem;margin-left:0.1875rem;vertical-align: middle;"></img>
+							</div>
+						</div>
+						<div class="pay_list wen_list">
+							<div class="qian_9 wen_list_top">咨询内容</div>
+
+							<textarea value="" placeholder="请输入" class="hei_9 wen_neirong wen_neirong_textarea" v-model="neirong" maxlength="5000" /></textarea>
+						</div>
+						<div class="pay_list">
+							<span class="qian_9">支付金额</span>
+							<span class="hong_9">
+								￥{{pay_money}}
+							</span>
+						</div>
+
+					</div>
+
+				</div>
+
+
+
+				<div class="fangshi_txt qian_9">请选择支付方式</div>
+				<div class="fangshi">
+					<!-- <div class="fangshi_list_pay" @click="radio(1)">
+					<div class="fangshi_left hei_9">
+						<img src="../static/img/pay_weixin.png" mode="" style="width:36rpx ;height: 31rpx;"></img>
+						微信支付
+						<span class="tuijian hong_22">推荐</span>
+					</div>
+					<label class="radio"><radio value="1" :checked="zhifu == 1" /></label>
+				</div> -->
+					<div class="fangshi_list_pay" @click="radio(2)">
+						<div class="fangshi_left hei_9">
+							<img src="../static/img/pay_zhifubao.png" mode="" style="width: 1.25rem;height: 1.25rem;"></img>
+							支付宝支付
+						</div>
+
+						<input type="radio" name="fs" id="" value="2" :checked="zhifu == 2" />
+					</div>
+					<div class="fangshi_list_pay" @click="radio(3)">
+						<div class="fangshi_left hei_9">
+							<img src="../static/img/yue_pay.png" mode="" style="width:1.125rem ;height: 0.9375rem;"></img>
+							余额支付
+						</div>
+						<input type="radio" name="fs" id="" value="3" :checked="zhifu == 3" />
+
+					</div>
+				</div>
+				<div class="pay_btn">
+					<button type="" class="tixian_btn bai_9" @click="save">支付</button>
+				</div>
+
+
+			</div>
+	<van-popup v-model="leixing_show" round position="bottom">
+					<van-picker title="选择分类" show-toolbar :columns="type_arry" @confirm="onConfirm" @cancel="onCancel" value-key='typename' />
+				</van-popup>
+
+
+		</div>
+
+	</body>
+	<script src="../js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../js/vue.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../js/http.js" type="text/javascript" charset="utf-8"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vant@2.12/lib/vant.min.js"></script>
+	<script src="../js/get.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		var app = new Vue({
+			el: "#app",
+			data() {
+				return {
+					zhifu: '2',
+					lawyerid: '',
+					img_url: window.localStorage.getItem('img_url'),
+					lvshi: '',
+					neirong: '',
+					zhuanchang_arry: [],
+					type_arry: [],
+					type: '',
+					consultid: '',
+					information: '',
+					typeid: '',
+					fenlei: [],
+					phone: '',
+					xiamgmu: '',
+					shichang: '',
+					leixing: '',
+					zixun_xinxi: '',
+					laiyuan: 1,
+					pay_money: 0,
+					time: '',
+					leixing_show:false
+				}
+			},
+			created() {
+
+				if ($_GET.lawyerid) {
+					this.lawyerid = $_GET.lawyerid
+
+				}
+				if ($_GET.pay_money) {
+					this.pay_money = $_GET.pay_money
+				}
+				if ($_GET.time) {
+					this.time = _GET.time
+				}
+				if ($_GET.consultid) {
+					this.laiyuan = 2
+					this.consultid = $_GET.consultid
+					// 获取分类
+					ajax('/mapi/index/gettype', "POST", '', (res) => { // POST或GET请求直接传参
+						this.fenlei = res.data.type;
+						var array = [];
+						for (var key in res.data.type) {
+							array.push(res.data.type[key]);
+						}
+						this.type_arry = array;
+						this.diangdan_xinxi()
+					}, function(err) {
+						console.log("err", err);
+					})
+
+
+				} else {
+					this.laiyuan = 1
+					// 获取分类
+					ajax('/mapi/index/gettype', "POST", '', (res) => { // POST或GET请求直接传参
+						this.fenlei = res.data.type;
+						var array = [];
+						for (var key in res.data.type) {
+							array.push(res.data.type[key]);
+						}
+						this.type_arry = array;
+
+					}, function(err) {
+						console.log("err", err);
+					})
+
+				}
+				this.huoqu_shanchang()
+
+			},
+			methods: {
+				huoqu_shanchang() {
+
+					ajax('/mapi/lawyer/getshanchang', "POST", '', (res) => { // POST或GET请求直接传参
+						this.zhuanchang_arry = res.data.shanchang;
+						this.huoqu_lvshi();
+					}, function(err) {
+						console.log("err", err);
+					})
+				},
+
+				// 获取律师
+				huoqu_lvshi() {
+					var data = {
+						lawyerid: this.lawyerid
+					}
+					ajax('/mapi/lawyer/lawyer', "POST", data, (res) => { // POST或GET请求直接传参
+						this.lvshi = res.data.lawyer;
+						this.phone = res.data.lawyer.mobile
+					}, function(err) {
+						console.log("err", err);
+					})
+
+				},
+				// 订单信息
+				diangdan_xinxi() {
+					var data = {
+						consultid: this.consultid
+					}
+					ajax('/mapi/consult/consult_xq', "POST", data, (res) => { // POST或GET请求直接传参
+						this.zixun_xinxi = res.data.consult
+						this.neirong = res.data.consult.information
+						this.pay_money = res.data.consult.paymoney
+						this.typeid = res.data.consult.typeid
+						this.time = res.data.consult.zixunshicahng
+						if (res.data.consult.zixunshicahng == 20) {
+							this.time = '20分钟'
+
+						} else if (res.data.consult.zixunshicahng == 24) {
+							this.time = '1天'
+						} else if (res.data.consult.zixunshicahng == 72) {
+							this.time = '3天'
+						} else if (res.data.consult.zixunshicahng == 720) {
+							this.time = '1个月'
+						}
+
+						this.leixing = this.type_arry[res.data.consult.typeid].typename;
+					}, function(err) {
+						console.log("err", err);
+					})
+
+				},
+				radio(i) {
+					this.zhifu = i;
+				},
+				tan_leixing(){
+					
+					this.leixing_show=true
+				},
+				// 类型选择
+
+				onConfirm(e){
+					this.leixing = e.typename;
+					this.typeid = e.typeid;
+					this.leixing_show=false
+				},
+				onCancel(){
+					this.leixing_show=false
+				},
+				
+				save() {
+
+
+					if (this.phone == '') {
+						uni.showToast({
+							title: '请填写手机号码',
+							duration: 2000,
+							icon: 'none'
+						});
+						return false
+					}
+
+					if (this.neirong == '') {
+						uni.showToast({
+							title: '请输入咨询内容',
+							duration: 2000,
+							icon: 'none'
+						});
+						return false
+					}
+					if (this.typeid == '') {
+						uni.showToast({
+							title: '请选择咨询类别',
+							duration: 2000,
+							icon: 'none'
+						});
+						return false
+					}
+
+
+					if (this.type == 0) {
+						var xiangmu = '见面咨询'
+					} else if (this.type == 1) {
+						var xiangmu = '在线咨询'
+					} else if (this.type == 2) {
+						var xiangmu = '电话咨询'
+					} else if (this.type == 3) {
+						var xiangmu = '合同文书'
+					} else if (this.type == 4) {
+						var xiangmu = '诉讼委托'
+					}
+
+					console.log(this.type, this.neirong, this.phone, this.typeid, this.time)
+
+					if (this.laiyuan == 1) {
+						var ls = this.lawyerid
+					} else {
+						var ls = ''
+					}
+
+					var data = {
+						information: this.neirong,
+						typeid: this.typeid,
+						phone: this.phone,
+						shichang: this.time,
+						xiangmu: xiangmu,
+						lawyerid: ls,
+						consultid: this.consultid
+					}
+					ajax('/index/consult/addconsultpay', "POST", data, (res) => { // POST或GET请求直接传参
+						if (res.code == 0) {
+							if (this.zhifu == 2) {
+								this.zfb_pay(res.data.consultid)
+							} else if (this.zhifu == 3) {
+								this.yue_pay(res.data.consultid)
+							}
+						}
+					}, function(err) {
+						console.log("err", err);
+					})
+				},
+				zfb_pay(consultid) {
+					var data = {
+						consultid: consultid
+					}
+					ajax('/index/consult/addconsultpay', "POST", data, (res) => { // POST或GET请求直接传参
+						if (res.code == 0) {
+							window.open('' + res.data.response);
+						}
+					}, function(err) {
+						console.log("err", err);
+					})
+
+				},
+				yue_pay(consultid) {
+					var data = {
+						consultid: consultid,
+					}
+					ajax('/index/consult/accountpay', "POST", data, (res) => { // POST或GET请求直接传参
+						if (res.code == 0) {
+							vant.Toast('支付成功')
+							setTimeout(function() {
+								if (that.type == 1) {
+									location.href = '../zixun/hy_zixun_jilu.html'
+								} else if (that.type == 2) {
+									location.href = '../zixun/hy_dianhua.html'
+								} else {
+									location.href = '../zixun/hy_other.html'
+								}
+
+							}, 2000)
+						}
+					}, function(err) {
+						console.log("err", err);
+					})
+
+				},
+	
+
+			}
+		})
+	</script>
+
+</html>

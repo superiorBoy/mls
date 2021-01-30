@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="keyword" content="" />
+		<meta name="description" content="" />
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<link rel="stylesheet" type="text/css" href="../css/gonggong.css" />
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vant@2.12/lib/index.css" />
+		<link rel="stylesheet" type="text/css" href="../css/font.css" />
+
+		<style>
+		.head {
+				border-bottom: 1px solid #F7F7F7;
+			}
+		
+		.gg_xq_top{
+			text-align: center;
+			padding:0.9375rem 0.9375rem ;
+		}
+		.xq_title{
+			margin-bottom: 0.3125rem;
+		}
+		.xq_body{
+			padding: 0 0.9375rem;
+			line-height: 1.375rem;
+		}
+		</style>
+	</head>
+	<body>
+
+		<div id="app">
+
+
+			<div class="head">
+				<div class="head_back">
+					<img src="../static/img/back.png" mode="" onclick="javascript:history.back(-1);" /></img>
+				</div>
+				<div class="head_center hei_12_bold">网站公告</div>
+				<div class=" head_right"></div>
+			</div>
+			<div class="zi_body ">
+			
+			        <div class="gg_xq_top">
+			        	<div class="xq_title hei_9_bold">
+			        		{{body.title}}
+			        	</div>
+						<div class="qian_24">
+							{{time(body.addtime)}}
+						</div>
+			        </div>
+						
+			<div class="xq_body hei_8" v-html="body.information">
+				
+			</div>
+						
+					
+					</div>
+
+		</div>
+
+	</body>
+	<script src="../js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../js/vue.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../js/http.js" type="text/javascript" charset="utf-8"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vant@2.12/lib/vant.min.js"></script>
+	<script src="../js/get.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		var app = new Vue({
+			el: "#app",
+			data() {
+				return {
+					body:'',
+					noticeid:''
+				}
+			},
+			created() {
+                if($_GET.noticeid){
+                	this.noticeid=$_GET.noticeid
+					this.huoqu_xq()
+                }
+				
+			},
+			methods: {
+
+				huoqu_xq() {
+					var data={
+						noticeid:this.noticeid
+					}
+					ajax('/mapi/user/noticedetail', "POST", data, (res) => { // POST或GET请求直接传参
+						this.body = res.data.notice;
+					}, function(err) {
+
+						console.log("err", err);
+					})
+				}
+
+
+			}
+		})
+	</script>
+
+</html>

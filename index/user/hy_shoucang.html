@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="keyword" content="" />
+		<meta name="description" content="" />
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<link rel="stylesheet" type="text/css" href="../css/gonggong.css" />
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vant@2.12/lib/index.css" />
+		<link rel="stylesheet" type="text/css" href="../css/swiper.min.css" />
+		<link rel="stylesheet" type="text/css" href="../css/font.css" />
+		<style>
+html {
+	background-color: #f7f7f7;
+	min-height: 100%;
+}
+
+.shoucang_wenzhang {
+	width: 1.875rem;
+	height: 0.9375rem;
+	background-color: #0eb77e;
+	border-radius: 1px;
+	text-align: center;
+	line-height: 0.9375rem;
+	display: inline-block;
+	margin-right: 0.1875rem;
+}
+.shoucang_anli {
+	width: 1.875rem;
+	height: 0.9375rem;
+	background-color: #f43a51;
+	border-radius: 1px;
+	display: inline-block;
+	text-align: center;
+	line-height:0.9375rem;
+	margin-right:0.1875rem;
+}
+.shangxue_item_title {
+  word-break: break-all;
+overflow: hidden;
+text-overflow:ellipsis;
+white-space: nowrap;
+width: 13.4375rem;
+}
+.shangxue_item_tit_anli{
+	margin-bottom: 0.3125rem;
+}
+.shangxue_list {
+	margin-top: 0.625rem;
+}
+.shangxue_item {
+	background-color: #ffffff;
+	padding: 0.625rem 0.625rem 0.625rem 1.25rem;
+}
+.shangxue_item_time img {
+	width: 0.6875rem;
+	height: 0.6875rem;
+	margin-right: 0.3125rem;
+}
+.shangxue_item_left img {
+	width: 7.5rem;
+	height: 5.375rem;
+	background-color: #ededef;
+	border-radius: 0.3125rem;
+	margin-right: 0.625rem;
+}
+.shangxue_item {
+	display: flex;
+	margin-bottom: 0.625rem;
+}
+.shangxue_item_right {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+.quxiao {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+.quxiao_left {
+	display: flex;
+	align-items: center;
+}
+.quxiao_left img {
+	width: 1.3125rem;
+	height: 1.3125rem;
+	border-radius: 100%;
+	margin-right: 0.3125rem;
+}
+.quxiao_btn {
+	width: 3.625rem;
+	height: 1.3125rem;
+	background-color: #ffffff;
+	border-radius: 0.625rem;
+	border: solid 1px #dedede;
+	line-height: 1.3125rem;
+	text-align: center;
+}
+.shangxue_item_body {
+	word-break: break-all;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 2;
+	overflow: hidden;
+	margin: 0.5rem 0;
+}
+		</style>
+	</head>
+	<body>
+
+		<div id="app">
+			<div class="body">
+
+				<div class="head">
+					<div class="head_back">
+						<img src="../static/img/back.png" mode="" onclick="javascript:history.back(-1);" /></img>
+					</div>
+					<div class="head_center hei_12_bold">收藏</div>
+					<div class=" head_right hei_10_bold">
+					</div>
+				</div>
+
+			<div class="zi_body ">
+				<div class="jingxuan_body ">
+					<div class="shangxue_list" v-for="item in shoucang_list">
+						<div class="shangxue_item">
+							<div class="shangxue_item_left" @click="go_xq(item.consultid)"><image src="../static/img/shangxue1.png" mode=""></image></div>
+							<div class="shangxue_item_right">
+								<div class="shangxue_item_title hei_9_bold">
+									<span class="shoucang_wenzhang bai_7">咨询</span>
+									<!-- 小虎律师 常见问题 -->
+								</div>
+								<div class="shangxue_item_body hui_8" @click="go_xq(item.consultid)">{{item.information}}</div>
+								<div class="quxiao qian_7">
+									<div class="quxiao_left hei_7"></div>
+									<div class="quxiao_btn" @click="quxiao(item.consultid)">取消收藏</div>
+								</div>
+							</div>
+						</div>
+						<!-- <div class="shangxue_item">
+							<div class="shangxue_item_left"><image src="@/static/img/shangxue2.png" mode=""></image></div>
+							<div class="shangxue_item_right ">
+								<div class="shangxue_item_tit_anli hei_9_bold ">
+									<span class="shoucang_anli bai_22">案例</span>
+									商业大楼公共通道被错误登记
+									在个人名下十四年，律师团队全力
+									调查认定为业主共有
+								</div>
+							
+								<div class="quxiao qian_24">
+									<div class="quxiao_left hei_24">
+										<image src="@/static/lsimg/moren_tx.png" mode=""></image>
+										李正霞律师
+									</div>
+									<div class="quxiao_btn">取消收藏</div>
+								</div>
+							</div>
+						</div> -->
+					
+					</div>
+				</div>
+			</div>
+
+
+
+
+			</div>
+
+
+
+		</div>
+
+	</body>
+	<script src="../js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../js/vue.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../js/http.js" type="text/javascript" charset="utf-8"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vant@2.12/lib/vant.min.js"></script>
+	<script type="text/javascript">
+		var app = new Vue({
+			el: "#app",
+			data() {
+				return {
+				shoucang_list: [],
+				img_url: window.localStorage.getItem('img_url'),
+				}
+			},
+
+			created() {
+
+				this.huoqu_list()
+
+
+			},
+			methods: {
+
+				huoqu_list() {
+			
+					ajax('/mapi/index/shoucanglist', "POST", '', (res) => { // POST或GET请求直接传参
+					this.shoucang_list=res.data.list
+					}, function(err) {
+
+						console.log("err", err);
+					})
+				},
+
+	quxiao(consultid){
+		var data={
+			consultid:consultid
+		}
+		ajax('/mapi/index/shoucang', "POST", data, (res) => { // POST或GET请求直接传参
+		this.huoqu_list()
+		vant.Toast(''+res.message)
+		}, function(err) {
+		
+			console.log("err", err);
+		})
+			
+		},
+	go_xq(consultid){
+
+			location.href='../consult/zixun_xq.html?consultid='+consultid
+		}
+
+			}
+		})
+	</script>
+
+</html>

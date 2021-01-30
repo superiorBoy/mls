@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="keyword" content="" />
+		<meta name="description" content="" />
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<link rel="stylesheet" type="text/css" href="../css/gonggong.css" />
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vant@2.12/lib/index.css" />
+		<link rel="stylesheet" type="text/css" href="../css/swiper.min.css" />
+		<link rel="stylesheet" type="text/css" href="../css/font.css" />
+		<link rel="stylesheet" type="text/css" href="../css/index.css" />
+		<style>
+      	html{
+			background-color: #F7F7F7;
+		}
+		.xiaoxi_top{
+			background-color: #FFFFFF;
+			margin-bottom: 0.625rem;
+			
+		}
+		.xiaoxi_top_list{
+			padding: 0.9375rem 0.9375rem;
+			display: flex;
+			justify-content: space-between;
+			position: relative;
+			align-items: center;
+		}
+	
+	.xiaoxi_top_list::before{
+		content: '';
+		display: inline-block;
+		position: absolute;
+		bottom: 0;
+		right: 0;
+		width: 80%;
+		height: 1px;
+		background-color: #EEEEEE;
+	}
+		.top_txt{
+			margin-bottom: 0.3125rem;
+		}
+		.xiaoxi_top_list:last-child{
+			margin-bottom: 0;
+		}
+		.xiaoxi_top_list:last-child::before{
+			content: none;
+		}
+		.xiaoxi_top_list_left{
+			display: flex;
+		}
+		
+	.xiaoxi_top_list_left img{
+			width: 2.625rem;
+			height: 2.625rem;
+			margin-right: 0.9375rem;
+	}
+	.xiaoxi_list{
+		background-color: #FFFFFF;
+	}
+	.xiaoxi_item{
+		padding: 0.9375rem 0.9375rem;
+		display: flex;
+		position: relative;
+		justify-content: space-between;
+	}
+	.xiaoxi_item::before{
+		content: '';
+		display: inline-block;
+		position: absolute;
+		bottom: 0;
+		right: 0;
+		width: 80%;
+		height: 1px;
+		background-color: #EEEEEE;
+	}
+	.xiaoxi_item:last-child::before{
+			content: none;
+		}
+	.xiaoxi_item_left{
+		display: flex;
+	}
+	.xiaoxi_tx{
+		width: 2.5625rem;
+			height:2.625rem;
+			margin-right: 0.9375rem;
+			position: relative;
+			
+	}
+	
+	.xiaoxi_num{
+		position: absolute;
+		right: -0.3125rem;
+		top: -0.3125rem;
+		background-color: #ff5267;
+		border-radius: 100%;
+		width:1rem;
+		height: 1rem;
+		padding: 1px;
+		overflow:hidden; 
+		text-overflow:ellipsis; 
+		white-space:nowrap; 
+		text-align: center;
+		line-height: 35rpx;
+	}
+	.xiaoxi_tx img{
+	       width: 2.625rem;
+			height: 2.625rem;
+			border-radius: 100%;
+			
+	}
+	.xiaoxi_btn{
+		width: 5rem;
+			height: 1.5625rem;
+			background-color: #ffffff;
+			border-radius: 0.75rem;
+			border: solid 1px #ff2b46;
+			line-height: 1.5625rem;
+			text-align: center;
+			margin-top: 0.3125rem;
+	}
+	.xiaoxi_item_name{
+		margin-bottom: 0.3125rem;
+		
+	}
+	.txt_over{
+		max-width: 14.0625rem;
+		overflow:hidden; 
+		text-overflow:ellipsis; 
+		white-space:nowrap;
+	}
+	.ke_weidu{
+		background-color: #ff5267;
+		border-radius: 100%;
+		width:1rem;
+		height: 1rem;
+		display: inline-block;
+		padding: 1px;
+		overflow:hidden; 
+		text-overflow:ellipsis; 
+		white-space:nowrap; 
+		text-align: center;
+		line-height: 1rem;
+	}
+	.body {
+		padding-bottom: 4rem;
+	}
+		</style>
+	</head>
+	<body>
+
+		<div id="app">
+			<div class="body">
+
+				<div class="head">
+				  <div class="head_back"></div> 
+				  <div class="head_center hei_12_bold">消息</div> 
+				  <div class="head_right"></div> 
+				</div>
+				
+				<div class="zi_body">
+				
+				<div class="xiaoxi_top">
+					<div class="xiaoxi_top_list">
+						<div class="xiaoxi_top_list_left">
+							<div class="xiaoxi_tx">
+							<img src="../static/img/fensi_icon.png" mode=""></img>
+							</div>
+							<div class="xiaoxi_top_list_left_txt">
+								<div class="hei_9_bold top_txt">
+									粉丝
+								</div>
+								<div class="qian_8">
+									花落谁家关注了你
+								</div>
+							</div>
+						</div>
+						<div class="top_shijian qian_20">
+							<!-- 10-16 -->
+						</div>
+					</div>
+					<div class="xiaoxi_top_list" @click="go_gonggao">
+						<div class="xiaoxi_top_list_left">
+							<div class="xiaoxi_tx">
+							<img src="../static/lsimg/xiaoxi_tongzhi.png" mode=""></img>
+							</div>
+							<div class="xiaoxi_top_list_left_txt">
+								<div class="hei_9_bold top_txt">
+									公告
+								</div>
+								<div class="qian_8">
+									查看公告
+								</div>
+							</div>
+						</div>
+						<div class="top_shijian qian_20">
+							<!-- 10-16 -->
+						</div>
+					</div>
+					<div class="xiaoxi_top_list">
+						<div class="xiaoxi_top_list_left">
+							<div class="xiaoxi_tx">
+							<img src="../static/lsimg/xiaoxi_kefu.png" mode=""></img>
+								
+							</div>
+							<div class="xiaoxi_top_list_left_txt" @click="go_kefu()">
+								<div class="hei_9_bold top_txt">
+									客服消息
+								</div>
+								<div class="qian_8">
+									点击查看客服对话及售后通知
+								</div>
+							</div>
+						</div>
+						<div class="top_shijian bai_20 ">
+							<!-- 10-16 -->
+							<div class="" v-for="item in xiaoxi_list" v-if="item.user_to &&item.user_to.userid==7">
+							<span class="ke_weidu" v-if="item.messagecount!=0">{{item.messagecount}}</span> 
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="xiaoxi_list">
+					<div class="xiaoxi_item" v-for="item in xiaoxi_list" @click="go_chat(item.user_to.userid)" v-if="item.user_to &&item.user_to.userid!=7">
+						<div class="xiaoxi_item_left" >
+							<div class="xiaoxi_tx">
+							<img :src=img_url+item.user_to.photourl  mode=""></img>
+							<span class="xiaoxi_num bai_20" v-if="item.messagecount>0">{{item.messagecount}}</span>
+							</div>
+							<div class="xiaoxi_item_left_name">
+								<div class="hei_9_bold xiaoxi_item_name">
+									{{item.user_to.nickname}}
+								</div>
+								<div class="qian_8 txt_over">
+									<div class="" v-if="item.msgtype==1" v-html="replace_em(item.content)">
+								
+							      	
+									</div>
+									<div class="" v-if="item.msgtype==2">
+										[图片]
+									</div>
+									<div class="" v-if="item.msgtype!=2&&item.msgtype!=1">
+										{{item.content}}
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="xiaoxi_item_right qian_7">
+						     {{time(item.addtime)}}
+						
+						</div>
+					</div>
+					
+					
+				</div>
+				
+				</div>
+				
+				
+			</div>
+
+
+
+			<div class="footer hui_8">
+				<div class="footer_item" onclick="location.href='../index/index.html'">
+					<p><img src="../static/img/shouye_icon.png"></p>
+					<p>首页</p>
+				</div>
+
+				<div class="footer_item" onclick="location.href='../index/zhaolvshi.html'">
+					<p><img src="../static/img/lvshi_icon.png"></p>
+					<p >律师</p>
+				</div>
+				<div class="footer_item"  onclick="location.href='../zixun/hy_tiwen.html'">
+					<div class="tuqi">
+						<img src="../static/img/fly.png" mode=""></img>
+					</div>
+				</div>
+				<div class="footer_item">
+					<p><img src="../static/img/on_xiaoxi_icon.png"></p>
+					<p class="lv_8">消息</p>
+				</div>
+				<div class="footer_item"  onclick="location.href='../user/index.html'">
+					<p><img src="../static/img/my_icon.png"></p>
+					<p>我的</p>
+				</div>
+			</div>
+
+	
+
+
+
+		</div>
+
+	</body>
+	<script src="../js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../js/vue.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../js/http.js" type="text/javascript" charset="utf-8"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vant@2.12/lib/vant.min.js"></script>
+	
+	<script type="text/javascript">
+		var app = new Vue({
+			el: "#app",
+			data() {
+				return {
+					img_url: window.localStorage.getItem('img_url'),
+					tabs:['图文咨询','电话咨询'],
+					active:'0',
+					xiaoxi_list:[],
+					islogin:''
+				}
+			},
+			ready: function() {
+
+
+			},
+			created() {
+				
+				this.huoqu_is_login()
+				
+			},
+			methods: {
+               huoqu_is_login(){
+				   ajax('/index/login/islogin', "POST", '', (res) => { // POST或GET请求直接传参
+				   
+					   if(res.data.user!=''){
+					   	
+					   	this.huoqu_xiaoxilist()
+					   }else{
+					   	
+					   }
+				   
+				   }, function(err) {
+				   
+				   	console.log("err", err);
+				   })
+			   },
+				// 获取list
+				huoqu_xiaoxilist() {
+
+					ajax('/mapi/consult/messagelist', "POST", '', (res) => { // POST或GET请求直接传参
+						this.xiaoxi_list=res.data.messagelist
+
+					}, function(err) {
+
+						console.log("err", err);
+					})
+
+				},
+				// 获取跳转链接
+				huoqu_tiaozhuan() {
+
+					ajax('/mapi/index/getzixunjump', "POST", data, (res) => { // POST或GET请求直接传参
+						this.tiao_type = res.data.zhan.zixunjump;
+
+					}, function(err) {
+
+						console.log("err", err);
+					})
+
+
+				},
+replace_em(str) {
+			    str = str.replace(/\</g, '&lt;');
+			    str = str.replace(/\>/g, '&gt;');
+			    str = str.replace(/\n/g, '<br/>');
+			    str = str.replace(/\[em_([0-9]*)\]/g, '<img src="../static/bkhumor-emoji/$1.gif" border="0" style="width:40rpx"/>');
+			    return str;
+			},
+		go_gonggao(){
+				uni.navigateTo({
+					url: 'gonggao'
+				});
+			},
+			
+	go_chat(lawyerid){
+		location.href='hy_zaixianchat.html?lawyerid='+lawyerid
+	},
+	go_kefu(){
+		location.href='hy_zaixianchat.html?lawyerid=7'
+	},
+
+
+			}
+		})
+	</script>
+
+</html>

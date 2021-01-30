@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="keyword" content="" />
+		<meta name="description" content="" />
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<link rel="stylesheet" type="text/css" href="../css/gonggong.css" />
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vant@2.12/lib/index.css" />
+		<link rel="stylesheet" type="text/css" href="../css/swiper.min.css" />
+		<link rel="stylesheet" type="text/css" href="../css/font.css" />
+		<link rel="stylesheet" type="text/css" href="../css/index.css" />
+		<style>
+			html {
+			background-color: #f7f7f7;
+		}
+		.head_center input {
+			width: 100%;
+			height: 1.75rem;
+			background-color: #f3f3f3;
+			border-radius: 0.875rem;
+		}
+		.uni-searchbar {
+			width: 100%;
+			padding: 0;
+		}
+		.uni-searchbar__box {
+			border-style: none !important;
+			height: 1.75rem !important;
+		}
+		.tab_top {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			padding: 0.5rem 2rem;
+			background-color: #ffffff;
+			position: fixed;
+			top:3rem;
+			width: 100%;
+			box-sizing: border-box;
+			z-index: 9;
+		}
+		.tab_top img {
+			width: 0.5rem;
+			height: 0.25rem;
+			vertical-align: middle;
+			margin-left: 0.6875rem;
+		}
+		.head_right img {
+			width: 1.25rem;
+			height: 1.25rem;
+		}
+		.lvshi_left img {
+			width: 4.0625rem;
+			height: 4.0625rem;
+			border-radius: 100%;
+			margin-right: 0.625rem;
+		}
+		.lvshi_list {
+			margin-top: 0.9375rem;
+			background-color: #ffffff;
+		}
+		.lvshi_item {
+			display: flex;
+			position: relative;
+			padding: 0.8125rem 0.625rem;
+			border-bottom: 1px solid #e8e8e8;
+		}
+		.lvshi_name img {
+			width: 0.6875rem;
+			height: 0.625rem;
+			margin-left: 0.3rem;
+		}
+		.zixun {
+			position: absolute;
+			width: 4.875rem;
+			height: 1.125rem;
+				background-color: #0eb77e;
+				border-radius: 2px;
+			text-align: center;
+			line-height: 1.125rem;
+			right:0.625rem;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+		.zixun_jiage{
+			position: absolute;
+			width: 4.875rem;
+			height: 1.125rem;
+			background-color: #ffffff;
+			box-sizing: border-box;
+			border: solid 1px #0eb77e;
+			text-align: center;
+			line-height: 1.0625rem;
+			right: 0.625rem;
+			top: 1.9375rem;
+		}
+		.zixun img {
+			width: 0.75rem;
+			height: 0.75rem;
+			margin-right: 0.375rem;
+		}
+		.lvshi_item_fuwu {
+			display: flex;
+			margin-top: 0.5rem;
+			align-items: center;
+		}
+		.lvshi_item_fuwu img {
+			width: 0.8125rem;
+			height: 0.75rem;
+			
+		}
+		.lvshi_item_fuwu span {
+			margin: 0 0.125rem;
+		}
+		.lv_suo {
+			margin: 0.3125rem 0;
+			word-break: break-all;
+			max-width: 12.5rem;
+		}
+		.tese {
+			background-color: #ffad2b;
+			border-radius: 2px;
+			margin-right: 0.3125rem;
+			padding: 0 0.1875rem;
+			
+		}
+		.lvsuo_dizhi{
+			word-break: break-all;
+		}
+		.lvsuo_dizhi img {
+			width: 0.625rem;
+			height: 0.625rem;
+			margin-right: 0.375rem;
+		}
+		.fuwu {
+			margin-right: 1.875rem;
+		}
+		.sousuo {
+			width: 100%;
+			position: relative;
+		}
+		.sou_tishi img {
+			width: 0.75rem;
+			height: 0.8125rem;
+			margin-right: 0.5625rem;
+		}
+		.sou_tishi {
+			position: absolute;
+			transform: translate(-50%, -50%); /* 50%为自身尺寸的一半 */
+			left: 50%;
+			top: 50%;
+			pointer-events: none;
+			display: flex;
+			align-items: center;
+		}
+		.sousuo input {
+			width: 100%;
+			height:1.75rem;
+			background-color: #f3f3f3;
+			border-radius: 0.875rem;
+			padding-left:0.625rem;
+			box-sizing: border-box;
+			border: none;
+			font-size: 0.75rem;
+		}
+		.van-search{
+			
+			padding: 0;
+			border-radius: 15px;
+			height: 1.72rem;
+			background-color: #f3f3f3;
+			
+		}
+		.van-search__content {
+			border-radius: 15px;
+			height:100%;
+			line-height: 100%;
+			background-color: #F3F3F3;
+			padding-left: 2rem;
+		}
+		.van-search .van-cell{
+			padding-top: 0px;
+			padding-bottom: 0;
+			align-items: center;
+			}
+			.body {
+				padding-bottom: 4rem;
+			}
+		</style>
+	</head>
+	<body>
+
+		<div id="app">
+			<div class="body">
+
+				<div class="head">
+					<div class="sousuo">
+						<!-- <input type="text" value="" confirm-type="search" class="hei_24" @confirm="search" v-model="sou_txt" @click="panduan"
+						 @input="shuruchange" />
+						<div class="sou_tishi hei_8" v-if="tishi">
+							<img src="../static/img/sousuo.png" mode="" />
+							输入您要查找的律师姓名
+						</div> -->
+						<van-search v-model="value" placeholder="输入您要查找的律师姓名" input-align="center" background="#f3f3f3" @search="onSearch" />
+					</div>
+				</div>
+				<div class="tab_top hei_8">
+					<div class="aaaaaa" @click="tan_chengshi">
+						{{ dizhi }}
+						<img src="../static/img/shaixuan.png" mode=""></img>
+					</div>
+
+					<div @click="tan_leixing">
+						{{ zhuanchang }}
+						<img src="../static/img/shaixuan.png" mode=""></img>
+					</div>
+
+					<div @click="tan_paixu">
+						{{ paixu }}
+						<img src="../static/img/shaixuan.png" mode=""></img>
+					</div>
+				</div>
+				<div class="zi_body tab_zi_body">
+					<van-pull-refresh v-model="isLoading" @refresh="onRefresh">
+						<van-list v-model="loading" :finished="is_all" :immediate-check="false" finished-text="没有更多了" @load="onLoad">
+							<div class="lvshi_list">
+								<div class="lvshi_item" v-for="(item, index) in lslist">
+									<div class="zixun bai_7" @click="go_chat(item.userid,item.chatprice)">
+										<img src="../static/img/bai_xiaoxi.png" mode=""></img>
+										在线咨询
+									</div>
+									<div class="zixun_jiage lv_7">
+										<span v-if="item.chatprice==0">未报价</span> <span v-if="item.chatprice!=0">{{item.chatprice}}/小时</span>
+									</div>
+									<div class="lvshi_left" @click="go_zhuye(item.userid)"><img :src="img_url + item.photourl" mode=""></img></div>
+									<div class="lvshi_right">
+										<div class="hei_9_bold lvshi_name" @click="go_zhuye(item.userid)">
+											{{ item.nickname }}律师
+											<img src="../static/img/renzheng.png" mode=""></img>
+										</div>
+										<div class="hui_7 lv_suo">
+											<span class="tese bai_7">特色律所</span>
+											{{ item.lvsuo }}
+										</div>
+										<div class="qian_7 lvsuo_dizhi">
+											<img src="../static/img/dizhi.png" mode=""></img>
+											{{ item.city }}{{ item.area }}{{ item.address }}
+										</div>
+										<div class="qian_7 lvshi_item_fuwu">
+											<div class="fuwu">
+												<img src="../static/img/fuwu.png" mode=""></img>
+												已服务
+												<span class="lv_7">{{ item.replynum }}</span>
+												人
+											</div>
+											<div class="">
+												<img src="../static/img/xingxing.png" mode=""></img>
+												评价
+												<span class="lv_7">{{ item.haopingnum }}</span>
+												次
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+
+
+						</van-list>
+
+					</van-pull-refresh>
+				</div>
+			</div>
+
+
+
+			<div class="footer hui_8">
+				<div class="footer_item" onclick="location.href='../index/index.html'">
+					<p><img src="../static/img/shouye_icon.png"></p>
+					<p>首页</p>
+				</div>
+
+				<div class="footer_item">
+					<p><img src="../static/img/on_lvshi_icon.png"></p>
+					<p class="lv_8">律师</p>
+				</div>
+				<div class="footer_item"  onclick="location.href='../zixun/hy_tiwen.html'">
+					<div class="tuqi">
+						<img src="../static/img/fly.png" mode=""></img>
+					</div>
+				</div>
+				<div class="footer_item" onclick="location.href='../zixun/chat_list.html'">
+					<p><img src="../static/img/xiaoxi_icon.png"></p>
+					<p>消息</p>
+				</div>
+				<div class="footer_item" onclick="location.href='../user/index.html'">
+					<p><img src="../static/img/my_icon.png"></p>
+					<p>我的</p>
+				</div>
+			</div>
+
+			<van-popup v-model="chengshi_show" round position="bottom">
+				<van-area title="选择城市" :area-list="areaList" :columns-num="2" @confirm='city_queding' @cancel="city_quxiao" />
+			</van-popup>
+
+			<van-popup v-model="leixi_show" round position="bottom">
+				<van-picker title="选择分类" show-toolbar :columns="columns" @confirm="onConfirm" @cancel="onCancel" value-key='shanchangname' />
+			</van-popup>
+			<van-popup v-model="paixu_show" round position="bottom">
+				<van-picker title="排序" show-toolbar :columns="paixu_arry" @confirm="paixu_queding" @cancel="paixu_quxiao" value-key='name' />
+			</van-popup>
+
+		</div>
+
+	</body>
+	<script src="../js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../js/vue.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../js/http.js" type="text/javascript" charset="utf-8"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vant@2.12/lib/vant.min.js"></script>
+	<script src="../js/city.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		var app = new Vue({
+			el: "#app",
+			data() {
+				return {
+					img_url: window.localStorage.getItem('img_url'),
+					dizhi: '不限地区',
+					zhuanchang: '不限专长',
+					paixu: '综合排序',
+					paixu_arry: [{
+							type: 1,
+							name: '综合排序'
+						},
+						{
+							type: 2,
+							name: '最新排序'
+						},
+						{
+							type: 3,
+							name: '热门排序'
+						}
+					],
+					sou_txt: '',
+					tishi: true,
+					lslist: [],
+					page: 0,
+					shanchang_id: '',
+					sheng: '',
+					shi: '',
+					type: 1,
+					tiao_type: 1,
+					loading: false, //是否处于加载状态
+					is_all: false, //是否已加载完所有数据
+					isLoading: false, //是否处于下拉刷新状态
+					chengshi_show: false,
+					areaList: [],
+					columns: [],
+					leixi_show: false,
+					paixu_show: false,
+					value:''
+				}
+			},
+			ready: function() {
+
+
+			},
+			created() {
+				this.areaList = city_list()
+				this.huoqu_lvshi()
+				this.huoqu_leixing()
+			},
+			methods: {
+				onRefresh() { //下拉刷新
+
+					this.page = 0
+					this.is_all = false
+					this.lslist = []
+					this.dizhi = '不限地区'
+					this.sheng = ''
+					this.shi = ''
+					this.shanchang_id = ''
+					this.zhuanchang='不限专长'
+					this.huoqu_lvshi()
+					console.log('下拉刷新')
+				},
+				onLoad() { //上拉加载
+					console.log('下拉加载')
+					if (this.is_all) {
+						vant.Toast('已加载全部');
+					} else {
+						this.page++
+						this.huoqu_lvshi()
+					}
+				},
+				// 按键搜索
+				onSearch(e) {
+					console.log(e)
+				},
+				
+		
+				// 弹出城市选择
+				tan_chengshi() {
+					this.chengshi_show = true
+				},
+				// 城市确定
+				city_queding(e) {
+
+					this.dizhi = e[0].name + '-' + e[1].name
+					this.sheng = e[0].name
+					this.shi = e[1].name
+					this.chengshi_show = false
+					this.page = 0
+					this.is_all = true
+					this.lslist = []
+					this.huoqu_lvshi()
+
+				},
+				// 城市取消
+				city_quxiao() {
+					this.chengshi_show = false
+				},
+
+				// 弹出类型
+				tan_leixing() {
+					this.leixi_show = true
+				},
+				// 类型确定
+				onConfirm(e) {
+					this.zhuanchang = e.shanchangname;
+					this.shanchang_id = e.shanchangid;
+					this.chengshi_show = false
+					this.page = 0
+					this.is_all = true
+					this.lslist = []
+					this.huoqu_lvshi()
+					this.leixi_show = false
+				},
+				// 类型取消
+				onCancel(e) {
+					this.leixi_show = false
+					console.log(e)
+				},
+				// 弹出排序
+				tan_paixu() {
+					this.paixu_show = true
+
+				},
+				// 排序确定
+				paixu_queding(e) {
+					console.log(e)
+					this.paixu = e.name
+					this.type = e.type
+					this.paixu_show = false
+					this.page = 0
+					this.is_all = true
+					this.lslist = []
+					this.huoqu_lvshi()
+				},
+				// 排序取消
+				paixu_quxiao(e) {
+					console.log(e)
+					this.paixu_show = false
+				},
+
+
+
+				// 获取list
+				huoqu_lvshi() {
+					console.log(this.page)
+					var data = {
+						page: this.page,
+						shanchangid: this.shanchang_id,
+						province: this.sheng,
+						city: this.shi,
+						type: this.type
+					}
+					console.log(data)
+					ajax('/mapi/lawyer/lvshilist', "POST", data, (res) => { // POST或GET请求直接传参
+						this.lslist = this.lslist.concat(res.data.lawyer);
+						if (res.data.lawyer.length < 10) {
+							this.is_all = true;
+						}
+						this.loading = false
+						this.isLoading = false
+
+					}, function(err) {
+
+						console.log("err", err);
+					})
+
+				},
+				// 获取跳转链接
+				huoqu_tiaozhuan() {
+
+					ajax('/mapi/index/getzixunjump', "POST", data, (res) => { // POST或GET请求直接传参
+						this.tiao_type = res.data.zhan.zixunjump;
+
+					}, function(err) {
+
+						console.log("err", err);
+					})
+
+
+				},
+
+
+				huoqu_leixing() {
+					ajax('/mapi/lawyer/getshanchang', "POST", '', (res) => { // POST或GET请求直接传参
+						var array = [];
+						for (var key in res.data.shanchang) {
+							array.push(res.data.shanchang[key]);
+						}
+						this.columns = array;
+
+					}, function(err) {
+
+						console.log("err", err);
+					})
+
+				},
+
+
+				change(e) {
+					this.btnnum = e;
+				},
+go_zhuye(lawyerid){
+	location.href='../lawyer/index.html?lawyerid='+lawyerid
+}
+
+			}
+		})
+	</script>
+
+</html>

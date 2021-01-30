@@ -1,0 +1,218 @@
+ <div id="lay_top">
+ 	
+ 
+	<div class="ls_top_bg">
+				<div class="ls_top_bg_wai">
+					<div class="head2">
+						<div class="head_back"><img src="../static/img/bai_back.png" mode="" @click="navigateBack()"></img></div>
+						<div class="head_center bai_12_bold">律师主页</div>
+						<div class=" head_right hei_9_bold"></div>
+					</div>
+				</div>
+			</div>
+			<div class="ls_padd">
+						<div class="ls_top">
+							<div class="ls_tx">
+								<img :src="img_url + lvshi.photourl" mode="" class="ls_tx_img"></img>
+								<img src="../static/img/ls_ren.png" mode="" class="is_ren"></img>
+							</div>
+							<div class="hei_9_bold">{{ lvshi.nickname }}</div>
+							<div class="qian_8 ls_dizhi">
+								<span>{{ lvshi.province }}-{{ lvshi.city }}</span>
+								<span>专职律师</span>
+							</div>
+							<div class="hui_8 techang" v-if="lvshi != ''">
+							<span v-if="zhuanchang_arry[lvshi.expertise1] && zhuanchang_arry[lvshi.expertise1].shanchangname">{{zhuanchang_arry[lvshi.expertise1].shanchangname}}</span>
+							<span v-if="zhuanchang_arry[lvshi.expertise2] && zhuanchang_arry[lvshi.expertise2].shanchangname">{{zhuanchang_arry[lvshi.expertise2].shanchangname}}</span>
+							<span v-if="zhuanchang_arry[lvshi.expertise3] && zhuanchang_arry[lvshi.expertise3].shanchangname">{{zhuanchang_arry[lvshi.expertise3].shanchangname}}</span>
+							</div>
+							<div class="ls_gaikuo">
+								<div class="ls_gaikuo_item">
+									<div class="lv_9 ls_gaikuo_num">{{ lvshi.replynum }}</div>
+									<div class="qian_8">解答咨询</div>
+								</div>
+								<div class="ls_gaikuo_item">
+									<div class="lv_9 ls_gaikuo_num">{{ lvshi.likenum }}</div>
+									<div class="qian_8">获得点赞</div>
+								</div>
+								<div class="ls_gaikuo_item">
+									<div class="lv_9 ls_gaikuo_num">{{ lvshi.pingfen }}</div>
+									<div class="qian_8">综合评分</div>
+								</div>
+							</div>
+						</div>
+			
+						<div class="ls_renzheng qian_7">
+							<div class="ls_renzheng_item ren_shiming">
+								<img src="../static/img/ls_shiming.png" mode=""></img>
+								实名认证
+							</div>
+							<div class="ls_renzheng_item ren_zhiye">
+								<img src="../static/img/ls_zhiye.png" mode=""></img>
+								执业认证
+							</div>
+							<div class="ls_renzheng_item ren_pingtai">
+								<img src="../static/img/ls_ping.png" mode="w"></img>
+								平台认证
+							</div>
+						</div>
+					</div>
+					<div class="ls_tab qian_8">
+						<navigator :url="'ls_zhuye?lawyerid=' + lawyerid" class="ls_tab_item ls_tab_item_active">首页</navigator>
+						<navigator :url="'ls_zhuye_index?lawyerid=' + lawyerid" class="ls_tab_item ">律师服务</navigator>
+						<navigator :url="'ls_xinxi?lawyerid=' + lawyerid" class="ls_tab_item ">律师信息</navigator>
+						<navigator :url="'ls_anli?lawyerid=' + lawyerid" class="ls_tab_item ">律师案例</navigator>
+						<!-- <div :class="['ls_tab_item', index == active ? 'ls_tab_item_active' : '']" v-for="(tab, index) in tabs" @click="qiehuan(index)">{{ tab }}</div> -->
+					</div>
+					</div>
+<script type="text/javascript">
+						
+				
+	var app = new Vue({
+			el: "#lay_top",
+			data() {
+				return {
+					
+					img_url: window.localStorage.getItem('img_url'),
+					type_list: [],
+					huifu_list: [],
+					tuwen_page: 0,
+					tuwen_list: [],
+					pingjia_list: [],
+					pingjiatype: '',
+					ls_xinxi: '',
+					type:2,
+					leixing_index:1,
+					shichang_arry:['1天','3天','1个月'],
+					shichang_index:0,
+					tan_jia_jianjie:'实时聊天，快速沟通，高效解答，服务期内提问100%解答，可查看聊天记录。',
+					baojia:'',
+					pay_money:0,
+					shichang_txt:'',
+					tabs: ['律师服务', '律师信息', '律师案例'],
+					lawyerid: '',
+					active: 0,
+
+					lvshi: '',
+					zhuanchang_arry: '',
+					
+				}
+			},
+			created() {
+
+				if ($_GET.lawyerid) {
+					this.lawyerid=$_GET.lawyerid
+					this.huoqu_fenlei()
+					
+					
+				}
+       var aaa = this.decodeUnicode(
+			'["\u670d\u52a1\u4f18\u8d28","\u5b66\u8bc6\u6e0a\u535a","\u7ecf\u9a8c\u4e30\u5bcc","\u5f85\u4eba\u8bda\u6073","\u4e50\u4e8e\u52a9\u4eba","\u56de\u590d\u5f88\u5feb","\u5f62\u8c61\u4e13\u4e1a","\u503c\u5f97\u63a8\u8350"]'
+		);
+
+			},
+			methods: {
+				decodeUnicode(str) {
+					str = str.replace(/\\/g, '%');
+					return unescape(str);
+				},
+              huoqu_fenlei(){
+				  ajax('/mapi/index/gettype', "POST", '',(res)=>{ // POST或GET请求直接传参
+				        this.type_list = res.data.type;
+						this.huoqu_shanchang()
+				    }, function(err){
+				  			
+				        console.log("err",err);
+				    })
+
+				  // this.huoqu_bili();
+				  // this.huiqu_huifu_list();
+				  // this.huoqu_tuwen();
+				  // this.huiqu_pingjia_list();
+				  // this.huoqu_pingjiatype();
+				  // this.huoqu_xinxi();
+				  // this.huoqu_baojia()
+				 
+			  },
+			  huoqu_shanchang(){
+				  ajax('/mapi/lawyer/getshanchang', "POST", '',(res)=>{ // POST或GET请求直接传参
+				        this.zhuanchang_arry = res.data.shanchang;
+				        this.huoqu_lvshi();
+				    }, function(err){
+				  			
+				        console.log("err",err);
+				    })
+			  },
+			  huoqu_lvshi(){
+				  var data={
+					  lawyerid: this.lawyerid
+				  }
+				  ajax('/mapi/lawyer/lawyer', "POST", data,(res)=>{ // POST或GET请求直接传参
+				       this.lvshi = res.data.lawyer;
+				    }, function(err){
+				  			
+				        console.log("err",err);
+				    })
+			  },
+			  quzheng(num) {
+			  	return Math.floor(num);
+			  },
+			  jiance_guanzhu(){
+				  // 检测是否关注
+					  
+				  var data={
+					  state:2,
+					  lawyerid:this.lawyerid
+				  }
+				  ajax('/mapi/lawyer/getshanchang', "POST", data,(res)=>{ // POST或GET请求直接传参
+				       this.type=res.data.type
+				    }, function(err){
+				  			
+				        console.log("err",err);
+				    })
+				
+			  },
+			  // 分享
+			  share(){
+			  	uni.navigateTo({
+			  		url:'sucai?state=1'
+			  	})
+			  },
+			  // 获取报价
+			  huoqu_baojia(){
+
+			  	var data={
+
+			  			lawyerid: this.lawyerid
+			  	}
+			  	ajax('/mapi/index/baojia', "POST", data,(res)=>{ // POST或GET请求直接传参
+			  	     this.baojia=res.data.lawyer
+			  	  }, function(err){
+			  				
+			  	      console.log("err",err);
+			  	  })
+			  	
+			  },
+			  
+			guanzhu(){
+				var data={
+				
+						lawyerid: this.lawyerid
+				}
+				ajax('/mapi/index/guanzhu', "POST", data,(res)=>{ // POST或GET请求直接传参
+				     this.type=res.data.type
+					 vant.Toast(''+res.message)
+				  }, function(err){
+							
+				      console.log("err",err);
+				  })
+				
+			},
+			
+					
+				
+			}
+		})
+		
+		$('#lawyer_top').load('../comment/lawyer_top.html')
+	</script>

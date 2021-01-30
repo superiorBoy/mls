@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="keyword" content="" />
+		<meta name="description" content="" />
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<link rel="stylesheet" type="text/css" href="../css/gonggong.css" />
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vant@2.12/lib/index.css" />
+		<link rel="stylesheet" type="text/css" href="../css/swiper.min.css" />
+		<link rel="stylesheet" type="text/css" href="../css/font.css" />
+		<style>
+		html{
+				background-color: #F7F7F7;
+		}
+		.jiangli_item{
+			background-color: #FFFFFF;
+			padding:0.625rem 0.9375rem;
+			margin-top: 0.3125rem;
+		}
+		.jiangli_item_top,.jiangli_item_bittom{
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+		}
+		.jiangli_item_top{
+			margin-bottom: 0.3125rem;
+		}
+		
+		</style>
+	</head>
+	<body>
+
+		<div id="app">
+			<div class="body">
+
+				<div class="head">
+					<div class="head_back">
+						<img src="../static/img/back.png" mode="" onclick="javascript:history.back(-1);" /></img>
+					</div>
+					<div class="head_center hei_12_bold">我的奖励</div>
+					<div class=" head_right hei_10_bold">
+					</div>
+				</div>
+
+				<div class="zi_body ">
+
+					<van-list v-model="loading" :finished="is_all" :immediate-check="false" finished-text="没有更多了" @load="onLoad">
+						<div class="jiangli_list">
+							<div class="jiangli_item" v-for="item in jiangli_list">
+								<div class="jiangli_item_top">
+									<span class="hei_8">{{item.incode}}</span>
+									<span class="hong_9">+{{item.money}}</span>
+								</div>
+								<div class="jiangli_item_bittom">
+									<span class="hui_8">{{item.explain}}</span>
+									<span class="qian_7">{{ time(item.addtime)}}</span>
+								</div>
+							</div>
+					</van-list>
+				</div>
+
+				</div>
+
+
+
+
+			</div>
+
+
+
+		</div>
+
+	</body>
+	<script src="../js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../js/vue.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../js/http.js" type="text/javascript" charset="utf-8"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vant@2.12/lib/vant.min.js"></script>
+	<script type="text/javascript">
+		var app = new Vue({
+			el: "#app",
+			data() {
+				return {
+					jiangli_list: [],
+					page: 0,
+					is_all: false,
+					loading: false
+				}
+			},
+
+			created() {
+
+				this.huoqu_list()
+
+
+			},
+			methods: {
+				onLoad() {
+                     console.log('下拉加载')
+					if (this.is_all) {
+						vant.Toast('已加载全部');
+					} else {
+						this.page++
+						this.huoqu_list()
+					}
+				},
+				huoqu_list() {
+					var data = {
+						page: this.page
+					}
+					ajax('/mapi/extension/rewardlist', "POST", data, (res) => { // POST或GET请求直接传参
+						this.jiangli_list = this.jiangli_list.concat(res.data.list);
+						if (res.data.list.length < 10) {
+							this.is_all = true
+						}
+					}, function(err) {
+
+						console.log("err", err);
+					})
+				},
+	go_zhuye(lawyerid) {
+
+			location.href='../lawyer/index.html?lawyerid='+lawyerid
+		},
+
+
+
+			}
+		})
+	</script>
+
+</html>

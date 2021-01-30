@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="keyword" content="" />
+		<meta name="description" content="" />
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<link rel="stylesheet" type="text/css" href="../css/gonggong.css" />
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vant@2.12/lib/index.css" />
+		<link rel="stylesheet" type="text/css" href="../css/font.css" />
+
+		<style>
+			.head {
+		  border-bottom: 1px solid #f7f7f7;
+		}
+		
+		.help_top {
+		  display: flex;
+		  flex-wrap: wrap;
+		  padding: 1.25rem 0 0.3125rem;
+		}
+		
+		.help_item {
+		  width: 25%;
+		  text-align: center;
+		  margin-bottom: 0.625rem;
+		}
+		
+		.help_item img {
+		  width: 2.1875rem;
+		  height: 2.1875rem;
+		  border-radius: 100%;
+		  margin-bottom: 0.3125rem;
+		}
+		
+		.help_txt {
+		  height: 3.0625rem;
+		  background-color: #f7f7f7;
+		  line-height:3.0625rem;
+		  padding-left: 0.8125rem;
+		}
+		
+		.help_list {
+		  padding: 0.875rem 0.9375rem;
+		  border-bottom: 1px solid #f7f7f7;
+		}
+		
+		.help_list:last-child {
+		  margin-bottom: 1.25rem;
+		}
+		
+		.help_list img {
+		  width: 0.75rem;
+		  height: 0.6875rem;
+		  margin-right: 0.375rem;
+		}
+		</style>
+	</head>
+	<body>
+
+		<div id="app">
+
+
+			<div class="head">
+				<div class="head_back">
+					<img src="../static/img/back.png" mode="" onclick="javascript:history.back(-1);" /></img>
+				</div>
+				<div class="head_center hei_12_bold">帮助中心</div>
+				<div class=" head_right"></div>
+			</div>
+			<div class="zi_body">
+				<div class="help_top hei_7">
+					<div class="help_item" v-for="item in leibie" @click="dalei(item.kindid)">
+						<img :src=img_url+item.pic mode=""></img>
+						<div class=""> {{item.kindname}} </div>
+					</div>
+					<!-- <div class="help_item">
+          <img src="../static/img/help2.png" mode=""></img>
+          <div class=""> 我是公众 </div>
+        </div>
+        <div class="help_item">
+          <img src="../static/img/help3.png" mode=""></img>
+          <div class=""> 我是律师 </div>
+        </div>
+        <div class="help_item">
+          <img src="../static/img/help4.png" mode=""></img>
+          <div class=""> 服务声明 </div>
+        </div> -->
+				</div>
+
+				<div class="help_txt qian_9"> 常见问题 </div>
+
+				<div class="help_list hui_8" @click="xq(item.title,item.information)" v-for="item in wenti_list">
+					<img src="../static/img/wenhao.png" mode=""></img>
+					{{item.title}}
+				</div>
+			</div>
+
+
+
+
+
+
+
+
+
+
+
+
+		</div>
+
+	</body>
+	<script src="../js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../js/vue.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../js/http.js" type="text/javascript" charset="utf-8"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vant@2.12/lib/vant.min.js"></script>
+	<script type="text/javascript">
+		var app = new Vue({
+			el: "#app",
+			data() {
+				return {
+					img_url: window.localStorage.getItem('img_url'),
+					leibie: [],
+					wenti_list: [],
+					kind: ''
+				}
+			},
+			created() {
+
+				this.huoqu_leibie()
+			},
+			methods: {
+
+				huoqu_leibie() {
+					ajax('/mapi/user/kind', "POST", '', (res) => { // POST或GET请求直接传参
+						this.leibie = res.data.kind;
+						this.huoqu_list()
+					}, function(err) {
+
+						console.log("err", err);
+					})
+				},
+				xq(title, body) {
+
+					location.href = 'help_xq.html?title=' + title + "&body=" + body
+				},
+				// 点击大类
+				dalei(kind) {
+					this.kind = kind
+					this.huoqu_list()
+				},
+				huoqu_list() {
+					// 获取帮助类别
+					var data = {
+						kindid: this.kind
+					}
+					ajax('/mapi/user/help', "POST", data, (res) => { // POST或GET请求直接传参
+						this.wenti_list = res.data.support;
+					}, function(err) {
+
+						console.log("err", err);
+					})
+
+				}
+
+
+
+
+
+
+			}
+		})
+	</script>
+
+</html>
