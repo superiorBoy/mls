@@ -468,12 +468,11 @@
 					this.lawyerid = $_GET.lawyerid
 
 				}
+				this.type= $_GET.type
 				if ($_GET.pay_money) {
 					this.pay_money = $_GET.pay_money
 				}
-				if ($_GET.time) {
-					this.time = _GET.time
-				}
+
 				if ($_GET.consultid) {
 					this.laiyuan = 2
 					this.consultid = $_GET.consultid
@@ -545,7 +544,7 @@
 						this.pay_money = res.data.consult.paymoney
 						this.typeid = res.data.consult.typeid
 						this.time = res.data.consult.zixunshicahng
-						if (res.data.consult.zixunshicahng == 20) {
+						if (res.data.consult.zixunshicahng == 1) {
 							this.time = '20分钟'
 
 						} else if (res.data.consult.zixunshicahng == 24) {

@@ -103,7 +103,7 @@
 		text-overflow:ellipsis; 
 		white-space:nowrap; 
 		text-align: center;
-		line-height: 35rpx;
+		line-height: 1rem;
 	}
 	.xiaoxi_tx img{
 	       width: 2.625rem;
@@ -227,7 +227,7 @@
 						<div class="xiaoxi_item_left" >
 							<div class="xiaoxi_tx">
 							<img :src=img_url+item.user_to.photourl  mode=""></img>
-							<span class="xiaoxi_num bai_20" v-if="item.messagecount>0">{{item.messagecount}}</span>
+							<span class="xiaoxi_num bai_7" v-if="item.messagecount>0">{{item.messagecount}}</span>
 							</div>
 							<div class="xiaoxi_item_left_name">
 								<div class="hei_9_bold xiaoxi_item_name">

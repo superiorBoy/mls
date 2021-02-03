@@ -225,9 +225,9 @@
 							<span class="qian_9">咨询地区</span>
 						    <span class="hei_9">{{data.province}}-{{data.city}}-{{data.area}}</span>
 						</div>
-						<div class="pay_list" v-if="fenlei_arry.length>0">
+						<div class="pay_list" v-if="leibie_arry">
 							<span class="qian_9">咨询类型</span>
-							<span class="hei_9" v-if="fenlei_arry[data.typeid]&&fenlei_arry[data.typeid].typename">{{fenlei_arry[data.typeid].typename}}</span>
+							<span class="hei_9" v-if="leibie_arry[data.typeid]&&leibie_arry[data.typeid].typename">{{leibie_arry[data.typeid].typename}}</span>
 						</div>
 						<!-- <div class="pay_list">
 						<span class="qian_9">手机号码</span>
@@ -281,17 +281,45 @@
 			el: "#app",
 			data() {
 				return {
-					jine_arry: ['1.00', '3.00', '5.00', '10.00', '20.00'],
+					jine_arry: ['3.00', '5.00', '10.00', '20.00'],
 					xuan_index: 0,
 					data: '',
 					consultid: '',
-					fenlei_arry: []
+					fenlei_arry: [],
+					laiyuan:2,
+					leibie_arry:[],
 
 				}
 			},
 			created() {
-				this.huoqu_fenlei()
-                this.consultid=$_GET.consultid
+				
+				if($_GET.consultid){
+					this.consultid=$_GET.consultid
+					this.huoqu_fenlei()
+				}
+				if($_GET.information){
+					this.laiyuan=1
+					
+					this.data={
+						information:$_GET.information,
+						typeid:$_GET.typeid,
+						province:$_GET.province,
+						city:$_GET.city,
+						area:$_GET.area,
+					}
+					
+					ajax('/mapi/index/gettype', "POST", '', (res) => { // POST或GET请求直接传参
+						var array = [];
+						this.leibie_arry=res.data.type
+						for (var key in res.data.type) {
+							array.push(res.data.type[key]);
+						}
+						this.fenlei_arry = array
+					    
+					}, function(err) {
+						console.log("err", err);
+					})
+				}
 			},
 			methods: {
 				huoqu_xq() {
@@ -315,6 +343,7 @@
 						for (var key in res.data.type) {
 							array.push(res.data.type[key]);
 						}
+						this.leibie_arry=res.data.type
 						this.fenlei_arry = array
                         this.huoqu_xq()
 					}, function(err) {
@@ -324,6 +353,22 @@
 				},
 
 				save() {
+					if(this.laiyuan==1){
+						
+						ajax('/mapi/consult/addconsult', "POST", this.data, (res) => { // POST或GET请求直接传参
+							if (res.code == 0) {
+								this.consultid=res.data
+								this.fukuan()
+							}
+						}, function(err) {
+							console.log("err", err);
+						})
+						
+					}else{
+						this.fukuan()
+					}
+				},
+				fukuan(){
 					var data = {
 						consultid: this.consultid,
 						paymoney: this.jine_arry[this.xuan_index]

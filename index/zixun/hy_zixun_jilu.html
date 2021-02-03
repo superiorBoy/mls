@@ -343,14 +343,14 @@
 										<text class="hong_8 zixun_item_jiage">￥{{item.paymoney}}/{{item.zixunshicahng==24?'1天':item.zixunshicahng==72?'3天':item.zixunshicahng==720?'1个月':item.zixunshicahng+'小时'}}</text>
 									</div>
 									<div class="zixun_item_top_bottom">
-										<div class="fukuan lv_8" v-if="item.zixunstate == 1" @click="pay(item.lawyerid,item.consultid)">
+										<div class="fukuan lv_8" v-if="item.zixunstate == 1" @click="pay(item.lawyerid,item.consultid,item.baojiamode)">
 											立即付款
 										</div>
 										<div class="fukuan lv_8" v-if="item.zixunstate == 4" @click="go_pingjia(item.lawyerid)">
 											我要评价
 										</div>
 										<div class="iten_lianxi lv_8" @click="go_chat(item.lawyerid)" v-if="item.lawyerid">
-											<img src="@/static/img/zaixian_chat.png" mode=""></img>在线联系
+											<img src="../static/img/zaixian_chat.png" mode=""></img>在线联系
 										</div>
 									</div>
 
@@ -454,7 +454,7 @@
 					this.zhuanchang_txt=''
 					this.zhuanchang_txt2=''
 					this.zixun_list=[]
-					this.is_all=false
+					this.is_all=true
 					this.huoqu_list()
 					console.log('下拉刷新')
 				},
@@ -491,6 +491,9 @@
 						this.zixun_list = this.zixun_list.concat(res.data.consult);
 						if (res.data.consult.length < 10) {
 							this.is_all = true;
+							
+						}else{
+							this.is_all = false;
 						}
 						this.loading = false
 						this.isLoading = false
@@ -500,7 +503,17 @@
 					})
 				},
 
-
+				go_pingjia(lawyerid){
+					location.href='../lawyer/pingjia.html?lawyerid='+lawyerid
+				},
+				pay(lawyerid,consultid,baojiamode){
+						
+					if(baojiamode='zhineng_zaixian'){
+						location.href='../consult/zhineng_pay.html?type=1&consultid='+consultid
+					}else{
+						location.href='../consult/zixun_pay.html?consultid='+consultid
+					}
+				},
 				// 切换tab
 				qiehuan(index) {
 					this.active = index
@@ -518,7 +531,7 @@
 					this.zhuanchang_txt = ''
 					this.zhuanchang_txt2 = ''
 					this.zixun_list = []
-					this.is_all = false
+					this.is_all = true
 					this.huoqu_list()
 				},
 
@@ -541,7 +554,7 @@
 
 					this.page = 0
 					this.zixun_list = []
-					this.is_all = false
+					this.is_all = true
 					this.tan_show=false
 					this.huoqu_list()
 

@@ -114,6 +114,8 @@
 						this.jiangli_list = this.jiangli_list.concat(res.data.list);
 						if (res.data.list.length < 10) {
 							this.is_all = true
+						}else{
+							this.is_all = false
 						}
 					}, function(err) {
 

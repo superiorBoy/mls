@@ -408,8 +408,6 @@
 			  active:0,
 			  jilu_list:[],
 			  page:0,
-			  is_all:false,
-			  
 			  name:'',
 			  neirong:'',
 			  str_time:'',
@@ -443,7 +441,7 @@
 					this.neirong=''
 					this.str_time=''
 					this.time2=''
-					this.is_all=false
+					this.is_all = true
 					this.huoqu_list()
 					console.log('下拉刷新')
 				},
@@ -470,6 +468,8 @@
 					   this.jilu_list=this.jilu_list.concat(res.data.consult);
 					   if (res.data.consult.length < 10) {
 					   	this.is_all = true;
+					   }else{
+						   this.is_all = false
 					   }
 					   this.loading=false
 					   this.isLoading=false
@@ -477,6 +477,9 @@
 				   
 				   	console.log("err", err);
 				   })
+			   },
+			   pay(consultid){
+				 location.href='../consult/xuanshang.html?consultid='+consultid  
 			   },
 	
 
@@ -489,10 +492,12 @@ qiehuan(index){
 	this.time2=''
 	this.page=0
 	this.jilu_list=[]
-	this.is_all=false
+	this.is_all = true
 	this.huoqu_list()
 },
-
+go_pingjia(lawyerid){
+	location.href='../lawyer/pingjia.html?lawyerid='+lawyerid
+	},
 			// 底部弹窗
 					tan() {
 						
@@ -546,10 +551,13 @@ qiehuan(index){
 							}
 							this.page=0
 							this.jilu_list=[]
-							this.is_all=false
+							this.is_all = true
 							this.huoqu_list()
 							
 						},
+						xq(consultid){
+							location.href='hy_tiwen_chakan.html?consultid='+consultid  
+						}
 
 
 

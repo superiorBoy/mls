@@ -458,7 +458,7 @@
 					this.zhuanchang_txt = ''
 					this.zhuanchang_txt2 = ''
 					this.zixun_list = []
-					this.is_all = false
+					this.is_all = true
 					this.huoqu_list()
 					console.log('下拉刷新')
 				},
@@ -495,6 +495,8 @@
 						this.zixun_list = this.zixun_list.concat(res.data.consult);
 						if (res.data.consult.length < 10) {
 							this.is_all = true;
+						}else{
+							this.is_all = false
 						}
 						this.loading = false
 						this.isLoading = false
@@ -522,7 +524,7 @@
 					this.zhuanchang_txt = ''
 					this.zhuanchang_txt2 = ''
 					this.zixun_list = []
-					this.is_all = false
+					this.is_all = true
 					this.huoqu_list()
 				},
 				// 底部弹窗
@@ -536,7 +538,9 @@
 						url: 'pay?lawyerid=' + id + '&type=1' + '&consultid=' + consultid
 					})
 				},
-
+              go_pingjia(lawyerid){
+				  location.href='../lawyer/pingjia.html?lawyerid='+lawyerid
+				  },
 				// 取消搜索
 				quxiao_btn() {
 					this.name = ''
@@ -548,7 +552,7 @@
 
 					this.page = 0
 					this.zixun_list = []
-					this.is_all = false
+					this.is_all = true
 					this.tan_show = false
 					this.huoqu_list()
 

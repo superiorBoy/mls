@@ -25,7 +25,7 @@
 	background-color: #0eb77e;
 	border-radius: 1.375rem;
 	line-height: 2.75rem;
-	margin: 3.875rem 0 1.5625rem;
+	margin: 1.625rem 0 1.625rem;
 	width: 100%;
 }
 
@@ -65,7 +65,7 @@
 	padding: 0 0.9375rem;
 }
 .pay_list input {
-	text-align: right;
+	text-align: left;
 	height: 100%;
 	border: none;
 }
@@ -75,7 +75,7 @@
 }
 .fangshi {
 	background-color: #ffffff;
-	padding: 0 0.9375rem;
+	padding: 0 1rem 6.25rem;
 }
 
 .tuijian {
@@ -88,7 +88,12 @@
 	margin-left: 0.25rem;
 }
 .pay_btn {
-	padding: 0 0.9375rem;
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	background-color: #FFFFFF;
+	border-top: 2px solid #EEEEEE;
+	
 }
 .wen_list {
 	display: block;
@@ -110,17 +115,173 @@
 	word-break: break-all;
 }
 .wen_neirong_textarea {
-	height: 8.25rem;
+	height:5rem;
 	resize: none;
 	outline: none;
 	border: none;
+	vertical-align: bottom;
+	margin: 0;
 }
 .go_r {
 	width: 0.375rem;
 	height:0.75rem;
 	margin-left: 0.5625rem;
 }
+	.jiedan_ls {
+		height: 13.125rem;
+		background-color: #ffffff;
+		padding-left: 0.9375rem;
+	}
+	.jiedan_ls_title {
+		line-height: 2.625rem;
+	}
+	.jiedan_ls_list {
+		display: flex;
+		overflow-x: auto;
+		scrollbar-width: none; /* Firefox */
+		-ms-overflow-style: none; /* IE 10+ */
+	}
+	.jiedan_ls_list::-webkit-scrollbar {
+		display: none; /* Chrome Safari */
+	}
+	.jiedan_ls_item {
+		text-align: center;
+		width: 4.6875rem;
+		margin-right: 1.5625rem;
+	}
+	.jiedan_ls_item img {
+		width: 4.6875rem;
+		height: 4.6875rem;
+		border-radius: 100%;
+		vertical-align: bottom;
+	}
+	.jiedan_ls_name {
+		margin: 0.3125rem 0 0.1875rem;
+	}
+	.jiedan_bottom {
+		height: 2.4375rem;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		border-top: 1px solid #dcdcdc;
+		margin-top: 0.625rem;
+		padding-right: 0.9375rem;
+	}
+	.jiedan_bottom img {
+		width: 0.625rem;
+		height: 0.625rem;
+		margin-right: 0.125rem;
+	}
+	.jiedan_bottom span {
+	}
+	.pay_list_xuanze {
+		width: 20.3125rem;
+	}
+	.yishuru {
+		text-align: right;
+		padding-right: 0.3125rem;
+		padding-bottom:0.3125rem;
+		background-color: #f8f8f8;
+	}
+	.pay_fa_list {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		padding:0 0.9375rem;
+	}
+	.pay_fa_item {
+		height: 8.625rem;
+		width: 10.4375rem;
+		background: url(../static/img/no_fs.png) no-repeat;
+		background-size: 100% 100%;
+		position: relative;
+		padding: 0 0px 0 0.625rem;
+		box-sizing: border-box;
+	}
+	.pay_fa_item_top{
+		
+		height: 3.875rem;
+		
+		}
 			
+		.pay_fa_item_top_lei{
+			margin: 0.625rem 0 0.3125rem;
+		}
+		.pay_fa_item_top span{
+			margin-right: 0.5625rem;
+		}
+		.pay_fa_item_bottom{
+			
+			
+		}
+		.pay_fa_txt{
+			margin-bottom: 0.3125rem;
+			-webkit-transform: scale(0.9);
+		}
+	.tuijian_xuanze{
+		position: absolute;
+			padding: 0 0.25rem;
+			height: 0.9375rem;
+			background-color: #dbdbdb;
+			border-radius: 0.1875rem;
+			top: -0.5rem;
+			right: 0.625rem;
+			text-align: center;
+			line-height: 0.9375rem;
+	}
+	.xuanze {
+		background-color: #ffffff;
+		padding-bottom: 1.25rem;
+		margin-top: 0.625rem;
+	}
+	.xuanze_title {
+		line-height: 2.75rem;
+		padding-left: 0.9375rem;
+	}
+	.xuanze_bottom_ls{
+		display: flex;
+		align-items: center;
+		
+	}
+	.xuanze_bottom_ls_left{
+		display: flex;
+		align-items: center;
+		padding-left: 0.3125rem;
+		position: relative;
+		left: 0.9375rem;
+		margin-right: 0.3125rem;
+	}
+	.xuanze_bottom_ls_left img{
+		width:1.4375rem;
+			height: 1.4375rem;
+			border-radius: 100%;
+			margin-left: -0.3125rem;
+			
+	}
+	.xuanze_bottom_title{
+		margin: 0.9375rem 0;
+		display: flex;
+		align-items: center;
+		padding-left: 0.9375rem;
+	}
+	.xuanze_bottom_title text{
+		
+	}
+	.xuan_item_active{
+		background: url(../static/img/on_fs.png) no-repeat;
+		background-size: 100% 100%;
+	}
+	.xuan_item_active .tuijian_xuanze{
+		background-color: #f43a51 ;
+	}
+	.suoxiao{
+		  -webkit-transform: scale(0.9);
+	}
+	.suoxiao2{
+		/* -webkit-transform: scale(0.8); */
+		position: relative;
+		left: -0.5rem;
+		}		
 		</style>
 	</head>
 	<body>
@@ -137,40 +298,91 @@
 				</div>
 
 				<div class="zi_body ">
-					<div class="zhineng_pay_title qian_9">智能匹配服务</div>
+					<!-- <div class="zhineng_pay_title qian_9">智能匹配服务</div> -->
 					<div class="pay_top">
-						<div class="pay_list">
-							<span class="qian_9">服务项目</span>
-							<span class="hei_9">{{ type == 1 ? '在线咨询' : '电话咨询' }}</span>
+						<div class="pay_list wen_list">
+							<div class="hei_9_bold wen_list_top">问题描述</div>
+							<textarea value="" placeholder="请输入您想要咨询的问题..." class="hei_8 wen_neirong wen_neirong_textarea" v-model="neirong"
+							 maxlength="2000" @input="bianhua" /></textarea>
+							<div class="yishuru qian_7">{{ yishu_num }}/2000</div>
 						</div>
-						<div class="pay_list">
-							<span class="qian_9">服务时长</span>
-							<span class="hei_9">{{ type == 1 ? time + '小时' : time + '分钟' }}</span>
-						</div>
-						<div class="pay_list">
-							<span class="qian_9">支付金额</span>
-							<span class="hong_9">￥{{ pay_money }}</span>
-						</div>
+						<div class="pay_list" @click="xuanze">
 
-						<div class="pay_list">
-							<span class="qian_9">手机号码</span>
-							<input type="text" value="" v-model="phone" placeholder="请输入手机号码" class="hei_9" />
-						</div>
+							<div class="pay_list_xuanze ">
+								<img src="../static/img/tiwen_lei.png" mode="" style="width: 0.8125rem;height:0.8125rem;margin-right:0.375rem ;"></img>
+								<span :class="['xaunze', leixing == '' ? 'qian_7' : 'hei_7']">{{ leixing == '' ? '请选择咨询类型' : leixing }}</span>
+							</div>
 
+							<img src="../static/lsimg/go_r.png" mode="" style="width: 0.375rem;height: 0.6875rem;margin-left: 0.3125rem;vertical-align: middle;"></img>
+						</div>
+						<div class="pay_list " @click="xuan_dizhi">
+
+							<div class="pay_list_xuanze ">
+								<img src="../static/img/tiwen_dizhi.png" mode="" style="width:0.625rem ;height: 0.8125rem;margin-right: 0.375rem;"></img>
+								<span :class="['xaunze', dizhi == '' ? 'qian_7' : 'hei_7']">{{ dizhi == '' ? '请选择咨询地址' : dizhi }}</span>
+							</div>
+
+							<img src="../static/lsimg/go_r.png" mode="" style="width: 0.375rem;height: 0.625rem;margin-left: 0.3125rem;vertical-align: middle;" />
+						</div>
 						<div class="pay_list">
-							<span class="qian_9">咨询类型</span>
-							<div @click="xuanze">
-								<span class="hei_9">{{ leixing == '' ? '选择咨询类型' : leixing }}</span>
-								<img src="../static/lsimg/go_r.png" mode="" style="margin-left: 0.1875rem;vertical-align: middle;"></img>
+							<div class="pay_list_shouji">
+								<img src="../static/img/lv_shouji.png" mode="" style="width: 0.5625rem;height: 0.8125rem;margin-right:0.375rem ;"></img>
+								<input type="text" value="" v-model="phone" placeholder="请输入手机号码" class="hei_7" />
 							</div>
 						</div>
-						<div class="pay_list wen_list">
-							<div class="qian_9 wen_list_top">咨询内容</div>
-							<textarea value="" placeholder="" class="hei_9 wen_neirong wen_neirong_textarea" v-model="neirong" maxlength="5000" /></textarea>
+
+						<!-- 				<div class="pay_list">
+										<span class="qian_9">类型/时长</span>
+										<span class="hei_9">{{ type == 1 ? '在线咨询' : '电话咨询' }}/{{ pay_money }}元/{{ type == 1 ? time + '小时' : time + '分钟' }}</span>
+									</div> -->
+						<div class="xuanze">
+							<div class="xuanze_title hei_9_bold">选择服务</div>
+
+							<div class="pay_fa_list" v-if="zhineng">
+								<div :class="['pay_fa_item',type==1?'xuan_item_active':'']" @click="qiehuan(1)">
+									<div class="pay_fa_item_top hong_8">
+										<div class="hei_9_bold pay_fa_item_top_lei">在线咨询</div>
+										<div class="">
+											{{zhineng.zaixianprice}}元/{{zhineng.zaixiantime}}小时
+										</div>
+
+									</div>
+									<div class="pay_fa_item_bottom qian_7">
+										<div class="pay_fa_txt">极速响应，3秒分配律师！</div>
+										<div class="pay_fa_txt">不限次数解答，私密聊天！</div>
+										<div class="pay_fa_txt">不限沟通，解决率达99%！</div>
+									</div>
+									<span class="tuijian_xuanze bai_7">推荐</span>
+								</div>
+								<div :class="['pay_fa_item',type==2?'xuan_item_active':'']" @click="qiehuan(2)">
+									<div class="pay_fa_item_top hong_8">
+										<div class="hei_9_bold pay_fa_item_top_lei">电话咨询</div>
+										<div class="">{{zhineng.dianhuaprice}}元/{{zhineng.dianhuatime}}分钟</div>
+									</div>
+									<div class="pay_fa_item_bottom qian_7">
+										<div class="pay_fa_txt">极速响应，3秒分配律师！</div>
+										<div class="pay_fa_txt">主动打律师电话，不满退款！</div>
+										<div class="pay_fa_txt">高效解答率99%！</div>
+									</div>
+									<span class="tuijian_xuanze bai_7">效率高</span>
+								</div>
+							</div>
+							<div class="xuanze_bottom">
+								<div class="xuanze_bottom_title hei_7">
+									<span class="hei_9_bold">以下律师正在等待接单！</span><span class="suoxiao">大数据会匹配最佳一位律师为您服务</span>
+
+								</div>
+								<div class="xuanze_bottom_ls qian_7">
+									<div class="xuanze_bottom_ls_left">
+										<img :src="img_url+item.photourl" mode="" v-for="(item,index) in lvshi" v-if="index<5"></img>
+										<span class="suoxiao suoxiao2">律师已通过小虎网认证，小虎等980+位律师等待解答中...</span>
+									</div>
+								</div>
+							</div>
 						</div>
 					</div>
 
-					<div class="fangshi_txt qian_9">请选择支付方式</div>
+					<!-- <div class="fangshi_txt qian_9">请选择支付方式</div> -->
 					<div class="fangshi">
 						<!-- <div class="fangshi_list_pay" @click="radio(1)">
 							<div class="fangshi_left hei_8">
@@ -207,7 +419,9 @@
 			<van-popup v-model="leixi_show" round position="bottom">
 				<van-picker title="选择分类" show-toolbar :columns="fenlei_arry" @confirm="onConfirm" @cancel="onCancel" value-key='typename' />
 			</van-popup>
-
+			<van-popup v-model="dizhi_show" round position="bottom">
+				<van-area title="选择城市" :area-list="areaList" :columns-num="3" @confirm='city_queding' @cancel="city_quxiao" />
+			</van-popup>
 		</div>
 
 	</body>
@@ -215,6 +429,7 @@
 	<script src="../js/vue.min.js" type="text/javascript" charset="utf-8"></script>
 	<script src="../js/http.js" type="text/javascript" charset="utf-8"></script>
 	<script src="https://cdn.jsdelivr.net/npm/vant@2.12/lib/vant.min.js"></script>
+	<script src="../js/city.js" type="text/javascript" charset="utf-8"></script>
 	<script src="../js/get.js" type="text/javascript" charset="utf-8"></script>
 	<script type="text/javascript">
 		var app = new Vue({
@@ -224,7 +439,6 @@
 					img_url: window.localStorage.getItem('img_url'),
 					type: 1,
 					zhifu: 2,
-					type_arry: [],
 					zhuanchang_arry: [],
 					leixing: '',
 					neirong: '',
@@ -235,32 +449,59 @@
 					pay_money: '',
 					zixun_xq: '',
 					time: '',
-					leixi_show: false
+					leixi_show: false,
+					dizhi: '',
+					yishu_num: 0,
+					lvshi: [],
+					type_arry:[],
+					fenlei_arry: [],
+					dizhi_show: false,
 
 				}
 			},
 			created() {
-
-				if ($_GET.consultid) {
-					this.consultid = $_GET.consultid
-					this.type = $_GET.type
-					ajax('/mapi/index/gettype', "POST", '', (res) => { // POST或GET请求直接传参
-						var array = [];
-						for (var key in res.data.type) {
-							array.push(res.data.type[key]);
-						}
-						this.fenlei_arry = array
-
+				var that=this
+				this.areaList = city_list()
+				this.type = $_GET.type
+				ajax('/mapi/index/gettype', "POST", '', (res) => { // POST或GET请求直接传参
+				    that.type_arry=res.data.type
+					var array = [];
+					for (var key in res.data.type) {
+						array.push(res.data.type[key]);
+					}
+					that.fenlei_arry = array
+					
+					if ($_GET.consultid) {
+						this.consultid = $_GET.consultid
 						this.huoqu_consultid()
+
+					} else {
+						
+						if($_GET.information){
+							that.neirong = $_GET.information;
+							that.dizhi = $_GET.province + '-' + $_GET.city + '-' + $_GET.area;
+							that.leixing = that.type_arry[$_GET.typeid].typename;
+							that.typeid = $_GET.typeid;
+						}
+
+					}
+
+					this.huoqu_baojia()
+					
+				}, function(err) {
+					console.log("err", err);
+				})
+				
+				
+				
+				
+				this.huoqu_lvshi()
+	        ajax('/mapi/user/user', "POST", '', (res) => { // POST或GET请求直接传参
+					   this.phone = res.data.user.mobile;
+						
 					}, function(err) {
 						console.log("err", err);
 					})
-
-				} else {
-					this.type = $_GET.type
-					this.huoqu_fenlei()
-				}
-
 			},
 			methods: {
 				huoqu_user() {
@@ -271,7 +512,23 @@
 						console.log("err", err);
 					})
 				},
-
+				huoqu_lvshi() {
+					var data = {
+						type: 1,
+						page: 0
+					}
+					ajax('/mapi/lawyer/lvshilist', "POST", data, (res) => { // POST或GET请求直接传参
+						this.lvshi = res.data.lawyer
+					}, function(err) {
+						console.log("err", err);
+					})
+				},
+				bianhua() {
+					this.yishu_num = this.neirong.length;
+				},
+				qiehuan(i) {
+					this.type = i
+				},
 				// 获取分类
 				huoqu_fenlei() {
 
@@ -280,6 +537,7 @@
 						for (var key in res.data.type) {
 							array.push(res.data.type[key]);
 						}
+						that.type_arry=res.data.type
 						this.fenlei_arry = array
 						this.huoqu_baojia()
 					}, function(err) {
@@ -299,9 +557,11 @@
 						this.time = res.data.consult.zixunshicahng;
 						this.pay_money = res.data.consult.paymoney;
 						this.phone = res.data.consult.phone;
-						this.leixing = this.fenlei_arry[res.data.consult.typeid].typename;
+						this.leixing = this.type_arry[res.data.consult.typeid].typename;
 						this.neirong = res.data.consult.information;
+						this.yishu_num=res.data.consult.information.length;
 						this.typeid = res.data.consult.typeid;
+						this.dizhi=res.data.consult.province+'-'+res.data.consult.city+'-'+res.data.consult.area
 
 					}, function(err) {
 						console.log("err", err);
@@ -319,16 +579,33 @@
 				onCancel() {
 					this.leixi_show = false
 				},
-
+				xuan_dizhi() {
+					this.dizhi_show = true
+				},
+				// 城市确定
+				city_queding(e) {
+					this.dizhi = e[0].name + '-' + e[1].name+ '-' + e[2].name
+					this.dizhi_show = false
+				},
+				// 城市取消
+				city_quxiao() {
+					this.dizhi_show = false
+				},
+				// 地址确定
+				change(data) {
+					console.log(data);
+					this.dizhi = data.data[0] + '-' + data.data[1] + '-' + data.data[2];
+					this.zhuan_show = false;
+				},
 				huoqu_baojia() {
 					ajax('/mapi/index/getzixun', "POST", '', (res) => { // POST或GET请求直接传参
 						this.zhineng = res.data.zhan;
 						if (this.type == 1) {
-							console.log('4444')
+							
 							this.pay_money = res.data.zhan.zaixianprice;
 							this.time = res.data.zhan.zaixiantime;
 						} else {
-							console.log('8888')
+							
 							this.pay_money = res.data.zhan.dianhuaprice;
 							this.time = res.data.zhan.dianhuatime;
 						}
@@ -352,13 +629,21 @@
 						vant.Toast('请填写咨询类型')
 						return false;
 					}
-
+					if (this.dizhi == '') {
+					
+						vant.Toast('请选择地址')
+						return false;
+					}
+              var di = this.dizhi.split('-');
 					var data = {
 						type: this.type,
 						information: this.neirong,
 						typeid: this.typeid,
 						phone: this.phone,
-						consultid: this.consultid
+						consultid: this.consultid,
+						province: di[0],
+						city: di[1],
+						area: di[2]
 					}
 					ajax('/index/consult/addzhinengpay', "POST", data, (res) => { // POST或GET请求直接传参
 						if (res.code == 0) {

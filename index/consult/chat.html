@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="keyword" content="" />
+		<meta name="description" content="" />
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<link rel="stylesheet" type="text/css" href="../css/gonggong.css" />
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vant@2.12/lib/index.css" />
+		<link rel="stylesheet" type="text/css" href="../css/font.css" />
+		<style>
+		.head {
+			border-bottom: 1px solid #f7f7f7;
+		}
+		html {
+			background-color: #f5f5f5;
+		}
+		.chat_list_time {
+			width: 8.75rem;
+			height: 0.875rem;
+			background-color: #ededed;
+			border-radius: 0.4375rem;
+			margin: 0.625rem auto;
+			text-align: center;
+			line-height: 0.875rem;
+		}
+		.chat_right .chat_messgae {
+			background-color: #0eb77e;
+			max-width: 15.625rem;
+			margin-right: 0.5rem;
+			border-radius:0.3125rem 0 0.3125rem 0.3125rem;
+			position: relative;
+			padding:0.3125rem 0.5rem;
+			height: max-content;
+			    word-break: break-all;
+		}
+		.chat_right .chat_messgae::before {
+			content: '';
+			display: inline-block;
+			width:0.5rem;
+			height: 0.5rem;
+			background: url(../static/img/zhineng_chat_r.png) no-repeat;
+			background-size: 100% 100%;
+			position: absolute;
+			right: -0.5rem;
+			top: 0;
+		}
+		.chat_left .chat_messgae {
+			background-color: #ffffff;
+			max-width: 15.625rem;
+			margin-left: 0.5rem;
+			border-radius: 0.3125rem 0 0.3125remx 0.3125rem;
+			position: relative;
+			padding: 0.3125rem 0.5rem;
+			height: max-content;
+			    word-break: break-all;
+		}
+		.chat_left .chat_messgae::before {
+			content: '';
+			display: inline-block;
+			width: 0.5rem;
+			height: 0.5rem;
+			background: url(../static/img/zhineng_chat_l.png) no-repeat;
+			background-size: 100% 100%;
+			position: absolute;
+			left: -0.5rem;
+			top: 0;
+		}
+		.chat_list {
+			display: flex;
+			padding: 0 0.9375rem;
+		}
+		.chat_right {
+			justify-content: flex-end;
+		}
+		
+		.chat_list_tx {
+			width: 3rem;
+			height: 3rem;
+			border-radius: 100%;
+		}
+		.jiami {
+			width: 16rem;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			margin: 0.9375rem auto;
+			border-radius: 0.5625rem;
+			height: 1.0625rem;
+			background-color: #ededed;
+		}
+		.jiami img {
+			width: 0.5rem;
+			height: 0.625rem;
+			margin-right: 0.1875rem;
+		}
+		.chat_pipei {
+			/* display: flex; */
+			/* align-items: center; */
+			border-top: 1px solid #f5f5f5;
+			margin: 0.1875rem 0 0;
+			padding: 0.3125rem 0 0 0.1875rem;
+			color: #999999;
+			/* flex-wrap: wrap; */
+		}
+		.chat_pipei img {
+			width:1.5625rem;
+			height: 1.5rem;
+			border-radius: 100%;
+			margin-left: -0.3125rem;
+			vertical-align: middle;
+			position: relative;
+			top: 1px;
+			margin-bottom: 0.3125rem;
+		}
+		.pay_fs_item_center_list img {
+			margin-right: 0.3125rem;
+		}
+		.pay_fs_list {
+			padding: 0 0.9375rem;
+			margin: 1.25rem 0 1.4375rem;
+		}
+		.pay_fs_item {
+			background-color: #ffffff;
+			padding: 0 0.625rem 0.3125rem;
+			border-radius: 0.3125rem;
+			margin-bottom:0.625rem;
+		}
+		.pay_fs_item button {
+			width: 5.8125rem;
+			height: 1.875rem;
+			background-color: #01af63;
+			border-radius: 0.9375rem;
+			line-height: 1.875rem;
+			margin: 0;
+		}
+		.pay_fs_item_center {
+			display: flex;
+			width: 100%;
+			justify-content: space-between;
+			margin-top: 0.3125rem;
+		}
+		.pay_fs_item_center_list{
+			margin-bottom: 0.3125rem;
+		}
+		.tishi{
+			width:16.3125rem;
+				height:1.5625rem;
+				background-color: #494949;
+				border-radius: 0.8125rem;
+				display: flex;
+				align-items: center;
+				padding-left: 0.1875rem;
+				margin: 1.1875rem 0 4.375rem 0.9375rem;
+		}
+		.tishi img{
+				width: 1.25rem;
+				height: 1.25rem;
+				border-radius: 100%;
+				margin-right:0.1875rem;
+		}
+		.pay_fa_bottom{
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			position: fixed;
+			bottom: 0;
+			width: 100%;
+			height: 3.125rem;
+			background-color: #FFFFFF;
+			padding: 0 0.9375rem;
+			box-sizing: border-box;
+			}
+			.pay_fa_bottom input{
+				border: none;
+			}
+			.pay_fa_bottom button{
+					width: 6.125rem;
+					height: 2.125rem;
+					background-color: #e8e8e8;
+					border-radius: 1.0625rem;
+					margin: 0;
+					line-height: 2.125rem;
+			}
+			.tan_tishi{
+					width: 14.75rem;
+					height: 9.0625rem;
+					background-color: #ffffff;
+					border-radius: 0.1875rem;
+					position: absolute;
+					top: 50%;
+					left: 50%;
+					transform: translate(-50%,-50%);
+					padding: 0 0.625rem;
+					box-sizing: border-box;
+					    text-align: center;
+			}
+			.bg{
+				width: 100%;
+				height: 100%;
+				background-color: rgba(0,0,0,0.3);
+				position: fixed;
+				top: 0;
+			}
+			.tan_tishi_top{
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				height: 2.6875rem;
+				border-bottom: 1px solid #cccccc;
+			}
+			.tan_tishi_top img{
+				width: 0.5625rem;
+					height: 0.5625rem;
+			}
+			.tan_tishi button{
+					width:5.25rem;
+					height: 1.5625rem;
+					background-color: #0eb77e;
+					border-radius: 0.1875rem;
+					line-height:1.5625rem;
+			}
+			.tan_tishi_txt{
+				margin: 1.25rem 0;
+			}
+
+		</style>
+	</head>
+	<body>
+
+		<div id="app">
+			<div class="body">
+
+				<div class="head">
+					<div class="head_back">
+						<img src="../static/img/back.png" mode="" onclick="javascript:history.back(-1);" /></img>
+					</div>
+					<div class="head_center hei_12_bold" style="width: 60%;">我的在线咨询</div>
+					<div class=" head_right"></div>
+				</div>
+
+			<div class="zi_body">
+				<div class="chat_list_time qian_7">{{time(addtime)}}</div>
+				<div class="chat_list chat_right">
+					<div class="chat_messgae bai_8">{{information}}</div>
+					<img :src="img_url+user.photourl" mode="" class="chat_list_tx"></img>
+				</div>
+				<div class="jiami qian_7 " v-if="xianshi1">
+					<img src="../static/img/jiami.png" mode=""></img>
+					正在寻找更多律师，律师咨询通道已加密
+				</div>
+				<div class="chat_list chat_left "v-if="xianshi2">
+					<img src="../static/img/wen_kefu.png" mode="" class="chat_list_tx"></img>
+					<div class="chat_messgae hei_8">
+						已为你找到愿意接单的在线律师，请 使用下方服务接入律师，避免问题服 务无法获得解答。
+						<div class="chat_pipei ">
+							<img :src="img_url+item.photourl" mode="" v-for="(item,index) in lvshi" v-if="index<=4"></img>
+							<!-- <img src="../static/img/tx.png" mode=""></img> -->
+							<!-- <img src="../static/img/tx.png" mode=""></img> -->
+							<span style="margin-left: 0.4375rem;">律师已经通过小虎律师认证，小虎等980+位律师愿意解答。</span>
+						</div>
+						<span class="qian_7"></span>
+					</div>
+				</div>
+				<div class="pay_fs_list "v-if="xianshi3">
+					<div class="pay_fs_item">
+						<div class="pay_fs_item_top">
+							<span class="hei_9_bold" style="margin-right: 0.75rem;">悬赏提问</span>
+							<span class="hong_8">
+								￥
+								<span class="hong_12_bold">3</span>
+								/提问
+							</span>
+						</div>
+						<div class="pay_fs_item_center">
+							<div class="pay_fs_item_center_left hei_7">
+								<div class="pay_fs_item_center_list">
+									<img src="../static/img/huojian.png" mode="" style="width: 0.6875rem;height: 0.6875rem;"></img>
+									可以追问，服务期内不限次数追问
+								</div>
+								<div class="pay_fs_item_center_list">
+									<img src="../static/img/xunhuan.png" mode="" style="width: 0.75rem;height: 0.75rem;"></img>
+									平均30分钟律师解答
+								</div>
+								<div class="pay_fs_item_center_list">
+									<img src="../static/img/fs_duihao.png" mode="" style="width: 0.6875rem;height: 0.6875rem;"></img>
+									问题解决率高达80%！
+								</div>
+							</div>
+							<button type="" class="bai_8" @click="go_xuanshang">立即咨询</button>
+						</div>
+					</div>
+					<div class="pay_fs_item">
+						<div class="pay_fs_item_top">
+							<span class="hei_9_bold" style="margin-right: 0.75rem;">在线咨询</span>
+							<span class="hong_8">
+								￥
+								<span class="hong_12_bold">{{baojia.zaixianprice}}</span>
+								/{{baojia.zaixiantime}}小时
+							</span>
+						</div>
+						<div class="pay_fs_item_center">
+							<div class="pay_fs_item_center_left hei_7">
+								<div class="pay_fs_item_center_list">
+									<img src="../static/img/huojian.png" mode="" style="width: 0.6875rem;height: 0.6875rem;"></img>
+									极速响应，平均3秒钟分配律师！
+								</div>
+								<div class="pay_fs_item_center_list">
+									<img src="../static/img/xunhuan.png" mode="" style="width: 0.75rem;height: 0.75rem;"></img>
+									服务期内不限制次数解答，私密聊天！
+								</div>
+								<div class="pay_fs_item_center_list">
+									<img src="../static/img/fs_duihao.png" mode="" style="width: 0.6875rem;height: 0.6875rem;"></img>
+									不限沟通，问题解决率高达99%！
+								</div>
+							</div>
+							<button type="" class="bai_8" @click="go_zaixian">立即咨询</button>
+						</div>
+					</div>
+					<div class="pay_fs_item">
+						<div class="pay_fs_item_top">
+							<span class="hei_9_bold" style="margin-right: 0.75rem;">电话咨询</span>
+							<span class="hong_8">
+								￥
+								<span class="hong_12_bold">{{baojia.dianhuaprice}}</span>
+								/{{baojia.dianhuatime}}分钟
+							</span>
+						</div>
+						<div class="pay_fs_item_center">
+							<div class="pay_fs_item_center_left hei_7">
+								<div class="pay_fs_item_center_list">
+									<img src="../static/img/huojian.png" mode="" style="width: 0.6875rem;height: 0.6875rem;"></img>
+									极速响应，平均3秒钟分配律师！
+								</div>
+								<div class="pay_fs_item_center_list">
+									<img src="../static/img/xunhuan.png" mode="" style="width: 0.75rem;height: 0.75rem;"></img>
+									可主动拨打律师电话，不满意可全额退款！
+								</div>
+								<div class="pay_fs_item_center_list">
+									<img src="../static/img/fs_duihao.png" mode="" style="width: 0.6875rem;height: 0.6875rem;"></img>
+									问题解决律高达99%
+								</div>
+							</div>
+							<button type="" class="bai_8" @click="go_dianhua">立即咨询</button>
+						</div>
+					</div>
+				</div>
+				<div class="chat_list chat_left " v-if="xianshi4">
+					<img src="../static/img/tx.png" mode="" class="chat_list_tx"></img>
+					<div class="chat_messgae hei_8">
+						我已经准备好了，请尽快支付！
+					</div>
+				</div>
+				<div class="chat_list chat_left " style="margin: 0.625rem 0;" v-if="xianshi5">
+					<img src="../static/lsimg/tx.png" mode="" class="chat_list_tx"></img>
+					<div class="chat_messgae hei_8">
+						服务期可不限次追问，不满意可全额退款！
+					</div>
+				</div>
+				<div class="tishi bai_8 " v-if="xianshi6">
+					<img src="../static/img/zhineng_yonghu.png" mode=""></img>北京用户咨询在线律师挽回<span class="hong_8">2000</span>元损失
+				</div>
+			</div>
+<div class="pay_fa_bottom" @click="tan">
+			<input type="text" value=""  disabled="true" placeholder="律师回复后可以使用..." class="hei_9"/>
+			<button type="" class="qian_9">发送</button>
+		</div>
+		<div class="bg" v-if="is_tan">
+			<div class="tan_tishi" >
+				<div class="tan_tishi_top hei_9_bold">
+					<span>温馨提示</span> <img src="../static/img/tan_close.png" mode="" @click="close"></img>
+				</div>
+				<div class="hui_8 tan_tishi_txt">
+					请支付并接入律师后才能使用！
+				</div>
+				<button type="" class="bai_8" @click="close">知道啦</button>
+			</div>
+		</div>
+
+			
+
+			
+</div>
+			</div>
+
+	</body>
+	<script src="../js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../js/vue.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../js/http.js" type="text/javascript" charset="utf-8"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vant@2.12/lib/vant.min.js"></script>
+	<script src="../js/get.js" type="text/javascript" charset="utf-8"></script>
+	
+	<script type="text/javascript">
+		var app = new Vue({
+			el: "#app",
+			data() {
+				return {
+					img_url: window.localStorage.getItem('img_url'),
+                    is_tan:false,
+                    consultid:'',
+                    data:'',
+                    xianshi1:false,
+                    xianshi2:false,
+                    xianshi3:false,
+                    xianshi4:false,
+                    xianshi5:false,
+                    xianshi6:false,
+                    baojia:'',
+                    addtime:new Date().getTime(),
+                    lvshi:'',
+                    user:'',
+					information:'',
+					
+				}
+			},
+			ready: function() {
+
+			},
+			created() {
+				
+				console.log($_GET)
+				if($_GET.information){
+					
+				this.information=$_GET.information
+				this.xianshi()
+				this.huoqu_jiage()
+				this.huoqu_user()
+				this.huoqu_lvshi()
+				}
+			},
+			methods: {
+			tan(){
+				this.is_tan=true
+			},
+			close(){
+				this.is_tan=false
+			},
+			huoqu_jiage(){
+				ajax('/mapi/index/getzixun', "POST", '', (res) => {
+					if(res.code==0){
+						this.baojia=res.data.zhan	
+					}
+				}, function(err) {
+				
+					console.log("err", err);
+				})
+			},
+			huoqu_user(){
+				ajax('/mapi/user/user', "POST", '', (res) => {
+					if(res.code==0){
+						this.user=res.data.user	
+					}
+				}, function(err) {
+				
+					console.log("err", err);
+				})
+			},
+			huoqu_lvshi(){
+				var data={
+					type:1,
+					page:0
+				}
+				ajax('/mapi/lawyer/lvshilist', "POST", data, (res) => {
+					if(res.code==0){
+						this.lvshi=res.data.lawyer
+					}
+				}, function(err) {
+				
+					console.log("err", err);
+				})
+			},
+			xianshi(){
+				var that=this
+				setTimeout(function(){
+					that.xianshi1=true
+				},500)
+				setTimeout(function(){
+					that.xianshi2=true
+				},900)
+				setTimeout(function(){
+					that.xianshi3=true
+				},1500)
+				setTimeout(function(){
+					that.xianshi4=true
+				},2000)
+				setTimeout(function(){
+					that.xianshi5=true
+				},2500)
+				setTimeout(function(){
+					that.xianshi6=true
+				},2600)
+				
+			},
+			go_xuanshang(){
+				location.href='xuanshang.html?information='+$_GET.information+'&typeid='+$_GET.typeid+'&province='+$_GET.province+'&city='+$_GET.city+'&area='+$_GET.area
+			},
+           go_zaixian(){
+			   location.href='zhineng_pay.html?type=1&information='+$_GET.information+'&typeid='+$_GET.typeid+'&province='+$_GET.province+'&city='+$_GET.city+'&area='+$_GET.area
+		     },
+			 go_dianhua(){
+			 			   location.href='zhineng_pay.html?type=2&information='+$_GET.information+'&typeid='+$_GET.typeid+'&province='+$_GET.province+'&city='+$_GET.city+'&area='+$_GET.area
+			   },
+			}
+		})
+	</script>
+
+
+</html>

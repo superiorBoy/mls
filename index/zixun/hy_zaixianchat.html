@@ -604,6 +604,9 @@
 					})
 
 				},
+				pingjia(){
+					location.href='../lawyer/pingjia.html?lawyerid='+ this.lawyerid
+				},
 				huqu_zhiwu() {
 					var data = {
 						lawyerid: this.lawyerid
@@ -759,11 +762,7 @@
 					// 	duration: 2000
 					// });
 				},
-				pingjia() {
-					// uni.navigateTo({
-					// 	url: 'pingjia?lawyerid=' + this.chat_xinxi.userid
-					// });
-				},
+	
 				connectSocketInit() {
 					let that = this;
 					var url = window.location.host;

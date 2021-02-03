@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="keyword" content="" />
+		<meta name="description" content="" />
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<link rel="stylesheet" type="text/css" href="../css/gonggong.css" />
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vant@2.12/lib/index.css" />
+		<link rel="stylesheet" type="text/css" href="../css/swiper.min.css" />
+		<link rel="stylesheet" type="text/css" href="../css/font.css" />
+		<style>
+			html{
+					background-color: #F7F7F7;
+				}
+				.head {
+					border-bottom: 1px solid #F7F7F7;
+				}
+				.pingjia_fuwu{
+					display: flex;
+					margin-top: 0.9375rem;
+					
+				}
+				.pingjia_fuwu span{
+					margin: 0 0.1875rem;
+				}
+			.pingjia_fuwu img{
+					width: 0.875rem;
+					height: 0.75rem;
+					margin-right: 0.3125rem;
+			}
+			.ping_tx{
+					width: 3.4375rem;
+					height: 3.4375rem;
+			}
+				
+				.pingjia_top{
+					display: flex;
+					padding:  0.9375rem;
+					justify-content: space-between;
+					background-color: #FFFFFF;
+				}
+				.ls_name{
+					display: flex;
+					justify-content: space-between;
+				}
+				.pingjia_top_right{
+					width: 80%;
+				}
+				.pingjia_center{
+					background-color: #FFFFFF;
+					margin: 0.625rem 0;
+			        padding-bottom: 0.75rem;
+				}
+				.pingjia_xing{
+					height: 2.9375rem;
+					display: flex;
+					align-items: center;
+					padding: 0 0.9375rem;
+					border-bottom: 1px solid #F7F7F7;
+				}
+				.xing{
+					background: url(../static/img/xing_no.png) no-repeat;
+					background-size: 100% 100% !important;
+					width: 0.9375rem;
+						height: 0.9375rem;
+						margin-right: 0.1875rem;
+				}
+				.on1 .xing:nth-child(1){
+					background: url(../static/img/xing_on.png) no-repeat;
+					background-size: 100% 100%;
+				}
+				.on2 .xing:nth-child(1),.on2 .xing:nth-child(2){
+					background: url(../static/img/xing_on.png) no-repeat;
+					background-size: 100% 100%;
+				}
+				.on3 .xing:nth-child(1),.on3 .xing:nth-child(2),.on3 .xing:nth-child(3){
+					background: url(../static/img/xing_on.png) no-repeat;
+					background-size: 100% 100%;
+				}
+				.on4 .xing:nth-child(1),.on4 .xing:nth-child(2),.on4 .xing:nth-child(3),.on4 .xing:nth-child(4){
+					background: url(../static/img/xing_on.png) no-repeat;
+					background-size: 100% 100%;
+				}
+				.on5 .xing{
+					background: url(../static/img/xing_on.png) no-repeat;
+					background-size: 100% 100%;
+				}
+				.xing_arry{
+					display: flex;
+					align-items: center;
+				}
+				.ping_shuru{
+					padding: 0.9375rem ;
+					width: 100%;
+					box-sizing: border-box;
+					height: 10.3125rem;
+					border: none;
+				}
+				.up_tu{
+						width: 4.375rem;
+						height: 4.375rem;
+						background-color: #f5f5f5;
+						border-radius: 0.3125rem;
+				}
+				.tu_arry{
+					display: flex;
+					flex-wrap: wrap;
+				}
+				.img_tu{
+					position: relative;
+				}
+				.del{
+					position: absolute;
+					top: 0;
+					right: 0.4375rem;
+				}
+				.tu_arry img{
+					width: 4.375rem;
+					height: 4.375rem;
+					margin-right: 0.3125rem;
+					margin-bottom: 0.3125rem;
+				}
+				.up_img{
+					width: 4.375rem;
+					height: 4.375rem;
+					background: url(../static/img/up_tu.png) no-repeat;
+					background-size: 100% 100%;
+				}
+				.up_img input{
+					width: 100%;
+					height: 100%;
+					opacity: 0;
+				}
+				.tu{
+					padding: 0 0.9375rem;
+					display: flex;
+					flex-wrap: wrap;
+				}
+				.yinxiang{
+					background-color: #FFFFFF;
+					padding: 0 0.9375rem 0.3125rem;
+				}
+				.yinxiang_top{
+					line-height: 3.125rem;
+				}
+				.yinxiang_arry{
+					display: flex;
+					justify-content: space-between;
+					flex-wrap: wrap;
+				}
+				.yinxiang_arry span{
+					 width: 4.8125rem;
+					height:1.5625rem;
+						background-color: #f5f5f5;
+						border-radius: 0.8125rem;
+						display: inline-block;
+						margin-bottom: 0.9375rem;
+						text-align: center;
+						line-height: 1.5625rem;
+				}
+				.baocun_btn{
+					padding: 0 0.9375rem;
+					margin-top: 5.25rem;
+					margin-bottom: 1.5625rem;
+				}
+				.baocun_b {
+						height: 2.75rem;
+						background-color: #0eb77e;
+						border-radius: 1.375rem;
+						line-height: 2.75rem;
+						width: 100%;
+				}
+				.baocun_b img{
+						width: 0.8125rem;
+						height: 0.8125rem;
+						margin-right: 0.5rem;
+				}
+				.xuan_txt{
+					background-color: #fdd8dc !important;
+					color: #f43a51;
+				}
+		</style>
+	</head>
+	<body>
+
+		<div id="app">
+			<div class="body">
+
+				<div class="head">
+					<div class="head_back">
+						<img src="../static/img/back.png" mode="" onclick="javascript:history.back(-1);" /></img>
+					</div>
+					<div class="head_center hei_12_bold">发表评价</div>
+					<div class=" head_right hei_10_bold">
+					</div>
+				</div>
+
+				<div class="zi_body ">
+
+					<div class="pingjia_top">
+						<img :src="img_url+lvshi.photourl" mode="" class="ping_tx"></img>
+						<div class="pingjia_top_right">
+							<div class="ls_name">
+								<span class="hei_9_bold">{{lvshi.nickname}}律师</span>
+								<span class="hui_8">{{lvshi.province}}-{{lvshi.city}}</span>
+							</div>
+							<div class="pingjia_fuwu">
+								<div class="qian_8">
+									<img src="../static/img/fuwu.png" mode=""></img>已服务<span class="lv_8">{{lvshi.replynum}}</span>人
+								</div>
+								<div class="qian_8" style="margin-left: 1rem;">
+									<img src="../static/img/pingjia.png" mode=""></img>评价<span class="lv_8">{{lvshi.haopingnum}}</span>次
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="pingjia_center">
+						<div class="pingjia_xing hei_9_bold">
+							<span style="position: relative;top: -0.125rem;">服务评价：</span>
+							<div class="xing_arry" :class="xing_number==1?'on1':xing_number==2?'on2':xing_number==3?'on3':xing_number==4?'on4':xing_number==5?'on5':''">
+								<div class="xing" @click="xing(1)"></div>
+								<div class="xing" @click="xing(2)"></div>
+								<div class="xing" @click="xing(3)"></div>
+								<div class="xing" @click="xing(4)"></div>
+								<div class="xing" @click="xing(5)"></div>
+							</div>
+						</div>
+
+						<textarea value="" placeholder="请在此评价律师服务，客观真实的评价有利于其他当事人选择律师（10字以上）。" maxlength="5000" class="hei_8 ping_shuru"
+						 v-model="shuru_txt" /> </textarea>
+						<div class="tu">
+			<div class="tu_arry">
+				<div class="img_tu"  v-for="(item,index) in arry_img" >
+				<img :src="item" mode=""></img>
+					<span class="del hong_8" @click="del(index)">X</span>
+				</div>
+				<div class="up_img">
+					
+				<input type="file" name="" id="up_ping_img" value="" multiple="multiple" @change="upload_zheng()"/>
+				</div>
+			    
+			</div>
+		</div>
+		
+		
+		</div>	
+			<div class="yinxiang">
+				<div class="yinxiang_top hei_9_bold">
+					请选择律师印象：
+				</div>
+				<div class="yinxiang_arry qian_8">
+					<span v-for="(item,index) in yinxiang_arry"  @click="xuan(item)" :class="{xuan_txt:arry.includes(item)}">{{item}}</span>
+				</div>
+			</div>
+			
+			<div class="baocun_btn">
+			<button type="" class="bai_9 baocun_b" @click="save"><img src="../static/img/fabu_icon.png" mode=""></img>发布评论</button>
+			</div>	
+			
+			</div>
+
+
+
+			</div>
+
+
+
+		</div>
+
+	</body>
+	<script src="../js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../js/vue.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../js/http.js" type="text/javascript" charset="utf-8"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vant@2.12/lib/vant.min.js"></script>
+	<script src="../js/get.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		var app = new Vue({
+			el: "#app",
+			data() {
+				return {
+				img_url: window.localStorage.getItem('img_url'),
+				xing_number:'5',
+				arry_img:[],
+				yinxiang_arry:['服务优质','学识渊博','经验丰富','待人诚恳','乐于助人','回复很快','形象专业','值得推荐 '],
+				shuru_txt:'',
+				arry:[],
+				lawyerid:'',
+				lvshi:''
+				}
+			},
+
+			created() {
+                   if($_GET.lawyerid){
+					this.lawyerid=$_GET.lawyerid
+					this.huoqu_lvshi()
+				}
+				
+
+
+			},
+			methods: {
+
+				huoqu_lvshi() {
+			var data={
+				lawyerid:this.lawyerid
+			}
+					ajax('/mapi/lawyer/lawyer', "POST", data, (res) => { // POST或GET请求直接传参
+					this.lvshi=res.data.lawyer
+					}, function(err) {
+
+						console.log("err", err);
+					})
+				},
+				// 上传图片
+				 upload_zheng() {
+				var that=this
+				    var img_cnt = this.arry_img.length; //已上传的数量
+				
+				    console.log(img_cnt)
+				    var files = $('#up_ping_img').get(0).files;
+				    img_cnt = img_cnt + files.length
+				
+				    if (img_cnt > 9) {
+				        console.log('9999')
+				        alert('最多上传9张图')
+				        return false
+				    }
+				    if (files.length > 0 && files.length <= 9) {
+				        for (var i = 0; i < files.length; i++) {
+				            var r = new FileReader();
+				            r.onload = function () {
+				              img = this.result
+							  
+							that.arry_img.push(img)
+				            };
+				            r.readAsDataURL(files[i]);
+				        }
+				    }
+				},
+              xuan(i){
+				let that=this
+				if(that.arry.includes(i)){
+								//includes()方法判断是否包含某一元素,返回true或false表示是否包含元素，对NaN一样有效
+								//filter()方法用于把Array的某些元素过滤掉，filter()把传入的函数依次作用于每个元素，然后根据返回值是true还是false决定保留还是丢弃该元素：生成新的数组
+								that.arry=that.arry.filter(function (ele){return ele != i;});
+								//this.arr=this.arr.filter((ele)=>ele!=i);
+								//filter()为假时删除
+							}else{
+								if(that.arry.length<3){
+								that.arry.push(i);
+								}else{
+									uni.showToast({
+										title: '最多选择3项',
+										duration: 2000,
+										icon: "none"
+									});
+								}
+							}
+			},
+	xing(i){
+			console.log(i)
+			this.xing_number=i
+		},
+		
+		del(index){
+			this.arry_img.splice(index,1)
+		},
+		save(){
+		
+			var that=this
+			if(this.shuru_txt==''){
+		
+				vant.Toast('请输入评价')
+				return false
+			}
+			if(this.arry.length==0){
+			
+				vant.Toast('请选择律师印象')
+				return false
+			}
+			
+					var data={
+						xing:this.xing_number,
+						pingjia:this.shuru_txt,
+						yinxiang:this.arry,
+						img:this.arry_img
+					}
+					ajax('/index/lawyer/pingjia?lawyerid='+this.lawyerid, "POST", data, (res) => { // POST或GET请求直接传参
+					
+					if(res.code==0){
+						vant.Toast('评价成功')
+										    	setTimeout(function(){
+										     	location.href='index.html?lawyerid='+that.lawyerid
+						 },2000)
+					}else if (resp.data.message == '请先登录' || resp.data.msg == '请先登录') {
+					location.href='../login/login.html'
+			   	}
+				     else {
+					
+					vant.Toast(''+res.data.message)
+				}
+					 
+					}, function(err) {
+			
+						console.log("err", err);
+					})
+			
+
+			console.log(this.xing_number,this.shuru_txt,this.arry_img,this.arry)
+		}
+		
+
+
+			}
+		})
+	</script>
+
+</html>

@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="keyword" content="" />
+		<meta name="description" content="" />
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<link rel="stylesheet" type="text/css" href="../css/gonggong.css" />
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vant@2.12/lib/index.css" />
+		<link rel="stylesheet" type="text/css" href="../css/swiper.min.css" />
+		<link rel="stylesheet" type="text/css" href="../css/font.css" />
+		<style>
+html {
+	background-color: #f7f7f7;
+}
+.shengji_top_img{
+	width: 100%;
+	height: 18.125rem;
+	vertical-align: bottom;
+}
+.tuanzhang_title{
+	background: url(../static/img/tuanzhang_title.png) no-repeat;
+	background-size: 100% 100%;
+	width: 6.6875rem;
+	height: 2.0625rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin: 0 auto;
+	position: relative;
+	top: -1.0625rem;
+	
+}
+.yaoqing{
+	text-align: center;
+
+	height: 8.125rem;
+	margin-bottom: 2.6875rem;
+}
+	
+.bg_xian{
+	background: url(../static/img/tuanzhang_xian_bg.png) no-repeat;
+	background-size: 100% 100%;
+}
+.bai_xian{
+	background: url(../static/img/bai_xian.png) no-repeat;
+	background-size: 100% 100%;	
+}
+.tuanzhang_bottom{
+	padding: 0 0.625rem;
+	background: url(../static/img/tuanzhang_bg.png) no-repeat;
+	
+	padding-bottom: 2.1875rem;
+}
+.lianjie{
+	width: 19.625rem;
+	border: solid 1px #b5b5b5;
+	margin: 0.25rem auto 0.8125rem;
+	
+}
+.lianjie input{
+	height: 1.875rem;
+		background-img: linear-gradient(180deg, 
+			#f5f5f5 0%, 
+			#ffffff 100%);
+		border-radius: 1px;
+		padding: 0 0.4375rem;
+		line-height: 1.875rem;
+		text-align: left;
+		border: none;
+}
+#yaoqinglianjie{
+	height: 1.875rem;
+	background-img: linear-gradient(180deg,
+		#f5f5f5 0%, 
+		#ffffff 100%);
+		border-radius: 1px;
+		padding: 0 0.4375rem;
+		line-height: 1.875rem;
+		text-align: left;
+}
+.yaoqing button{
+	width: 7.8125rem;
+		height: 1.875rem;
+		background-color: #0eb77e;
+		border-radius: 0.9375rem;
+		line-height: 1.875rem;
+}
+.qianyi_item{
+	width: 25%;
+	text-align: center;
+}
+.qianyi_item img{
+		width: 3.4375rem;
+		height: 3.4375rem;
+		margin: 0.3125rem 0 0.1875rem;
+}
+.qianyi_list{
+	display: flex;
+	align-items: center;
+	
+}
+.quanyi{
+	height:8.4375rem;
+	margin-bottom: 1.5625rem;
+}
+.tiaojian_title{
+	width: 7.125rem;
+		height: 2.0625rem;
+		background-color: #0eb77e;
+		border-radius: 0.25rem;
+		line-height: 2.0625rem;
+		margin: 0 auto;
+}
+.tiaojian_title span{
+	width: 0.4375rem;
+	height:0.4375rem;
+	display: inline-block;
+	background-color: #FFFFFF;
+	border-radius: 100%;
+}
+.tiaojian_title span:first-child{
+	margin-right: 0.3125rem;
+}
+.tiaojian_title span:last-child{
+	margin-left: 0.3125rem;
+}
+.tiaojian{
+	text-align: center;
+}
+.tiaojian_list{
+	margin-top: 0.9375rem ;
+	position: relative;
+}
+.yao_renshu,.sheng_jiage_txt{
+	position: absolute;
+	top: 0.75rem;
+	left: 6.5625rem;
+	z-index: 9;
+	font-size: 1.25rem;
+	color: #57270f;
+	font-weight: bold;
+}
+.sheng_jiage{
+	position: absolute;
+	left: 1rem;
+	top: 0.8125rem;
+	z-index: 9;
+	color: #c73e32;
+	font-weight: bold;
+		font-size: 1.0625rem;
+}
+.sheng_jiage text{
+	font-size: 2.25rem;
+}
+.tiaojian_list img{
+	height: 4.125rem;
+	width: 100%;
+	vertical-align: bottom;
+}
+.liucheng{
+	margin: 2.8125rem 0 3.125rem;
+	padding: 0 2.125rem;
+	height: 9.375rem;
+}
+.liucheng_title{
+	width: 9.3125rem;
+}
+.liucheng_img{
+	margin: 0.3125rem 0 0.1875rem;
+}
+.liucheng_img img{
+	width: 100%;
+		height: 3rem;
+}
+.liucheng_list{
+	display: flex;
+	justify-content: space-between;
+	color: #006543;
+	font-size: 0.75rem;
+	
+}
+.liucheng_item{
+	text-align: center;
+	line-height: 1rem;
+}
+.guize{
+	height: 15.9375rem ;
+	}
+	.guize .tuanzhang_title {
+		margin-bottom: 0.3125rem;
+	}
+	.guize_list_title{
+		margin-bottom: 0.5rem;
+	}
+	.guize_list_title img{
+		margin-right: 0.5rem;
+	}
+	.guize_list{
+		padding: 0 0.3125rem 0 1.875rem;
+		margin-bottom: 0.9375rem;
+	}
+	.guize_list_body{
+		padding-left: 1.5625rem;
+		
+	}
+	.guize_item{
+		margin-bottom: 0.375rem;
+		display: flex;
+		align-items: center;
+	}
+	.guize_item text{
+		display: inline-block;
+			width: 0.75rem;
+			height: 0.75rem;
+			background-img: linear-gradient(0deg, 
+				#0eb77e 0%, 
+				#2fc19c 100%), 
+			linear-gradient(
+				#ffff00, 
+				#ffff00);
+			background-blend-mode: normal, 
+				normal;
+			box-shadow: inset -0.1px 0.25rem 0.3125rem 0px 
+				rgba(200, 244, 233, 0.59);
+			border-radius: 0.375rem;
+			margin-right: 0.3125rem;
+			vertical-align: middle;
+			line-height: 0.75rem;
+			text-align: center;
+	}
+	.paihang{
+		height: 13.25rem;
+		margin: 2.8125rem 0 2.625rem;
+	}
+	.paihang_item{
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		padding: 0 1.4375rem 0 1.5625rem;
+		line-height: 1.5rem;
+		margin-bottom: 0.4375rem;
+		
+	}
+	.paihang_item_left{
+		display: flex;
+		align-items: center;
+	}
+	.paihang_item_left_paiming{
+			width: 1.5rem;
+			height: 1.5rem;
+			margin-right: 0.625rem;
+			text-align: center;
+			
+	}
+	.paihang_item:nth-child(1) 
+	.paihang_item_left_paiming{
+		color: #FFFFFF;
+		background: url(../static/img/paiming1.png) no-repeat;
+		background-size: 100% 100%;
+		position: relative;
+		top: -0.25rem;
+		line-height: 1.8125rem;
+		
+	}
+	.paihang_item:nth-child(2)
+	.paihang_item_left_paiming{
+		color: #FFFFFF;
+		background: url(../static/img/paiming2.png) no-repeat;
+		background-size: 100% 100%;
+		position: relative;
+		top: -0.25rem;
+		line-height: 1.8125rem;
+		
+	}
+	.paihang_item:nth-child(3)
+	.paihang_item_left_paiming{
+		color: #FFFFFF;
+		background: url(../static/img/paiming3.png) no-repeat;
+		background-size: 100% 100%;
+		position: relative;
+		top: -0.25rem;
+		line-height: 1.8125rem;
+		
+	}
+	.shenqing{
+			height:3.125rem;
+			background-color: #0eb77e;
+			border-radius: 1.5625rem;
+			box-shadow: 0 0.125rem 0.125rem 0 #006543;
+			color: #FFFFFF;
+			font-size: 1.4375rem;
+			line-height: 3.125rem;
+			width: 100%;
+			
+	}
+	.zanwu{
+		text-align: center;
+	}
+	.zanwu img{
+		width: 13.25rem;
+		height: 7.1875rem;
+		margin-bottom: 0.625rem;
+	}
+		</style>
+	</head>
+	<body>
+
+		<div id="app">
+			<div class="body">
+
+				<div class="head">
+					<div class="head_back">
+						<img src="../static/img/back.png" mode="" onclick="javascript:history.back(-1);" /></img>
+					</div>
+					<div class="head_center hei_12_bold">升级团长</div>
+					<div class=" head_right hei_10_bold">
+						
+					</div>
+				</div>
+
+				<div class="zi_body ">
+					<img src="../static/img/shengji_top.png" mode="" class="shengji_top_img"></img>
+					<div class="tuanzhang_bottom">
+						
+					
+					<div class="yaoqing bg_xian">
+						<div class="tuanzhang_title bai_8_bold">
+							专属链接
+						</div>
+						<div class="lianjie ">
+							
+				         <p id="yaoqinglianjie" class="hei_7">{{lianjie}}</p>
+						</div>
+						<button type="" class="bai_8 fuzhu1111" @click="lianjiego"   data-clipboard-action="copy" data-clipboard-target="#yaoqinglianjie">{{deng_txt}}</button>
+					</div>
+					
+					<div class="bg_xian quanyi">
+						<div class="tuanzhang_title bai_8_bold">
+							核心权益
+						</div>
+					<div class="qianyi_list">
+						<div class="qianyi_item">
+							<img src="../static/img/quanyi1.png" mode=""></img>
+							<div class="lv_8_bold">
+								好物分享
+							</div>
+						</div>
+						<div class="qianyi_item">
+							<img src="../static/img/quanyi2.png" mode=""></img>
+							<div class="lv_8_bold">
+								分享赚钱
+							</div>
+						</div>
+						<div class="qianyi_item">
+							<img src="../static/img/quanyi3.png" mode=""></img>
+							<div class="lv_8_bold">
+								邀请有奖
+							</div>
+						</div>
+						<div class="qianyi_item">
+							<img src="../static/img/quanyi4.png" mode=""></img>
+							<div class="lv_8_bold">
+								专属客服
+							</div>
+						</div>
+					</div>
+						
+					</div>
+					
+					<div class="tiaojian">
+						<div class="tiaojian_title bai_8_bold">
+						<span></span>	升级条件<span></span>
+						</div>
+						<div class="tiaojian_list">
+							<span class="yao_renshu">邀请{{peizhi.feizhishu}}个好友以上</span>
+							<img src="../static/img/tiaojian1.png" mode=""></img>
+						</div>
+						<div class="tiaojian_list">
+							<div class="sheng_jiage">￥<span>{{peizhi.leaderprice}}</span></div>
+							<span class="sheng_jiage_txt">充值{{peizhi.leaderprice}}元立即升级</span>
+							<img src="../static/img/tiaojian2.png" mode=""></img>
+						</div>
+					</div>
+					<div class="liucheng bg_xian">
+						<div class="tuanzhang_title bai_8_bold liucheng_title">
+							一秒看懂流程
+						</div>
+						<div class="liucheng_img">
+							<img src="../static/img/liucheng_img.png" mode=""></img>
+						</div>
+					   <div class="liucheng_list ">
+					   	<div class="liucheng_item">
+					   		<div class="">分享</div>
+							<div class="">邀请好友</div>
+					   	</div>
+						<div class="liucheng_item">
+							<div class="">新人注册</div>
+							<div class="">你获得奖励</div>
+						</div>
+						<div class="liucheng_item">
+							<div class="">永久获得</div>
+							<div class="">下线提成</div>
+						</div>
+					   </div>
+						
+					</div>
+					
+					<div class="guize bg_xian">
+						<div class="tuanzhang_title bai_8_bold ">
+							活动规则
+						</div>
+						<div class="guize_list">
+						<div class="guize_list_title hei_9_bold">
+							<img src="../static/img/guize_huiyuan.png"style="width:30rpx ;" mode="widthFix"></img>会员邀请奖励
+						</div>	
+						<div class="guize_list_body hei_7">
+							<div class="guize_item">
+								<span class="bai_7">1</span>邀请新用户首次消费奖励{{peizhi.firstorder}}元！
+							</div>
+							<div class="guize_item">
+								<span class="bai_7">2</span>享受直属会员消费的{{peizhi.payreward}}%提成！
+							</div>
+						</div>
+						</div>
+					   <div class="guize_list">
+					   <div class="guize_list_title hei_9_bold">
+					   	<img src="../static/img/guize_tuanzhang.png"style="width:0.875rem ;" mode="widthFix"></img>团长邀请奖励
+					   </div>	
+					   <div class="guize_list_body hei_7">
+					   	<div class="guize_item">
+					   		<span class="bai_7">1</span>请新用户首次消费奖励{{peizhi.firstorder}}元！ 
+					   	</div>
+					   	<div class="guize_item">
+					   		<span class="bai_7">2</span>享受直属会员消费的{{peizhi.leaderpayreward}}%提成！
+					   	</div>
+						<div class="guize_item">
+							<span class="bai_7">3</span>享受非直属会员消费的{{peizhi.feipayreward}}%作为提成！
+						</div>
+						<div class="guize_item">
+							<span class="bai_7">4</span>非只属奖励给上线最近的团长！
+						</div>
+					   </div>
+					   </div>
+						
+					</div>
+					<div class="paihang bai_xian">
+						<div class="tuanzhang_title bai_8_bold ">
+							排行榜
+						</div>
+						<div class="zanwu" v-if="login=='2'">
+							<img src="../static/img/tuzhang_zanwu.png" mode=""></img>
+							<div class="chakan qian_8" >
+								登录后即可查看
+							</div>
+						</div>
+						<div class="paihang_list" v-if="login=='1'">
+						<div class="paihang_item" v-for="(item,index) in paihang">
+							<div class="paihang_item_left hei_8">
+							<div class="paihang_item_left_paiming">
+								{{index+1}}
+							</div>	
+							{{item.mobile}}
+							</div>	
+							<div class="paihang_item_right hong_7">
+								￥<span class="hong_9_bold">{{item.summoney}}</span>
+							</div>	
+						</div>	
+					
+						
+						
+						</div>
+					
+					</div>
+						<button type="" class="shenqing">立即申请团长</button>
+					</div>
+				</div>
+
+
+
+
+			</div>
+
+
+
+		</div>
+
+	</body>
+	<script src="../js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../js/vue.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../js/http.js" type="text/javascript" charset="utf-8"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vant@2.12/lib/vant.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/clipboard.js/1.5.12/clipboard.min.js"></script>
+	<script type="text/javascript">
+		var app = new Vue({
+			el: "#app",
+			data() {
+				return {
+					lianjie:'',
+					deng_txt:'立即登录',  //复制邀请链接 --- 立即登录
+					user:'',
+					login:'2',
+					paihang:[],
+					peizhi:''
+				}
+			},
+
+			created() {
+				
+				this.is_login()
+
+
+			},
+			methods: {
+
+				is_login() {
+
+					ajax('/index/login/islogin', "POST", '', (res) => { // POST或GET请求直接传参
+						if(res.data.user==''){
+							this.deng_txt=='立即登录'
+							this.login='2'
+						}else{
+							this.login='1'
+							this.huoqu_lianjie()
+							this.huoqu_paihang()
+							this.huoqu_peizhi()
+						}
+					}, function(err) {
+
+						console.log("err", err);
+					})
+				},
+				huoqu_lianjie() {
+				
+					ajax('/mapi/user/yaoqing', "POST", '', (res) => { // POST或GET请求直接传参
+						this.deng_txt='复制邀请链接'
+						this.lianjie=res.data.inviteurl
+					}, function(err) {
+				
+						console.log("err", err);
+					})
+				},
+				huoqu_paihang() {
+				
+					ajax('/mapi/user/rewardlist', "POST", '', (res) => { // POST或GET请求直接传参
+						this.paihang=res.data.rewardlist
+					}, function(err) {
+				
+						console.log("err", err);
+					})
+				},
+				huoqu_peizhi() {
+				
+					ajax('/mapi/index/yaoqing', "POST", '', (res) => { // POST或GET请求直接传参
+						this.peizhi=res.data.info
+					}, function(err) {
+				
+						console.log("err", err);
+					})
+				},
+				lianjiego() {
+				
+					if(this.deng_txt=='立即登录'){
+						
+						location.href='../login/login.html'
+					}else{
+						console.log('77777')
+						// var clipboard = new Clipboard('.fuzhi');
+						// clipboard.on('success', function (e) {
+						//     console.log(e);
+						//     vant.Toast('复制成功')
+						// });
+						// clipboard.on('error', function (e) {
+						//     console.log(e);
+						// });
+						
+
+						// copyText(this.lianjie).then(
+						//     res => {
+						//         vant.Toast('复制成功')
+						//     }
+						// )              
+						              
+						            
+					}
+				},
+			
+
+
+			}
+		})
+		var clipboard = new Clipboard('.fuzhu1111');
+		console.log(clipboard)
+		clipboard.on('success', function (e) {
+		    console.log(e);
+		    vant.Toast('复制成功')
+		});
+		clipboard.on('error', function (e) {
+		    console.log(e);
+		});
+	</script>
+
+</html>

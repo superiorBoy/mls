@@ -411,6 +411,8 @@ width: 2.5rem;
 						this.list = this.list.concat(res.data.invitelist)
 						if (res.data.invitelist.length < 10) {
 							this.is_all = true;
+						}else{
+							this.is_all = false;
 						}
 						this.loading = false
 					}, function(err) {
@@ -432,7 +434,7 @@ width: 2.5rem;
 					this.active = index
 
 					this.page = 0
-					this.is_all = false
+					this.is_all = true;
 					this.list = []
 					this.huoqu_list()
 				},

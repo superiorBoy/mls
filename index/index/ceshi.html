@@ -1,113 +1,29 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta charset="utf-8">
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title></title>
-		<meta name="keyword" content="" />
-		<meta name="description" content="" />
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-		<link rel="stylesheet" type="text/css" href="../css/gonggong.css" />
-		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vant@2.12/lib/index.css" />
-		<link rel="stylesheet" type="text/css" href="../css/swiper.min.css" />
-		<link rel="stylesheet" type="text/css" href="../css/font.css" />
-		<link rel="stylesheet" type="text/css" href="../css/index.css" />
-	
 	</head>
-	<body>
 
-		<div id="app">
-			<div class="body">
-
-	
-				
-			<!-- <van-cell is-link @click="tanchu">展示弹出层</van-cell> -->
-			<!-- <van-popup v-model="show">内容</van-popup> -->
-
-<!-- <van-popup v-model="showPicker" round position="bottom">
-  <van-picker
-    show-toolbar
-    :columns="columns"
-    @cancel="showPicker = false"
-    @confirm="onConfirm"
-  />
-</van-popup> -->
-<van-search
-  v-model="value"
-  placeholder="请输入搜索关键词"
-  input-align="center"
-/>
-
-<button type="button" @click="dianji">aaaaaaaa</button>
-<van-area title="标题" :area-list="areaList" :columns-num="2" />
-
-
-
-
-		</div>
-
+		<body>
+		<textarea id="target">复制我里面的内容</textarea></br>
+		<button class="aaaa" data-clipboard-action="copy" data-clipboard-target="#target">
+		点我复制
+		</button>
+		<script src="../js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="https://cdn.jsdelivr.net/clipboard.js/1.5.12/clipboard.min.js"></script>
+		<script>
+		
+				var clipboard = new Clipboard('.aaaa');
+				console.log(clipboard)
+				clipboard.on('success', function (e) {
+				    console.log(e);
+				    vant.Toast('复制成功')
+				});
+				clipboard.on('error', function (e) {
+				    console.log(e);
+				});
+		</script>
 	</body>
-	<script src="../js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
-	<script src="../js/vue.min.js" type="text/javascript" charset="utf-8"></script>
-	<script src="../js/vue-resource.js" type="text/javascript" charset="utf-8"></script>
-	<script src="https://cdn.jsdelivr.net/npm/vant@2.12/lib/vant.min.js"></script>
-	<script src="../js/http.js" type="text/javascript" charset="utf-8"></script>
-<script src="../js/city.js" type="text/javascript" charset="utf-8"></script>
-	<script type="text/javascript">
-		
-	
-		var app = new Vue({
-			el: "#app",
-			data() {
-				return {
-      show: false,
-    value: '',
-      showPicker: false,
-      areaList:[],
-	  value:''
-	  
-
-				}
-			},
-			ready: function() {
-                
-
-			},
-			created() {
-
-				this.areaList=city_list()
-
-			},
-			methods: {
-
-		 showPopup() {
-		      this.show = true;
-		    },
-			 onConfirm(value) {
-			      this.value = value;
-			      this.showPicker = false;
-			    },
-				
-		tanchu(){
-			console.log('77777',this.showPicker)
-			this.showPicker = true;
-		},
-			dianji(){
-		  
-			
-			 
-			
-			},
-			onSearch(e){
-				console.log(e)
-			}
-			}
-		})
-		
-
-	
-	</script>
-<script type="module">
-  
-</script>
 </html>

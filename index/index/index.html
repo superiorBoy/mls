@@ -158,6 +158,54 @@
 						<div class="qian_7">沟通效率更高。</div>
 					</a>
 				</div>
+				<div class="tuijian">
+					<div class="tuijian_top"><img src="../static/img/tuijian_title.png" mode=""></img></div>
+					<div class="tuijian_list">
+						<block v-for="item in data.loginlawyer">
+							<div class="tuijian_item">
+								<div class="tuijian_item_left" @click="go_zhuye(item.userid)"><img :src="url + item.photourl" mode=""></img></div>
+								<div class="tuijian_item_right">
+									<div class="ls_name">
+										<div class="ls_name_left hei_9_bold" @click="go_zhuye(item.userid)">
+											{{ item.nickname }}
+											<img src="../static/img/renzheng.png" mode=""></img>
+										</div>
+										<div class="ls_name_right lv_7" @click="tochat(item.userid)">
+											<img src="../static/img/xiaoxi.png" mode=""></img>
+											在线咨询
+										</div>
+									</div>
+									<div class="ls_gongsi hui_7">
+										<span class="bai_7 tese_ls">特色律师</span>
+										{{ item.zhiwu }}
+									</div>
+									<div class="ls_dizhi qian_7">
+										<img src="../static/img/dizhi.png" mode=""></img>
+										{{ item.lvsuo }}
+									</div>
+									<div class="ls_bottom qian_7">
+										<div class="ls_fuwu">
+											<img src="../static/img/xin.png" mode=""></img>
+											已服务
+											<span class="lv_7">{{ item.replynum }}</span>
+											人
+										</div>
+										<div class="ls_pingjia">
+											<img src="../static/img/pingjia.png" mode=""></img>
+											评价
+											<span class="lv_7">{{ item.haopingnum }}</span>
+											人
+										</div>
+									</div>
+								</div>
+							</div>
+						</block>
+					</div>
+					<button type="" class="qian_8 ls_more" onclick="location.href='zhaolvshi.html'">
+						<img src="../static/img/gengduo.png" mode=""></img>
+						查看更多律师>>
+					</button>
+				</div>
 				<div class="index_zixun">
 					<div class="zixun_tab qian_9">
 						<span @click="change(1)" :class="{ hei: btnnum == 1 }">最新解答</span>
@@ -216,54 +264,7 @@
 					查看更多咨询>>
 				</button>
 
-				<div class="tuijian">
-					<div class="tuijian_top"><img src="../static/img/tuijian_title.png" mode=""></img></div>
-					<div class="tuijian_list">
-						<block v-for="item in data.loginlawyer">
-							<div class="tuijian_item">
-								<div class="tuijian_item_left" @click="go_zhuye(item.userid)"><img :src="url + item.photourl" mode=""></img></div>
-								<div class="tuijian_item_right">
-									<div class="ls_name">
-										<div class="ls_name_left hei_9_bold" @click="go_zhuye(item.userid)">
-											{{ item.nickname }}
-											<img src="../static/img/renzheng.png" mode=""></img>
-										</div>
-										<div class="ls_name_right lv_7" @click="tochat(item.userid)">
-											<img src="../static/img/xiaoxi.png" mode=""></img>
-											在线咨询
-										</div>
-									</div>
-									<div class="ls_gongsi hui_7">
-										<span class="bai_7 tese_ls">特色律师</span>
-										{{ item.zhiwu }}
-									</div>
-									<div class="ls_dizhi qian_7">
-										<img src="../static/img/dizhi.png" mode=""></img>
-										{{ item.lvsuo }}
-									</div>
-									<div class="ls_bottom qian_7">
-										<div class="ls_fuwu">
-											<img src="../static/img/xin.png" mode=""></img>
-											已服务
-											<span class="lv_7">{{ item.replynum }}</span>
-											人
-										</div>
-										<div class="ls_pingjia">
-											<img src="../static/img/pingjia.png" mode=""></img>
-											评价
-											<span class="lv_7">{{ item.haopingnum }}</span>
-											人
-										</div>
-									</div>
-								</div>
-							</div>
-						</block>
-					</div>
-					<button type="" class="qian_8 ls_more" onclick="location.href='zhaolvshi.html'">
-						<img src="../static/img/gengduo.png" mode=""></img>
-						查看更多律师>>
-					</button>
-				</div>
+				
 
 				<div class="zhuanti">
 					<div class="index_fazhi hei_10_bold">

@@ -376,7 +376,7 @@
 				onRefresh() { //下拉刷新
 
 					this.page = 0
-					this.is_all = false
+					this.is_all = true
 					this.lslist = []
 					this.dizhi = '不限地区'
 					this.sheng = ''
@@ -480,8 +480,11 @@
 					console.log(data)
 					ajax('/mapi/lawyer/lvshilist', "POST", data, (res) => { // POST或GET请求直接传参
 						this.lslist = this.lslist.concat(res.data.lawyer);
+						
 						if (res.data.lawyer.length < 10) {
 							this.is_all = true;
+						}else{
+							this.is_all = false;
 						}
 						this.loading = false
 						this.isLoading = false

@@ -360,6 +360,8 @@
 							this.remenlist = this.remenlist.concat(res.data.knowledgelist);
 							if (res.data.knowledgelist.length < 10) {
 								this.is_all = true;
+							}else{
+								this.is_all = false;
 							}
 						}
 						this.loading=false

@@ -308,6 +308,8 @@
 
 						if (res.data.bill.length < 10) {
 							this.is_all = true
+						}else{
+							this.is_all = false
 						}
 						this.leixing = res.data.grade
 						this.loading = false
@@ -379,6 +381,7 @@
 					} else {
 						this.sou_time = ''
 					}
+					this.is_all = true
 					this.huoqu_liushui()
 				}
 

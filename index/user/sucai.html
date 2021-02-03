@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="keyword" content="" />
+		<meta name="description" content="" />
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<link rel="stylesheet" type="text/css" href="../css/gonggong.css" />
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vant@2.12/lib/index.css" />
+		<link rel="stylesheet" type="text/css" href="../css/swiper.min.css" />
+		<link rel="stylesheet" type="text/css" href="../css/font.css" />
+		<link rel="stylesheet" type="text/css" href="../css/sucai.css"/>
+		<style>
+	
+		</style>
+	</head>
+	<body>
+
+		<div id="app">
+			<div class="body">
+
+				<div class="head">
+					<div class="head_back">
+						<img src="../static/img/back.png" mode="" onclick="javascript:history.back(-1);" /></img>
+					</div>
+					<div class="head_center hei_12_bold">素材圈</div>
+					<div class=" head_right hei_10_bold">
+					</div>
+				</div>
+	<div class="tab_top hui_8">
+			<span v-for="(item, index) in tab_arry" :class="['', index == active ? 'sucai_active' : '']" @click="qiehuan(index)">{{ item }}</span>
+		</div>
+				<div class="zi_body tab_zi_body">
+					<van-list v-model="loading" :finished="is_all" :immediate-check="false" finished-text="没有更多了" @load="onLoad">
+					
+					
+					<div class="jingxuan_body" v-if="active == 0">
+						<div class="jingxuan_item" v-for="item in zixun_list">
+							<div class="jingxuan_item_top">
+								<div class="jingxuan_item_top_left">
+									<img src="../static/img/xh_tx.png" mode="" class="xh_tx"></img>
+									<div class="jingxuan_item_top_r">
+										<div class="hei_9 jingxuan_item_name">虎哥推荐</div>
+										<div class="qian_7">{{ item.addtime | timeStamp }}</div>
+									</div>
+								</div>
+								<div class="jing_fenxiang lv_7" @click="jingxuan_share()">
+									<img src="../static/img/yijian_fenxiang.png" mode=""></img>
+									一键分享
+								</div>
+							</div>
+				
+							<div class="jingxuan_wenti hei_8">{{ item.information }}</div>
+							<div class="jingxuan_jieda hui_7" v-if="item.consult_reply">
+								<span class="bai_20">精选解答</span>
+								{{ item.consult_reply.information }}
+							</div>
+							<div class="jingxuan_ls" v-if="item.consult_reply">
+								<div class="jingxuan_ls_left">
+									<div class="jingxuan_ls_left_tx">
+										<img :src="img_url + item.consult_reply.photourl" mode="" class="jingxuan_ls_tx"></img>
+										<img src="../static/img/renzheng2.png" mode="" class="jingxuan_ls_ren"></img>
+									</div>
+									<span class="hei_8 jingxuan_ls_name">{{ item.consult_reply.nickname }}律师</span>
+									<span class="hui_7">{{ item.consult_reply.mobile }}</span>
+								</div>
+								<span class="qian_7">{{time(item.consult_reply.addtime)}}</span>
+							</div>
+						</div>
+					</div>
+				
+					<!-- 营销素材 -->
+					<div class="jingxuan_body" v-if="active == 1">
+						<div class="shangxue_list">
+							<div class="shangxue_item" v-for="item in sucai_list">
+								<div class="shangxue_item_left"><img :src="img_url + zhuanhuan(item.picurl)" mode=""></img></div>
+								<div class="shangxue_item_right">
+									<div class="shangxue_item_title hei_8_bold">{{ item.title }}</div>
+									<div class="shangxue_item_time qian_7">
+										<img src="../static/img/shipin_time.png" mode=""></img>
+										{{ time(item.addtime)}}
+									</div>
+								</div>
+							</div>
+						</div>
+				
+						<!-- <div class="jingxuan_item" v-for="item in 5">
+							<div class="jingxuan_item_top">
+								<div class="jingxuan_item_top_left">
+									<img src="../static/img/xh_tx.png" mode="" class="xh_tx"></img>
+									<div class="jingxuan_item_top_r">
+										<div class="hei_9 jingxuan_item_name">虎哥推荐</div>
+										<div class="qian_7">2020-01-05 15:20:14</div>
+									</div>
+								</div>
+								<div class="jing_fenxiang lv_7" >
+									<img src="../static/img/yijian_fenxiang.png" mode=""></img>
+									一键分享
+								</div>
+							</div>
+							<div class="yingxiao_item_bottom">
+								<div class="yingxiao_item_wen hei_28">
+									<span class="bai_7_bold kuang_txt">问</span>
+									死亡理赔一定非要提供火化证明吗？
+								</div>
+								<div class="yingxiao_item_da">
+									<span class="bai_7_bold kuang_txt">答</span>
+									<div class="yingxiao_item_da_item">
+										<div class="yingxiao_item_da_item_top">
+											<div class="yingxiao_item_da_item_t">
+												<div class="yingxiao_item_da_item_tx">
+													<img src="../static/lsimg/moren_tx.png" mode="" class="yingxiao_tx"></img>
+													<img src="../static/img/renzheng2.png" mode="" class="yingxiao_ren"></img>
+												</div>
+												<span class="hei_8 yingxiao_item_name">樊柯律师</span>
+												<span class="hui_7">18938874792</span>
+											</div>
+											<div class="qian_7">
+												您好，关于您的这个问题，我们遇到的比较多，无法 一下子详细说清楚，当面或语音交流更方便，建议您 若有意向找律师的话可直接咨询我们。
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="yingxiao_item_da">
+									<span class="bai_7_bold kuang_txt">答</span>
+									<div class="yingxiao_item_da_item">
+										<div class="yingxiao_item_da_item_top">
+											<div class="yingxiao_item_da_item_t">
+												<div class="yingxiao_item_da_item_tx">
+													<img src="../static/lsimg/moren_tx.png" mode="" class="yingxiao_tx"></img>
+													<img src="../static/img/renzheng2.png" mode="" class="yingxiao_ren"></img>
+												</div>
+												<span class="hei_8 yingxiao_item_name">樊柯律师</span>
+												<span class="hui_7">18938874792</span>
+											</div>
+											<div class="qian_7">
+												您好，关于您的这个问题，我们遇到的比较多，无法 一下子详细说清楚，当面或语音交流更方便，建议您 若有意向找律师的话可直接咨询我们。
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div> -->
+					</div>
+				
+					<!-- 分享海报 -->
+					<div class="jingxuan_body sucai_body" v-if="active == 2">
+						<div class="lunbo">
+							<swiper
+								:indicator-dots="false"
+								:autoplay="false"
+								circular="true"
+								easing-function="default"
+								:interval="5000"
+								indicator-color="#c7c7c7"
+								indicator-active-color="#ffffff"
+								:duration="500"
+								class="swiper"
+								@change="swiperchang"
+							>
+								<swiper-item v-for="item in banner">
+									<div class="swiper-item">
+										<img :src="item.img"></img>
+										<div class="yaoqing_kuling">邀请口令:{{ yaoqing.randcode1 }}</div>
+										<div class="yaoqing_erweima"><img src="../static/img/erweima.png" mode=""></img></div>
+									</div>
+								</swiper-item>
+							</swiper>
+				
+							<div class="dots">
+								<block v-for="(item, index) in banner"><div :class="['dot', index == current ? 'active' : '']"></div></block>
+							</div>
+						</div>
+						<div class="haibao_bottom">
+							<div class="haibao_bottom_left hei_7" @click="copy">
+								<img src="../static/img/haibao_lian.png" mode=""></img>
+								复制分享链接
+							</div>
+							<div class="haibao_bottom_right bai_7">
+								<img src="../static/img/haibao_fen.png" mode=""></img>
+								分享专属海报
+							</div>
+						</div>
+					</div>
+				
+					<!-- 商学院 -->
+					<div class="jingxuan_body " v-if="active == 3">
+						<div class="shangxue_list">
+							<div class="shangxue_item" v-for="item in shangxue_list">
+								<div class="shangxue_item_left"><img :src="img_url + item.picurl" mode=""></img></div>
+								<div class="shangxue_item_right">
+									<div class="shangxue_item_title hei_8_bold">
+										<span>置顶</span>
+										{{ item.title }}
+									</div>
+									<div class="shangxue_item_time qian_7">
+										<img src="../static/img/shipin_time.png" mode=""></img>
+										{{ item.addtime | timeStamp }}
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					</van-list>	
+					
+				</div>
+
+
+
+
+			</div>
+
+
+
+		</div>
+
+	</body>
+	<script src="../js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../js/vue.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../js/http.js" type="text/javascript" charset="utf-8"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vant@2.12/lib/vant.min.js"></script>
+	<script src="../js/get.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		var app = new Vue({
+			el: "#app",
+			data() {
+				return {
+					img_url: window.localStorage.getItem('img_url'),
+					tab_arry: ['精选回答', '营销素材', '分享海报', '商学院'],
+					active: 0,
+					page: 0,
+					is_all: false,
+					zixun_list: [],
+					banner: [
+						{
+							img: '../../static/img/haibao1.png'
+						},
+						{
+							img: '../../static/img/haibao2.png'
+						}
+					],
+					current: 0,
+					shangxue_list: [],
+					yaoqing: '',
+					sucai_list: [],
+					loading: false, //是否处于加载状态
+				
+				}
+			},
+
+			created() {
+
+               if($_GET.state){
+					
+					this.active = $_GET.state;
+					if ($_GET.state == 1) {
+						this.huoqu_sucai();
+					}
+					
+				}
+                      this.huoqu_jingxuan();
+		              this.huoqu_yaoqing();
+
+			},
+			methods: {
+				onLoad() {
+                     console.log('下拉加载')
+					if (this.is_all) {
+						vant.Toast('已加载全部');
+					} else {
+						this.page++;
+						if (this.active == 0) {
+							this.huoqu_jingxuan();
+						} else if (this.active == 3) {
+							this.huoqu_shangxue();
+						}
+						this.huoqu_jingxuan();
+					}
+				},
+				huoqu_jingxuan() {
+					var data = {
+						page: this.page
+					}
+					ajax('/mapi/extension/huifu', "POST", data, (res) => { // POST或GET请求直接传参
+						this.zixun_list = this.zixun_list.concat(res.data.consultlist);
+						if (res.data.consultlist.length < 10) {
+							this.is_all = true;
+						}
+					}, function(err) {
+
+						console.log("err", err);
+					})
+				},
+				huoqu_shangxue() {
+					var data = {
+						page: this.page
+					}
+					ajax('/mapi/extension/shangxueyuanlist', "POST", data, (res) => { // POST或GET请求直接传参
+						this.shangxue_list = this.shangxue_list.concat(res.data.shangxueyuanlist);
+						if (res.data.shangxueyuanlist < 10) {
+							this.is_all = true;
+							
+						}else{
+							this.is_all = false
+						}
+					}, function(err) {
+				
+						console.log("err", err);
+					})
+				},
+				huoqu_yaoqing() {
+					var data = {
+						page: this.page
+					}
+					ajax('/mapi/user/yaoqing', "POST", data, (res) => { // POST或GET请求直接传参
+						this.yaoqing = res.data;
+					}, function(err) {
+				
+						console.log("err", err);
+					})
+				},
+				huoqu_sucai() {
+					var data = {
+						page: this.page
+					}
+					ajax('/mapi/extension/yingxiaosucailist', "POST", data, (res) => { // POST或GET请求直接传参
+						this.sucai_list = this.sucai_list.concat(res.data.yingxiaosucailist);
+						if (res.data.yingxiaosucailist.length < 10) {
+							this.is_all = true;
+						}else{
+							this.is_all = false
+						}
+					}, function(err) {
+				
+						console.log("err", err);
+					})
+				},
+				zhuanhuan(img) {
+					return JSON.parse(img)[0];
+				},
+				// 切换tab
+				qiehuan(index) {
+					this.active = index;
+				
+					this.page = 0;
+					this.zixun_list = [];
+					this.shangxue_list = [];
+					this.sucai_list = [];
+					this.is_all = true;
+					if (index == 0) {
+						this.huoqu_jingxuan();
+					} else if (index == 1) {
+						this.huoqu_sucai();
+					} else if (index == 3) {
+						this.huoqu_shangxue();
+					}
+				},
+				copy() {
+					// #ifdef H5
+					this.$copyText(this.yaoqing.inviteurl).then(res => {
+						uni.showToast({
+							title: '复制成功'
+						});
+					});
+					// #endif
+					// #ifdef APP-PLUS
+					uni.setClipboardData({
+						data: this.yaoqing.inviteurl,
+						success: () => {
+							uni.showToast({
+								title: '复制成功'
+							});
+						}
+					});
+					// #endif
+				},
+				swiperchang(e) {
+					this.current = e.detail.current;
+				},
+				jingxuan_share() {
+					
+				},
+	go_zhuye(lawyerid) {
+
+			location.href='../lawyer/index.html?lawyerid='+lawyerid
+		},
+
+
+
+			}
+		})
+	</script>
+
+</html>

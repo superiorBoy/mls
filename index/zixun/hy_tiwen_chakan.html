@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="keyword" content="" />
+		<meta name="description" content="" />
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<link rel="stylesheet" type="text/css" href="../css/gonggong.css" />
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vant@2.12/lib/index.css" />
+		<link rel="stylesheet" type="text/css" href="../css/swiper.min.css" />
+		<link rel="stylesheet" type="text/css" href="../css/font.css" />
+
+		<style>
+		html {
+			background-color: #f7f7f7;
+		}
+		
+		.head {
+			border-bottom: 1px solid #e8e8e8;
+		}
+		
+		.wenti {
+			padding: 0.625rem 0.9375rem;
+			background-color: #ffffff;
+			margin-bottom: 0.625rem;
+		}
+		.wenti_top {
+			display: flex;
+			align-items: center;
+		}
+		.wenti_top img {
+			width: 3.0625rem;
+			height: 3.0625rem;
+			margin-right: 0.75rem;
+			border-radius: 100%;
+		}
+		.wenti_zhankai {
+			display: flex;
+			align-items: center;
+			justify-content: flex-end;
+			margin-top: 0.125rem;
+		}
+		
+		.wenti_zhankai img {
+			width: 0.875rem;
+			height: 0.5625rem;
+			margin-left: 0.125rem;
+		}
+		.zhuan {
+			transform: rotate(180deg);
+			-ms-transform: rotate(180deg); /* IE 9 */
+			-moz-transform: rotate(180deg); /* Firefox */
+			-webkit-transform: rotate(180deg); /* Safari 和 Chrome */
+			-o-transform: rotate(180deg); /* Opera */
+			transition: all 0.5s ease-in-out;
+		}
+		
+		.zhankai {
+			/* zhakai */
+			word-break: break-all;
+			margin: 0.5rem 0 0;
+		}
+		
+		.zhankai_none {
+			height: 1.25rem;
+			overflow: hidden;
+		}
+		
+		.huida_num {
+			height: 2.8125rem;
+			line-height: 2.8125rem;
+			background-color: #ffffff;
+			border-bottom: 1px solid #f7f7f7;
+			padding: 0 0.9375rem;
+		}
+		.none {
+			text-align: center;
+		}
+		.none img {
+			width: 5.8125rem;
+			height: 5rem;
+			margin:2.6875rem 0 0;
+		}
+		.zanwu_txt {
+			margin: 0.5rem 0;
+		}
+		.huiqu_huifu {
+			text-decoration: underline;
+		}
+		.ls_list {
+			padding: 0 0.9375rem;
+			background-color: #ffffff;
+		}
+		
+		.ls_item {
+			/* display: flex; */
+			justify-content: space-between;
+			padding: 0.9375rem 0 0;
+		}
+		.ls_item_top {
+			display: flex;
+			position: relative;
+		}
+		.guanzhu{
+			position: absolute;
+			right: 0;
+				width: 3.125rem;
+				height: 1.125rem;
+				background-color: #cccccc;
+				border-radius: 0.125rem;
+				line-height: 1.125rem;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				text-align: center;
+		}
+		.yiguanzhu{
+			position: absolute;
+			right: 0;
+				width: 3.125rem;
+				height: 1.125rem;
+				background-color: #f43a51;
+				border-radius: 0.125rem;
+				text-align: center;
+				line-height: 1.125rem;
+				
+		}
+		.caina{
+			position: absolute;
+			left: 4.6875rem;
+			top:0.625rem;
+		}
+		.caina img{
+			width: 2.5625rem;
+			height: 2.25rem;	
+		}
+		.guanzhu img{
+				width: 0.75rem;
+				height: 0.625rem;
+				margin-right:1px;
+		}
+		.ls_item_top_tx {
+			width: 3rem;
+			height: 3rem;
+			margin-right: 0.75rem;
+			position: relative;
+		}
+		.ls_item .ls_item_top_tx_img {
+			width: 100%;
+			height: 100%;
+			border-radius: 100%;
+		}
+		.ls_item_top_tx_ren {
+			position: absolute;
+			bottom: 0px;
+			right: 0.3125rem;
+			width: 0.5rem;
+			height: 0.5rem;
+			border: 1px;
+			background-color: #ffffff;
+			border-radius: 100%;
+		}
+		.ls_item_right_top {
+		}
+		
+		.ls_item_right_bottom {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+		}
+		.huida_txt {
+			display: inline-block;
+			white-space: normal;
+			word-break: break-all;
+			margin: 0.375rem 0;
+		}
+		.ls_item_right_bottom_list {
+			
+		}
+		.zhuiwen {
+			width: 2.375rem;
+			height: 1.375rem;
+			background-color: #0eb77e;
+			border-radius: 0.6875rem;
+			text-align: center;
+			line-height: 1.375rem;
+		}
+		
+		.ls_item_right {
+			
+		}
+		
+		.mianfei {
+			width: 3.625rem;
+			height: 0.9375rem;
+			background-color: #cccccc;
+			border-radius: 0.125rem;
+			display: inline-block;
+			text-align: center;
+			line-height: 0.9375rem;
+			margin-left: 0.3125rem;
+		}
+		.get_more {
+			height: 2.8125rem;
+			background-color: #dcdcdc;
+			line-height: 2.8125rem;
+			text-align: center;
+		}
+		.zhui_list {
+			margin-bottom: 0.1875rem;
+			padding-left: 3.8125rem;
+			margin-top: 0.625rem;
+		}
+		.zhuiwen_txt {
+			border: 1px solid #eeeeee;
+			padding: 0px 0.1875rem;
+			line-height: 1rem;
+			height: 1rem;
+			border-radius: 0.4375rem;
+		
+			
+			background-color: #ffffff;
+		}
+		.zhui_item {
+			display: flex;
+			align-items: flex-start;
+			margin-bottom: 0.25rem;
+		}
+		.zhui_item_xq {
+			border-top: 1px solid #dcdcdc;
+			width: 100%;
+			padding: 0.75rem 0 0;
+		}
+		
+		.zhui_item:first-child {
+			margin-top: 0.125rem;
+		}
+		.zhuiwen_body {
+			max-width: 100%;
+			line-height:1.0625rem;
+			
+			white-space: normal;
+			word-break: break-all;
+			margin: 0.625rem 0;
+		}
+		
+		.tiwen_item_center {
+			display: flex;
+			align-items: center;
+			margin:0.5625rem 0 0.3125rem;
+			justify-content: space-between;
+		}
+		
+		.tiwen_item_dizhi img {
+			width: 0.5625rem;
+			height:0.625rem;
+			margin-right: 0.25rem;
+		}
+		.tiwen_item_biaoqian {
+		}
+		.tiwen_item_biaoqian img {
+			width: 0.625rem;
+			height: 0.625rem;
+			margin-right: 0.25rem;
+		}
+		
+		.tiwen_item_shijian img {
+			width: 0.625rem;
+			height: 0.625rem;
+			margin-right: 0.25rem;
+		}
+		.zhui_item_xq_top {
+			display: flex;
+		}
+		
+		.tiwen_caozuo {
+			display: flex;
+			justify-content: flex-end;
+			
+			border-bottom: 1px solid #dcdcdc;
+			padding-bottom: 0.9375rem;
+			
+		}
+		.zhuiwen_caozuo {
+			height: 1.875rem;
+			background-color: #ffffff;
+			border-radius: 0.9375rem;
+			border: solid 1px #0eb77e;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			margin-left: 0.5rem;
+		}
+		.zhuiwen_caozuo:first-child{
+			margin-left: 0;
+		}
+		.zhuiwen_caozuo img {
+			margin-right: 0.3125rem;
+		}
+		.zhuiwen_txt,
+		.pingjia_txt {
+			width:4.375rem;
+		}
+		.caina_txt,
+		.lianxi_txt {
+			width: 5.625rem;
+		}
+		.ls_item_name{
+			margin: 0.375rem 0 0.1875rem;
+		}
+		.tan{
+				width: 21.5rem;
+				height: 17.0625rem;
+				background-color: #ffffff;
+				border-radius: 0.1875rem;
+		}
+		.tan_title{
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			padding: 0 1.1875rem;
+			height: 3.3125rem;
+			font-size: 1.1875rem;
+			color: #0eb77e;
+		}
+		.tan_title img{
+			width: 0.8125rem;
+				height: 0.8125rem;
+		}
+		.tan_bottom{
+			padding: 0 0.625rem;
+		}
+		.tan_bottom textarea{
+			height: 6.75rem;
+				background-color: #ffffff;
+				border: solid 1px #cccccc;
+				padding: 0.625rem;
+				box-sizing: border-box;
+				margin: 0;
+				width: 100%;
+		}
+		.tan_bottom_btn{
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			margin-top: 2.5625rem;
+		}
+		.quxiao{
+				width: 6.6875rem;
+				height:2.5rem;
+				background-color: #c6c6c6;
+				border-radius: 1.25rem;
+				line-height: 2.5rem;
+				margin: 0 1.125rem 0 0px;
+		}
+		.go_zhuiwen{
+			width: 6.6875rem;
+				height: 2.5rem;
+				background-color: #0eb77e;
+				border-radius: 1.25rem;
+				line-height:2.5rem;
+				margin: 0;
+		}
+		.tan_shang{
+				width: 21.5rem;
+				height: 19.75rem;
+				background-color: #ffffff;
+				border-radius: 0.1875rem;
+		}
+		.tan_shang .quxiao{
+			margin: 0 0 0 1.125rem;
+			}
+		.tan_shang .tan_title{
+			border-bottom: 1px solid #ececec;
+		}
+		.tan_shang_bottom{
+			text-align: center;
+			
+		}
+		.tan_shang_txt{
+			line-height: 3.125rem;
+		}
+		.tan_shang .tan_bottom_btn{
+			margin-top: 1.25rem;
+			border-top: 1px solid #ececec;
+			padding-top: 1.875rem;
+		}
+		.tan_ls_top{
+				width:2.9375rem;
+				height:2.9375rem;
+				position: relative;
+				margin: 0 auto;
+		}
+		.tan_ls_top_img {
+			width: 100%;
+			height: 100%;
+			border-radius: 100%;
+		}
+		.tan_ls_top_ren{
+			background-color: #FFFFFF;
+			width: 0.5rem;
+				height: 0.5rem;
+				border-radius: 100%;
+				border: 1px solid #FFFFFF;
+				position: absolute;
+				right: 0;
+				bottom: 0;
+		}
+		.tan_ls_name{
+			margin: 0.25rem 0;
+		}
+		a{
+			color: #0eb77e;
+		}
+		</style>
+	</head>
+	<body>
+
+		<div id="app">
+			<div class="body">
+
+				<div class="head">
+					<div class="head_back">
+						<img src="../static/img/back.png" mode="" onclick="javascript:history.back(-1);"></img>
+					</div>
+					<div class="head_center hei_12_bold">咨询详情</div>
+					<div class="head_right hei_9_bold" onclick="javascript:history.back(-1);">
+						提问记录
+					</div>
+				</div>
+			
+				<div class="zi_body ">
+					<div class="wenti hei_8" v-if="xinxi">
+						<div class="wenti_top">
+							<img :src="img_url + data.user.photourl" mode=""></img>
+							{{ data.user.nickname }}
+						</div>
+						<div class="" :class="['', is_zhankai ? 'zhankai' : 'zhankai']">{{ xinxi.information }}</div>
+						<div class="tiwen_item_center qian_7">
+							<div class="tiwen_item_biaoqian" v-if="fenlei != ''">
+								<img src="../static/img/biaoqian.png" mode=""></img>
+								{{ fenlei[xinxi.typeid].typename }}
+							</div>
+							<div class="tiwen_item_dizhi">
+								<img src="../static/img/dizhi.png" mode=""></img>
+								{{ xinxi.province }}-{{ xinxi.city }}
+							</div>
+							<div class="tiwen_item_shijian">
+								<img src="../static/lsimg/shijian_icon.png" mode=""></img>
+								{{time(xinxi.addtime)}}
+							</div>
+						</div>
+						<!-- 	<div class="wenti_zhankai lv_8" @click="zhan">
+							{{is_zhankai?'收起':'展开'}}
+							<img src="../static/img/zhankai.png" mode="" :class="is_zhankai?'zhuan':''"></img>
+						</div> -->
+					</div>
+				
+					<div class="none" v-if="huifu_list.length == 0">
+						<img src="../static/img/tiwen_no_huifu.png" mode=""></img>
+						<div class="qian_9 zanwu_txt">暂无回复</div>
+						<div class="lv_8 huiqu_huifu">如何快速获取律师回复</div>
+					</div>
+				
+					<div class="huida_num hei_8" v-if="huifu_list.length != 0">
+						共
+						<span class="hong_8">{{ data.consult_replycount }}</span>
+						位律师回复
+					</div>
+					<div class="ls_list" v-if="huifu_list.length != 0">
+						<div class="ls_item" v-for="item in huifu_list">
+							<div class="ls_item_top">
+								<div class="ls_item_top_tx">
+									<img :src="img_url + item.photourl" mode="" class="ls_item_top_tx_img" @click="go_zhuye(item.userid)"></img>
+									<img src="../static/img/renzheng2.png" mode="" class="ls_item_top_tx_ren"></img>
+								</div>
+								<div class="ls_item_right_top">
+									<div class="hei_9 ls_item_name" @click="go_zhuye(item.userid)">{{ item.nickname }}律师</div>
+				
+									<div class="qian_7">
+										已解答
+										<span class="lv_7">131313</span>
+										次
+									</div>
+								</div>
+								<div class="caina" v-if="data.consult.lawyerid==item.userid">
+									<img src="../static/img/caina.png" mode=""></img>
+								</div>
+								<div class="guanzhu bai_7"v-if="item.guanzhu==2" @click="guanzhu(item.userid)">
+								<img src="../static/img/guan_no.png" mode=""></img>	关注
+								</div>
+								<div class="yiguanzhu bai_7"v-if="item.guanzhu==1" >
+								      已关注
+								</div>
+							</div>
+				
+							<div class="ls_item_right">
+								<div class="ls_item_right_bottom_list">
+									<span class="hui_8 huida_txt">{{ item.information }}</span>
+								</div>
+								<div class="qian_7">
+									{{time(item.addtime)}}
+									<span style="margin-left: 0.3125rem;">回复</span>
+								</div>
+								<div class="ls_item_right_bottom">
+									<!-- <div class="ls_item_right_bottom_list">
+									<span class="qian_26 huida_txt">{{item.information}}</span>
+									</div> -->
+									<!-- 	<div class="zhuiwen bai_7" @click="zhuiwen(item.userid,item.crid)">
+										追问
+									</div> -->
+								</div>
+							</div>
+							<div class="zhui_list">
+								<div class="zhui_item" v-for="zhui_item in item.zhuiwen">
+									<div class="zhui_item_xq" v-if="zhui_item.type == 1">
+										<div class="zhui_item_xq_top">
+											<div class="ls_item_top_tx"><img :src="img_url + data.user.photourl" mode="" class="ls_item_top_tx_img"></img></div>
+											<div class="ls_item_right_top">
+												<div class="hei_9 ls_item_name" @click="go_zhuye(item.userid)">{{ data.user.nickname }}</div>
+				
+												<div class="qian_7">{{ item.addtime | timeStamp }}</div>
+											</div>
+										</div>
+										<div class="zhuiwen_body hui_8">
+											{{ zhui_item.information }}
+										</div>
+									</div>
+									<div class="zhui_item_xq" v-if="zhui_item.type == 2">
+										<div class="zhui_item_xq_top">
+											<div class="ls_item_top_tx">
+												<img :src="img_url + item.photourl" mode="" class="ls_item_top_tx_img" @click="go_zhuye(item.userid)"></img>
+												<img src="../static/img/renzheng2.png" mode="" class="ls_item_top_tx_ren"></img>
+											</div>
+											<div class="ls_item_right_top">
+												<div class="hei_9 ls_item_name" @click="go_zhuye(item.userid)">{{ item.nickname }}律师</div>
+				
+												<div class="qian_7">{{ item.addtime | timeStamp }}</div>
+											</div>
+										</div>
+										<div class="zhuiwen_body hui_8">
+											{{ zhui_item.information }}
+										</div>
+									</div>
+				
+									<!-- <span class="zhuiwen_txt qian_20">{{ zhui_item.type == 1 ? '追问' : '追答' }}</span> -->
+								</div>
+							</div>
+				
+							<div class="tiwen_caozuo lv_8">
+								<div class="zhuiwen_caozuo zhuiwen_txt" @click="tan(item.crid)" v-if="data.consult.tiwenstate!=4"><img src="../static/img/wen_zhui.png" mode="" style="width: 0.8125rem;height:0.8125rem;"></img>追问</div>
+								<div class="zhuiwen_caozuo caina_txt"@click="xuanshang_tan(item.userid,item.photourl,item.nickname,item.replynum)" v-if="data.consult.tiwenstate==2"><img src="../static/img/wen_caina.png" mode="" style="width: 0.75rem;height: 0.875rem;"></img>采纳悬赏</div>
+							   <a :href="'../lawyer/index.html?lawyerid='+item.userid" class="zhuiwen_caozuo lianxi_txt">
+								<img src="../static/img/wen_zaixian.png" mode="" style="width: 0.875rem;height: 0.875rem;"></img>在线联系
+								</a>
+							    <a :href="'../lawyer/pingjia.html?lawyerid='+item.userid" class="zhuiwen_caozuo pingjia_txt">
+								<img src="../static/img/wen_pingjia.png" mode="" style="width: 0.875rem;height: 0.875rem;"></img>评价
+							    </a>
+							</div>
+						</div>
+					</div>
+					<div class="get_more hei_8" @click="get_more()" v-if="!is_all">查看更多></div>
+				</div>
+
+	<van-popup v-model="tan_show1" round position="center">
+		<div class="tan">
+			<div class="tan_title">
+				<span></span><span>追问</span> <img src="../static/img/tan_close.png" mode=""  @click="xiao1"></img>
+			</div>
+			<div class="tan_bottom">
+				<textarea value="" placeholder="" class="hei_8" v-model="hui_txt"/></textarea>
+				<div class="tan_bottom_btn">
+					<button type="" class="quxiao bai_9"  @click="xiao1">取消</button>
+					<button type="" class="go_zhuiwen bai_9" @click="send()">确认追问</button>
+				</div>	
+			</div>
+		</div>
+		</van-popup>
+
+
+<van-popup v-model="tan_show2" round position="center">
+			<div class="tan_shang">
+				<div class="tan_title">
+					<span></span><span>采纳悬赏</span> <img src="../static/img/tan_close.png" mode=""  @click="xiao2"></img>
+				</div>
+				<div class="tan_shang_bottom">
+					
+					<div class="hei_9 tan_shang_txt">
+						确认采纳{{shang_name}}律师的回答内容做为悬赏吗？
+					</div>
+					<div class="tan_ls">
+						<div class="tan_ls_top">
+							<img :src="img_url+shang_img" mode="" class="tan_ls_top_img"></img>
+							<img src="../static/img/renzheng2.png" mode="" class="tan_ls_top_ren"></img>
+						</div>
+						<div class="tan_ls_name">
+							{{shang_name}}律师
+						</div>
+						<div class="qian_7">
+							已解答 <span class="lv_7">{{replynum}}</span>次
+						</div>
+					</div>
+					
+					<div class="tan_bottom_btn">
+						<button type="" class="go_zhuiwen bai_9" @click="shang()">确认采纳</button>
+						<button type="" class="quxiao bai_9" @click="xiao2">取消</button>
+					</div>	
+				</div>
+			</div>
+		</van-popup>
+
+			</div>
+
+
+
+
+		</div>
+
+	</body>
+	<script src="../js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../js/vue.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../js/http.js" type="text/javascript" charset="utf-8"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vant@2.12/lib/vant.min.js"></script>
+    <script src="../js/get.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		var app = new Vue({
+			el: "#app",
+			data() {
+				return {
+					img_url: window.localStorage.getItem('img_url'),
+                   is_zhankai: true,
+                   shujv: true,
+                   is_all: false,
+                   xinxi: '',
+                   wenid: '',
+                   huifu_list: [],
+                   data: '',
+                   zhuanchang_arry: [],
+                   crid:'',
+                   hui_txt:'',
+                   consultid:'',
+                   fenlei:'',
+                   shang_id:'',
+                   shang_name:'',
+                   shang_img:'',
+                   replynum:0,
+				   tan_show2:false,
+				   tan_show1:false
+				}
+			},
+			ready: function() {
+
+
+			},
+			created() {
+				
+                   if($_GET.consultid){
+					   this.consultid=$_GET.consultid
+					   
+					   this.huoqu_type()
+				   } 
+
+			},
+			methods: {
+				
+				
+				huoqu_type(){
+					ajax('/mapi/index/gettype', "POST", '', (res) => { // POST或GET请求直接传参
+						this.fenlei = res.data.type;
+					    this.huoqu_xq()
+						
+					}, function(err) {
+						console.log("err", err);
+					})  
+				},
+			   huoqu_xq(){
+				   var data={
+					   consultid: this.consultid
+				   }
+				 ajax('/mapi/consult/zixun_xq', "POST", data, (res) => { // POST或GET请求直接传参
+				 	this.xinxi = res.data.consult;
+				 	this.data = res.data;
+				 	this.huifu_list = res.data.consult_reply;
+				 	if (res.data.consult_replycount < 5) {
+				 		this.is_all = true;
+				 	}
+				     
+				 }, function(err) {
+				 	console.log("err", err);
+				 })  
+			   },
+		// 底部弹窗
+		tan(crid) {
+			this.crid=crid
+			this.tan_show1=true
+		},
+	// 悬赏弹窗
+		xuanshang_tan(userid,img,name,replynum) {
+			this.shang_id=userid
+			this.shang_name=name
+			this.shang_img=img
+			this.replynum=replynum
+			this.tan_show2=true
+		},
+		xiao1(){
+			this.tan_show1=false
+		},
+		xiao2(){
+			this.tan_show2=false
+		},	
+		// 添加追问
+		send(){
+			if(this.hui_txt==''){
+				vant.Toast('请输入回复内容')
+				return false
+			}
+			var data={
+				crid: this.crid,
+				txt:this.hui_txt
+			}
+			ajax('/index/zixun/zhuiwen', "POST", data, (res) => { // POST或GET请求直接传参
+				if(res.code==0){
+					vant.Toast('回复成功')
+					this.tan_show1=false
+					this.huoqu_xq()
+				}
+			}, function(err) {
+				console.log("err", err);
+			})  
+			console.log(this.hui_txt,this.crid)
+		},	
+		// 关注
+		guanzhu(lawyerid){
+		
+			var data={
+				lawyerid: lawyerid
+			}
+			ajax('/mapi/index/guanzhu', "POST", data, (res) => { // POST或GET请求直接传参
+				if(res.code==0){
+					vant.Toast(''+res.message)
+					
+					this.huoqu_xq()
+				}
+			}, function(err) {
+				console.log("err", err);
+			})  
+			console.log(this.hui_txt,this.crid)
+		},	
+
+			
+          
+			
+			
+				go_chat(lawyerid) {
+					location.href = 'hy_zaixianchat.html?lawyerid=' + lawyerid
+				},
+
+
+
+			}
+		})
+	</script>
+
+</html>
