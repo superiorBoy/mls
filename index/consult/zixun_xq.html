@@ -572,6 +572,9 @@
 				go_lvshi() {
 					window.location.href='../index/zhaolvshi.html'
 				},
+				go_zhuye(lawyerid){
+					location.href='../lawyer/index.html?lawyerid='+lawyerid
+				},
 	
         go_index() {
 			window.location.href='../index/index.html'
@@ -581,16 +584,15 @@
 			// uni.navigateTo({
 			// 	url:'sucai?state=1'
 			// })
+			location.href='../user/sucai.html'
 		},
 		go_chat(lawyerid){
-			if(this.tiao_type==1){
-				uni.navigateTo({
-					url:'chat?lawyerid='+lawyerid
-				})
-			}else{
-				uni.navigateTo({
-					url:'ls_zhuye?lawyerid='+lawyerid
-				})
+			if (this.tiao_type == 1) {
+							
+				location.href='../zixun/hy_zaixianchat.html?lawyerid='+lawyerid
+			} else {
+				location.href='../lawyer/index.html?lawyerid='+lawyerid
+				
 			}
 		},
 			}

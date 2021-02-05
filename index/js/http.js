@@ -10,13 +10,25 @@
                 
             },
             success: function (res) {
+				if(typeof(res)=="string"){
+					var resp=JSON.parse(res)
+					if(resp.message == '请先登录' || resp.msg == '请先登录'){
+						location.href='../login/login.html'
+					}
+				}else{
+					if(res.message == '请先登录' || res.msg == '请先登录'){
+						
+						location.href='../login/login.html'
+					}
+				}
+				
 				if(res.code==0){
 					successfn(res);
 				}else{
 					vant.Toast(''+res.message);
 					successfn(res);
 				}
-                
+
             },
             error: function (res) {
                 errorfn(res);            
@@ -71,3 +83,4 @@
 			     var data= str.replace(/&(lt|gt|nbsp|amp|quot);/ig,function(all,t){return arrEntities[t];}); 
 				return removeHTMLTag(data)
 				} 
+				

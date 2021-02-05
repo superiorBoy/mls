@@ -246,8 +246,8 @@
 				</div>
 
 				<div class="jine_list qian_9">
-					<div class="" v-for="(item, index) in jine_arry" :class="['jine_item', index == xuan_index ? 'xuan_active' : '']"
-					 @click="xuan(index)">
+					<div class="" v-for="(item, index) in jine_arry" :class="['jine_item',  money == item ? 'xuan_active' : '']"
+					 @click="xuan(index)" v-if="item!=0">
 						<img src="../static/img/qian_on.png" mode="" class="qian_on"></img>
 						<img src="../static/img/qian_no.png" mode="" class="qian_no"></img>
 						{{ item }}元
@@ -281,14 +281,14 @@
 			el: "#app",
 			data() {
 				return {
-					jine_arry: ['3.00', '5.00', '10.00', '20.00'],
+					jine_arry: [],
 					xuan_index: 0,
 					data: '',
 					consultid: '',
 					fenlei_arry: [],
 					laiyuan:2,
 					leibie_arry:[],
-
+                    money:''
 				}
 			},
 			created() {
@@ -320,20 +320,43 @@
 						console.log("err", err);
 					})
 				}
+				this.huoqu_xuanshang_num()
 			},
 			methods: {
+				huoqu_xuanshang_num() {
+					
+					ajax('/mapi/index/getxuanshang', "POST", '', (res) => { // POST或GET请求直接传参
+						var array = [];
+						for (var key in res.data.zhan) {
+							
+							array.push(res.data.zhan[key]);
+						}
+						this.jine_arry=array
+						this.money=res.data.zhan.xuanshang1
+					}, function(err) {
+						console.log("err", err);
+					})
+				},
 				huoqu_xq() {
 					var data = {
 						consultid: this.consultid
 					}
 					ajax('/mapi/consult/zixun_xq', "POST", data, (res) => { // POST或GET请求直接传参
 						this.data = res.data.consult
+						if(this.jine_arry.includes(res.data.consult.paymoney)){
+							this.money=res.data.consult.paymoney
+						}else{
+							
+						}
+						
 					}, function(err) {
 						console.log("err", err);
 					})
 				},
 				xuan(index) {
 					this.xuan_index = index;
+					this.money=this.jine_arry[index]
+					
 				},
 				// 获取分类
 				huoqu_fenlei() {

@@ -339,8 +339,8 @@
 										</div>
 									</div>
 									<div class="zixun_item_leixing hui_8" v-if="fenlei">
-										<text v-if="item.typeid">咨询类型：{{ fenlei[item.typeid].typename }}</text>
-										<text class="hong_8 zixun_item_jiage">￥{{item.paymoney}}/{{item.zixunshicahng==24?'1天':item.zixunshicahng==72?'3天':item.zixunshicahng==720?'1个月':item.zixunshicahng+'小时'}}</text>
+										<span v-if="item.typeid">咨询类型：{{ fenlei[item.typeid].typename }}</span>
+										<span class="hong_8 zixun_item_jiage">￥{{item.paymoney}}/{{item.zixunshicahng==24?'1天':item.zixunshicahng==72?'3天':item.zixunshicahng==720?'1个月':item.zixunshicahng+'小时'}}</span>
 									</div>
 									<div class="zixun_item_top_bottom">
 										<div class="fukuan lv_8" v-if="item.zixunstate == 1" @click="pay(item.lawyerid,item.consultid,item.baojiamode)">
@@ -508,10 +508,13 @@
 				},
 				pay(lawyerid,consultid,baojiamode){
 						
-					if(baojiamode='zhineng_zaixian'){
+						
+					if(baojiamode=='zhineng_zaixian'){
+						
 						location.href='../consult/zhineng_pay.html?type=1&consultid='+consultid
 					}else{
-						location.href='../consult/zixun_pay.html?consultid='+consultid
+						
+						location.href='../consult/zixun_pay.html?type=1&consultid='+consultid+'&lawyerid='+lawyerid
 					}
 				},
 				// 切换tab

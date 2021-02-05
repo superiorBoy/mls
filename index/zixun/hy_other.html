@@ -533,10 +533,9 @@
 					this.tan_show = true
 				},
 
-				pay(id, consultid) {
-					uni.navigateTo({
-						url: 'pay?lawyerid=' + id + '&type=1' + '&consultid=' + consultid
-					})
+				pay(lawyerid, consultid) {
+					
+					location.href='../consult/zixun_pay.html?lawyerid='+lawyerid+'&consultid='+consultid
 				},
               go_pingjia(lawyerid){
 				  location.href='../lawyer/pingjia.html?lawyerid='+lawyerid

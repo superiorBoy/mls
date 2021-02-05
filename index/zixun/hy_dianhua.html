@@ -532,15 +532,13 @@
 						console.log("err", err);
 					})
 				},
-				go_zhuye(id) {
-					uni.navigateTo({
-						url: 'ls_zhuye?lawyerid=' + id
-					});
+				go_zhuye(lawyerid) {
+
+					location.href='../lawyer/index.html?lawyerid='+lawyerid
 				},
-				go_chat(id) {
-					uni.navigateTo({
-						url: 'chat?lawyerid=' + id
-					})
+				go_chat(lawyerid) {
+				
+					location.href='../zixun/hy_zaixianchat.html?lawyerid='+lawyerid
 				},
 				xq(consultid) {
                      location.href='hy_dianhua_xq.html?consultid='+ consultid

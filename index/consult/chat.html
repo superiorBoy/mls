@@ -270,7 +270,7 @@
 							<span class="hei_9_bold" style="margin-right: 0.75rem;">悬赏提问</span>
 							<span class="hong_8">
 								￥
-								<span class="hong_12_bold">3</span>
+								<span class="hong_12_bold">{{min_num}}</span>
 								/提问
 							</span>
 						</div>
@@ -412,6 +412,7 @@
                     lvshi:'',
                     user:'',
 					information:'',
+					min_num:0
 					
 				}
 			},
@@ -428,6 +429,7 @@
 				this.huoqu_jiage()
 				this.huoqu_user()
 				this.huoqu_lvshi()
+				this.huoqu_xuanshang_num()
 				}
 			},
 			methods: {
@@ -442,6 +444,23 @@
 					if(res.code==0){
 						this.baojia=res.data.zhan	
 					}
+				}, function(err) {
+				
+					console.log("err", err);
+				})
+			},
+			huoqu_xuanshang_num(){
+				ajax('/mapi/index/getxuanshang', "POST", '', (res) => {
+				var array = [];
+				for (var key in res.data.zhan) {
+					
+					array.push(res.data.zhan[key]);
+				}
+				array.sort((old,New)=>{
+				return old -New
+				})
+				
+				this.min_num=array[0]
 				}, function(err) {
 				
 					console.log("err", err);
@@ -494,7 +513,24 @@
 				
 			},
 			go_xuanshang(){
-				location.href='xuanshang.html?information='+$_GET.information+'&typeid='+$_GET.typeid+'&province='+$_GET.province+'&city='+$_GET.city+'&area='+$_GET.area
+				var data={
+					information:$_GET.information,
+					typeid:$_GET.typeid,
+					province:$_GET.province,
+					city:$_GET.city,
+					area:$_GET.area,
+				}
+				
+				ajax('/mapi/consult/addconsult', "POST",data, (res) => { // POST或GET请求直接传参
+						if (res.code == 0) {
+							// this.consultid=res.data
+							location.href='xuanshang.html?consultid='+res.data
+						}
+					}, function(err) {
+						console.log("err", err);
+					})
+
+				// location.href='xuanshang.html?information='+$_GET.information+'&typeid='+$_GET.typeid+'&province='+$_GET.province+'&city='+$_GET.city+'&area='+$_GET.area
 			},
            go_zaixian(){
 			   location.href='zhineng_pay.html?type=1&information='+$_GET.information+'&typeid='+$_GET.typeid+'&province='+$_GET.province+'&city='+$_GET.city+'&area='+$_GET.area

@@ -268,7 +268,7 @@
 								<span class="hei_9_bold">以下律师正在等待接单！</span>大数据会匹配最佳一位律师为您服务
 							</div>
 							<div class="jiedan_ls_list">
-								<div class="jiedan_ls_item" v-for="item in lvshi">
+								<div class="jiedan_ls_item" v-for="item in lvshi" @click="go_zhuye(item.userid)">
 									<img :src="img_url+item.photourl" mode=""></img>
 									<div class="hei_8 jiedan_ls_name">
 										{{item.nickname}}
@@ -405,6 +405,9 @@
 					})
 
 				},
+				go_zhuye(lawyerid){
+					location.href='../lawyer/index.html?lawyerid='+lawyerid
+				},
 				bianhua() {
 					this.yishu_num = this.shuru_txt.length;
 				},
@@ -519,6 +522,12 @@
 					//$("#start").val(result);
 					//$("#start_location").val(result);
 					console.log(addComp)
+					var cundizhi = {
+						sheng: addComp.province,
+						shi: addComp.city,
+						qu: addComp.district,
+					}
+					localStorage.setItem('dizhi', JSON.stringify(cundizhi))
 					app.dizhi = addComp.province + '-' + addComp.city + '-' + addComp.district
 
 				});

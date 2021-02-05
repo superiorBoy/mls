@@ -246,6 +246,9 @@
 			padding-bottom: 0;
 			align-items: center;
 			}
+			.zi_body{
+				padding-bottom: 3rem;
+			}
 		</style>
 	</head>
 	<body>
@@ -259,7 +262,8 @@
 						<!-- <input type="text" value="" confirm-type="search" class="hei_8" @confirm="search" v-model="sou_txt" placeholder="输入您要查找的问题" /> -->
 						<van-search v-model="value" placeholder="输入您要查找的问题" input-align="center" background="#f3f3f3" @search="onSearch" />
 					</div>
-					<div class=" head_right bai_9 tiwen_btn"><img src="../static/img/tiwen_xie.png" mode=""></img>我要提问</div>
+					<div class=" head_right bai_9 tiwen_btn" onclick="location.href='../zixun/hy_tiwen.html'"><img src="../static/img/tiwen_xie.png"
+						 mode=""></img>我要提问</div>
 				</div>
 				<div class="tab_top hei_8">
 					<div class="aaaaaa" @click="tan_chengshi">
@@ -334,30 +338,33 @@
 
 				</div>
 
-
-
 				<div class="footer hui_8">
 					<div class="footer_item" onclick="location.href='../index/index.html'">
 						<p><img src="../static/img/shouye_icon.png"></p>
-						<p>首页</p>
+						<p class="">首页</p>
 					</div>
-					<div class="footer_item">
-						<p><img src="../static/img/on_zixun_icon.png"></p>
-						<p class="lv_8">咨询</p>
-					</div>
+
 					<div class="footer_item" onclick="location.href='../index/zhaolvshi.html'">
 						<p><img src="../static/img/lvshi_icon.png"></p>
 						<p>律师</p>
 					</div>
+					<div class="footer_item" onclick="location.href='../zixun/hy_tiwen.html'">
+						<div class="tuqi">
+							<img src="../static/img/fly.png" mode=""></img>
+						</div>
+					</div>
 					<div class="footer_item" onclick="location.href='../zixun/chat_list.html'">
 						<p><img src="../static/img/xiaoxi_icon.png"></p>
 						<p>消息</p>
+						<p class="weidu" v-if="weidu_num>0">{{weidu_num}}</p>
 					</div>
 					<div class="footer_item" onclick="location.href='../user/index.html'">
 						<p><img src="../static/img/my_icon.png"></p>
 						<p>我的</p>
 					</div>
 				</div>
+
+
 
 				<van-popup v-model="chengshi_show" round position="bottom">
 					<van-area title="选择城市" :area-list="areaList" :columns-num="2" @confirm='city_queding' @cancel="city_quxiao" />
@@ -408,7 +415,8 @@
 					columns: [],
 					leixi_show: false,
 					paixu_show: false,
-					value: ''
+					value: '',
+					weidu_num: 0
 				}
 			},
 			ready: function() {
@@ -417,6 +425,7 @@
 			created() {
 				this.areaList = city_list()
 				this.huoqu_leixing()
+				this.huoqu_is_login()
 			},
 			methods: {
 				onRefresh() { //下拉刷新
@@ -440,6 +449,30 @@
 						this.page++
 						this.huoqu_list()
 					}
+				},
+				huoqu_is_login() {
+					ajax('/index/login/islogin', "POST", '', (res) => { // POST或GET请求直接传参
+
+						if (res.data.user != '') {
+							this.huo_qu_weidu()
+						} else {
+
+						}
+
+					}, function(err) {
+
+						console.log("err", err);
+					})
+				},
+				huo_qu_weidu() {
+
+					ajax('/mapi/consult/messagecount', "POST", '', (res) => { // POST或GET请求直接传参
+						this.weidu_num = res.data.messagecount
+					}, function(err) {
+
+						console.log("err", err);
+					})
+
 				},
 				// 弹出城市选择
 				tan_chengshi() {
@@ -508,7 +541,9 @@
 				search(e) {
 					console.log(e.detail.value);
 				},
-
+				zixun_xq(consultid) {
+					location.href = '../consult/zixun_xq.html?consultid=' + consultid
+				},
 				jiedan_qiehuan(index) {
 					this.active = index;
 					if (index == 0) {
@@ -546,7 +581,7 @@
 						this.zixun_list = this.zixun_list.concat(res.data.consultlist);
 						if (res.data.consultlist.length < 10) {
 							this.is_all = true
-						}else{
+						} else {
 							this.is_all = false;
 						}
 

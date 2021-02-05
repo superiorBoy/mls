@@ -156,3 +156,27 @@ input[type="checkbox"]:checked {
 	border-radius: 100%;
 
 }
+
+	.footer_item{
+				position: relative;
+			}
+			.weidu{
+				    width: auto;
+				    height: 1rem;
+				    line-height: 1rem;
+				    border-radius: 0.5rem;
+				    min-width: 1rem;
+				    padding: 0 2px;
+				    font-size: 0.7rem;
+				    text-align: center;
+				    white-space: nowrap;
+				    position: absolute;
+				    top: 0;
+				    right: 21%;
+				    box-sizing: border-box;
+				    background-color: #f43a51;
+				    color: #fff;
+			}
+			.footer_item .on{
+				display: none;
+			}

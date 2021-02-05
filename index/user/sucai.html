@@ -43,7 +43,7 @@
 									<img src="../static/img/xh_tx.png" mode="" class="xh_tx"></img>
 									<div class="jingxuan_item_top_r">
 										<div class="hei_9 jingxuan_item_name">虎哥推荐</div>
-										<div class="qian_7">{{ item.addtime | timeStamp }}</div>
+										<div class="qian_7">{{time(item.addtime)}}</div>
 									</div>
 								</div>
 								<div class="jing_fenxiang lv_7" @click="jingxuan_share()">
@@ -54,7 +54,7 @@
 				
 							<div class="jingxuan_wenti hei_8">{{ item.information }}</div>
 							<div class="jingxuan_jieda hui_7" v-if="item.consult_reply">
-								<span class="bai_20">精选解答</span>
+								<span class="bai_7">精选解答</span>
 								{{ item.consult_reply.information }}
 							</div>
 							<div class="jingxuan_ls" v-if="item.consult_reply">
@@ -148,7 +148,21 @@
 					<!-- 分享海报 -->
 					<div class="jingxuan_body sucai_body" v-if="active == 2">
 						<div class="lunbo">
-							<swiper
+							
+							<div class="swiper-container index_lunbo">
+								<div class="swiper-wrapper">
+									<div class="swiper-slide" v-for="item in banner">
+										<img :src="item.img" style="width: 100%;height: 100%;"></img>
+										<div class="yaoqing_kuling">邀请口令:{{ yaoqing.randcode1 }}</div>
+										<div class="yaoqing_erweima"><img src="../static/img/erweima.png" mode=""></img></div>
+									</div>
+								</div>
+								
+							</div>
+							<div class="dots">
+								<block v-for="(item, index) in banner"><div :class="['dot', index == current ? 'active' : '']"></div></block>
+							</div>
+							<!-- <swiper
 								:indicator-dots="false"
 								:autoplay="false"
 								circular="true"
@@ -172,9 +186,10 @@
 							<div class="dots">
 								<block v-for="(item, index) in banner"><div :class="['dot', index == current ? 'active' : '']"></div></block>
 							</div>
-						</div>
+						</div> -->
+						<p id="yaoqinglianjie" style="display: none;">{{yaoqing.inviteurl}}</p>
 						<div class="haibao_bottom">
-							<div class="haibao_bottom_left hei_7" @click="copy">
+							<div class="haibao_bottom_left hei_7 fuzhu1111" data-clipboard-action="copy" data-clipboard-target="#yaoqinglianjie">
 								<img src="../static/img/haibao_lian.png" mode=""></img>
 								复制分享链接
 							</div>
@@ -184,10 +199,12 @@
 							</div>
 						</div>
 					</div>
-				
+					</div>
 					<!-- 商学院 -->
 					<div class="jingxuan_body " v-if="active == 3">
+					
 						<div class="shangxue_list">
+							
 							<div class="shangxue_item" v-for="item in shangxue_list">
 								<div class="shangxue_item_left"><img :src="img_url + item.picurl" mode=""></img></div>
 								<div class="shangxue_item_right">
@@ -197,7 +214,7 @@
 									</div>
 									<div class="shangxue_item_time qian_7">
 										<img src="../static/img/shipin_time.png" mode=""></img>
-										{{ item.addtime | timeStamp }}
+										{{time(item.addtime)}}
 									</div>
 								</div>
 							</div>
@@ -223,6 +240,8 @@
 	<script src="../js/http.js" type="text/javascript" charset="utf-8"></script>
 	<script src="https://cdn.jsdelivr.net/npm/vant@2.12/lib/vant.min.js"></script>
 	<script src="../js/get.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../js/swiper.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="https://cdn.jsdelivr.net/clipboard.js/1.5.12/clipboard.min.js"></script>
 	<script type="text/javascript">
 		var app = new Vue({
 			el: "#app",
@@ -236,10 +255,10 @@
 					zixun_list: [],
 					banner: [
 						{
-							img: '../../static/img/haibao1.png'
+							img: '../static/img/haibao1.png'
 						},
 						{
-							img: '../../static/img/haibao2.png'
+							img: '../static/img/haibao2.png'
 						}
 					],
 					current: 0,
@@ -276,8 +295,10 @@
 							this.huoqu_jingxuan();
 						} else if (this.active == 3) {
 							this.huoqu_shangxue();
+						}else{
+							this.huoqu_jingxuan();
 						}
-						this.huoqu_jingxuan();
+						
 					}
 				},
 				huoqu_jingxuan() {
@@ -288,6 +309,8 @@
 						this.zixun_list = this.zixun_list.concat(res.data.consultlist);
 						if (res.data.consultlist.length < 10) {
 							this.is_all = true;
+						}else{
+							this.is_all=false
 						}
 					}, function(err) {
 
@@ -300,7 +323,7 @@
 					}
 					ajax('/mapi/extension/shangxueyuanlist', "POST", data, (res) => { // POST或GET请求直接传参
 						this.shangxue_list = this.shangxue_list.concat(res.data.shangxueyuanlist);
-						if (res.data.shangxueyuanlist < 10) {
+						if (res.data.shangxueyuanlist.length < 10) {
 							this.is_all = true;
 							
 						}else{
@@ -392,6 +415,34 @@
 
 			}
 		})
+	var mySwiper = new Swiper('.index_lunbo', {
+		pagination: {
+			el: '.swiper-pagination',
+			clickable: true,
+		},
+		autoplay: false, //可选选项，自动滑动
+		loop: true,
+		delay: 3000,
+		slidesPerView: 1,
+		on: {
+			slideChangeTransitionStart: function(swiper, event) {
+	
+				console.log(this.realIndex)
+			app.current=this.realIndex
+	
+			},
+		}
+	})	
+	var clipboard = new Clipboard('.fuzhu1111');
+	console.log(clipboard)
+	clipboard.on('success', function (e) {
+	    console.log(e);
+	    vant.Toast('复制成功')
+	});
+	clipboard.on('error', function (e) {
+	    console.log(e);
+	});	
+		
 	</script>
 
 </html>

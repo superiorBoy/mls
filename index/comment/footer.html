@@ -1,0 +1,119 @@
+<div class="footer hui_8" id="foot">
+	<div class="footer_item footer_item1" onclick="location.href='../index/index.html'">
+		<p class="on"><img src="../static/img/on_shouye_icon.png" style="width: 1.13rem;height: 1.15rem;"></p>
+		<p class="no"><img src="../static/img/shouye_icon.png" style="width: 1.13rem;height: 1.15rem;"></p>
+		<p>首页</p>
+	</div>
+
+	<div class="footer_item footer_item2" onclick="location.href='../index/zhaolvshi.html'">
+		<p class="on"><img src="../static/img/on_lvshi_icon.png" style="width: 1.3rem;height: 1.16rem;"></p>
+		<p class="no"><img src="../static/img/lvshi_icon.png" style="width: 1.3rem;height: 1.16rem;"></p>
+		<p>律师</p>
+	</div>
+	<div class="footer_item footer_item3" onclick="location.href='../zixun/hy_tiwen.html'">
+		<div class="tuqi">
+			<img src="../static/img/fly.png" mode=""></img>
+		</div>
+	</div>
+	<div class="footer_item footer_item4" onclick="location.href='../zixun/chat_list.html'">
+		<p class="on"><img src="../static/img/on_xiaoxi_icon.png" style="width: 1.19rem;height: 1.19rem;"></p>
+		<p class="no"><img src="../static/img/xiaoxi_icon.png" style="width: 1.19rem;height: 1.19rem;"></p>
+		<p>消息</p>
+		<p class="weidu" v-if="weidu_num>0">{{weidu_num}}</p>
+	</div>
+	<div class="footer_item footer_item5" onclick="location.href='../user/index.html'">
+		<p class="on"><img src="../static/img/on_my_icon.png" style="width: 1.06rem;height: 1.25rem;"></p>
+		<p class="no"><img src="../static/img/my_icon.png" style="width: 1.06rem;height: 1.25rem;"></p>
+		<p class="">我的</p>
+	</div>
+</div>
+
+<script type="text/javascript">
+	var app2 = new Vue({
+		el: "#foot",
+		data() {
+			return {
+				img_url: window.localStorage.getItem('img_url'),
+				weidu_num: 0
+			}
+		},
+
+		created() {
+
+		},
+		methods: {
+
+
+		}
+	})
+
+	ajax('/index/login/islogin', "POST", '', (res) => { // POST或GET请求直接传参
+		if (res.data.user != '') {
+
+			ajax('/mapi/consult/messagecount', "POST", '', (res) => { // POST或GET请求直接传参
+				app2.weidu_num = res.data.messagecount
+
+			}, function(err) {
+
+				console.log("err", err);
+			})
+
+
+		} else {
+
+		}
+
+	}, function(err) {
+
+		console.log("err", err);
+	})
+
+	let that = this;
+	var url = window.location.host;
+	var ws = new WebSocket('ws://' + url + ':3348');
+	ws.onopen = function(evt) {
+		console.log('Connection open ...');
+		// ws.send("你好");
+	};
+	ws.onmessage = function(evt) {
+		console.log('Received Message: ' + evt.data);
+		// json数据转换成js对象
+		var data = JSON.parse(evt.data);
+
+		if (data.type == 'init') {
+			console.log('init');
+			console.log('client_id', data.client_id);
+			var data = {
+				client_id: data.client_id
+			}
+			ajax('/push/gatewayworker/bind', "POST", data, (res) => { // POST或GET请求直接传参
+				if (res.code == 0) {
+					console.log(res, 'bind');
+				};
+			}, function(err) {
+
+				console.log("err", err);
+			})
+
+		} else if (data.type == 'say') {
+			console.log('say');
+			ajax('/mapi/consult/messagecount', "POST", '', (res) => { // POST或GET请求直接传参
+				app2.weidu_num = res.data.messagecount
+
+			}, function(err) {
+
+				console.log("err", err);
+			})
+		} else {
+			console.log('else');
+		}
+	};
+	ws.onclose = function(evt) {
+		console.log('Connection closed.');
+	};
+	ws.onerror = function(evt) {
+		console.log('WebSocketError!', evt);
+	};
+
+	console.log(window.location.pathname)
+</script>

@@ -353,11 +353,8 @@
 								if(that.arry.length<3){
 								that.arry.push(i);
 								}else{
-									uni.showToast({
-										title: '最多选择3项',
-										duration: 2000,
-										icon: "none"
-									});
+								
+									vant.Toast('最多选择')
 								}
 							}
 			},

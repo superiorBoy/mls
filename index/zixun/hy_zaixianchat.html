@@ -607,6 +607,9 @@
 				pingjia(){
 					location.href='../lawyer/pingjia.html?lawyerid='+ this.lawyerid
 				},
+				go_zhuye(){
+					location.href='../lawyer/index.html?lawyerid='+this.lawyerid
+				},
 				huqu_zhiwu() {
 					var data = {
 						lawyerid: this.lawyerid
@@ -761,6 +764,7 @@
 					// 	title: '点赞成功',
 					// 	duration: 2000
 					// });
+					vant.Toast('点赞成功')
 				},
 	
 				connectSocketInit() {

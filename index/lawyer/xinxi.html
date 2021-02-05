@@ -515,9 +515,13 @@
 				},
 				// 分享
 				share() {
-					uni.navigateTo({
-						url: 'sucai?state=1'
-					});
+					location.href='../user/sucai.html'
+				},
+				go_pay(lawyerid,type){
+					
+					console.log(   this.leixing_index,this.shichang_txt)
+				
+					location.href='../consult/zixun_pay.html?lawyerid='+lawyerid+'&type='+ this.leixing_index +'&time='+this.shichang_txt+'&pay_money='+this.pay_money
 				},
 				guanzhu() {
 					var data = {

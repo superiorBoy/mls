@@ -190,6 +190,18 @@
 			.body {
 				padding-bottom: 4rem;
 			}
+			.zi_body{
+				min-height: 20rem;
+			}
+			.footer_item2 .on{
+				display: inline-block ;
+			}
+			.footer_item2 .no{
+				display: none ;
+			}
+			.footer_item2{
+				color: #0eb77e;
+			}
 		</style>
 	</head>
 	<body>
@@ -224,9 +236,9 @@
 						<img src="../static/img/shaixuan.png" mode=""></img>
 					</div>
 				</div>
-				<div class="zi_body tab_zi_body">
 					<van-pull-refresh v-model="isLoading" @refresh="onRefresh">
 						<van-list v-model="loading" :finished="is_all" :immediate-check="false" finished-text="没有更多了" @load="onLoad">
+				<div class="zi_body tab_zi_body">
 							<div class="lvshi_list">
 								<div class="lvshi_item" v-for="(item, index) in lslist">
 									<div class="zixun bai_7" @click="go_chat(item.userid,item.chatprice)">
@@ -269,15 +281,15 @@
 							</div>
 
 
-						</van-list>
 
-					</van-pull-refresh>
 				</div>
+						</van-list>
+					</van-pull-refresh>
 			</div>
 
 
 
-			<div class="footer hui_8">
+		<!-- 	<div class="footer hui_8">
 				<div class="footer_item" onclick="location.href='../index/index.html'">
 					<p><img src="../static/img/shouye_icon.png"></p>
 					<p>首页</p>
@@ -295,13 +307,16 @@
 				<div class="footer_item" onclick="location.href='../zixun/chat_list.html'">
 					<p><img src="../static/img/xiaoxi_icon.png"></p>
 					<p>消息</p>
+					<p class="weidu" v-if="weidu_num>0">{{weidu_num}}</p>
 				</div>
 				<div class="footer_item" onclick="location.href='../user/index.html'">
 					<p><img src="../static/img/my_icon.png"></p>
 					<p>我的</p>
 				</div>
-			</div>
-
+			</div> -->
+<div id="footer">
+	
+</div>
 			<van-popup v-model="chengshi_show" round position="bottom">
 				<van-area title="选择城市" :area-list="areaList" :columns-num="2" @confirm='city_queding' @cancel="city_quxiao" />
 			</van-popup>
@@ -360,7 +375,8 @@
 					columns: [],
 					leixi_show: false,
 					paixu_show: false,
-					value:''
+					value:'',
+					
 				}
 			},
 			ready: function() {
@@ -371,6 +387,9 @@
 				this.areaList = city_list()
 				this.huoqu_lvshi()
 				this.huoqu_leixing()
+				this.huoqu_tiaozhuan()
+				
+				this.huoqu_is_login()
 			},
 			methods: {
 				onRefresh() { //下拉刷新
@@ -399,7 +418,32 @@
 				onSearch(e) {
 					console.log(e)
 				},
+				huoqu_is_login(){
+								   ajax('/index/login/islogin', "POST", '', (res) => { // POST或GET请求直接传参
+								   
+									   if(res.data.user!=''){
+									   	
+									   	
+										// this.huo_qu_weidu()
+									   }else{
+									   	
+									   }
+								   
+								   }, function(err) {
+								   
+								   	console.log("err", err);
+								   })
+				},
+				// huo_qu_weidu() {
 				
+				// 	ajax('/mapi/consult/messagecount', "POST", '', (res) => { // POST或GET请求直接传参
+				// 		this.weidu_num = res.data.messagecount
+				// 	}, function(err) {
+				
+				// 		console.log("err", err);
+				// 	})
+				
+				// },
 		
 				// 弹出城市选择
 				tan_chengshi() {
@@ -464,7 +508,18 @@
 					console.log(e)
 					this.paixu_show = false
 				},
-
+         go_chat(lawyerid,price){
+			 console.log(this.tiao_type)
+			if (this.tiao_type == 1) {
+							
+				location.href='../zixun/hy_zaixianchat.html?lawyerid='+lawyerid
+			} else {
+				location.href='../lawyer/index.html?lawyerid='+lawyerid
+				
+			}
+			
+			
+		},
 
 
 				// 获取list
@@ -498,7 +553,7 @@
 				// 获取跳转链接
 				huoqu_tiaozhuan() {
 
-					ajax('/mapi/index/getzixunjump', "POST", data, (res) => { // POST或GET请求直接传参
+					ajax('/mapi/index/getzixunjump', "POST", '', (res) => { // POST或GET请求直接传参
 						this.tiao_type = res.data.zhan.zixunjump;
 
 					}, function(err) {
@@ -535,6 +590,7 @@ go_zhuye(lawyerid){
 
 			}
 		})
+		$('#footer').load('../comment/footer.html')
 	</script>
 
 </html>

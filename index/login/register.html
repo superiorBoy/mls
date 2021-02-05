@@ -214,13 +214,13 @@
 					<div class="xieyi qian_24">
 						<input type="checkbox" name="" id="" value="" :checked="isCheck" @click="checkBox($event)" style="margin-right: 0.2rem;" />
 						我已阅读并同意
-						<navigator url="xieyi" class="hong_7">《用户协议》</navigator>
+						<a href="../user/xieyi.html" class="hong_7">《用户协议》</a>
 						和
-						<navigator url="yinsi" class="hong_7">《隐私政策》</navigator>
+						<a href="../user/yinsi.html" class="hong_7">《隐私政策》</a>
 					</div>
 					<button type="" class="zhuce bai_9" @click="zhuce">立即注册</button>
 					<div class="zhuce_tishi qian_7">
-						已有账号？<navigator url="login" class="hong_7">请登录</navigator>
+						已有账号？<a href="login.html" class="hong_7">请登录</a>
 					</div>
 				</div>
 
@@ -379,7 +379,7 @@
 
 							ajax('/index/login/register', "POST", data, (res) => { // POST或GET请求直接传参
 								if (res.code == 0) {
-									window.location.href = 'login.html'
+									window.location.href = '../index/index.html'
 								}
 								that.dianji = true
 							}, function(err) {
@@ -392,7 +392,7 @@
 
 							ajax('/lawyer/login/register', "POST", data, (res) => { // POST或GET请求直接传参
 								if (res.code == 0) {
-									window.location.href = 'login.html'
+									window.location.href = '../user/index.html'
 									// ls
 								}
 								that.dianji = true

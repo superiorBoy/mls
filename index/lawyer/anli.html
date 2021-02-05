@@ -420,9 +420,7 @@
 				},
 				// 分享
 				share() {
-					uni.navigateTo({
-						url: 'sucai?state=1'
-					});
+					location.href='../user/sucai.html'
 				},
 				guanzhu() {
 					var data = {
@@ -465,9 +463,14 @@
 				
 				},
 				go_dianping(){
-					uni.navigateTo({
-						url:'pingjia?lawyerid='+this.lawyerid
-					})
+				
+					location.href='pingjia.html?lawyerid='+this.lawyerid
+				},
+				go_pay(lawyerid,type){
+					
+					console.log(   this.leixing_index,this.shichang_txt)
+				
+					location.href='../consult/zixun_pay.html?lawyerid='+lawyerid+'&type='+ this.leixing_index +'&time='+this.shichang_txt+'&pay_money='+this.pay_money
 				},
 				tiaozhuan(e){
 					location.href = e+'?lawyerid=' + this.lawyerid

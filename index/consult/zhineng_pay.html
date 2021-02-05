@@ -412,7 +412,7 @@
 					<div class="pay_btn"><button type="" class="tixian_btn bai_9" @click="save">支付</button></div>
 				</div>
 
-
+<div id="allmap" style="display: none;"></div>
 
 			</div>
 
@@ -429,6 +429,7 @@
 	<script src="../js/vue.min.js" type="text/javascript" charset="utf-8"></script>
 	<script src="../js/http.js" type="text/javascript" charset="utf-8"></script>
 	<script src="https://cdn.jsdelivr.net/npm/vant@2.12/lib/vant.min.js"></script>
+	<script type="text/javascript" src="http://api.map.baidu.com/api?ak=PlhFWpA02aoURjAOpnWcRGqw7AI8EEyO&v=2.0&services=false"></script>
 	<script src="../js/city.js" type="text/javascript" charset="utf-8"></script>
 	<script src="../js/get.js" type="text/javascript" charset="utf-8"></script>
 	<script type="text/javascript">
@@ -475,16 +476,26 @@
 						this.consultid = $_GET.consultid
 						this.huoqu_consultid()
 
-					} else {
-						
-						if($_GET.information){
+					} else if($_GET.information){
 							that.neirong = $_GET.information;
 							that.dizhi = $_GET.province + '-' + $_GET.city + '-' + $_GET.area;
 							that.leixing = that.type_arry[$_GET.typeid].typename;
 							that.typeid = $_GET.typeid;
+					}else{
+						
+						var dizhi=window.localStorage.getItem('dizhi')
+						if(dizhi){
+							dizhi=JSON.parse(dizhi)
+							console.log(dizhi)
+							that.dizhi = dizhi.sheng + '-' + dizhi.shi + '-' + dizhi.qu;
+						}else{
+							
 						}
-
+					
+						
 					}
+
+					
 
 					this.huoqu_baojia()
 					
@@ -706,6 +717,46 @@
 
 			}
 		})
+		// 定位
+		$(function() {
+			var map = new BMap.Map("allmap");
+			var point = new BMap.Point(1, 1);
+			map.centerAndZoom(point, 16)
+			var geoc = new BMap.Geocoder();
+			var geolocation = new BMap.Geolocation();
+			geolocation.getCurrentPosition(function(r) {
+				if (this.getStatus() == BMAP_STATUS_SUCCESS) {
+					var mk = new BMap.Marker(r.point);
+					map.addOverlay(mk);
+					map.panTo(r.point);
+					console.log("当前位置经度为:" + r.point.lng + "纬度为:" + r.point.lat);
+					setLocation(r.point);
+				} else {
+					console.log('无法定位到您的当前位置，导航失败，请手动输入您的当前位置！' + this.getStatus());
+				}
+			}, {
+				enableHighAccuracy: true
+			});
+		
+			//获取地理位置的函数
+			function setLocation(point) {
+				geoc.getLocation(point, function(rs) {
+					var addComp = rs.addressComponents;
+					var result = addComp.province + addComp.city + addComp.district + addComp.street + addComp.streetNumber;
+					//$("#start").val(result);
+					//$("#start_location").val(result);
+					console.log(addComp)
+					var cundizhi = {
+						sheng: addComp.province,
+						shi: addComp.city,
+						qu: addComp.district,
+					}
+					localStorage.setItem('dizhi', JSON.stringify(cundizhi))
+					app.dizhi = addComp.province + '-' + addComp.city + '-' + addComp.district
+		
+				});
+			}
+		});
 	</script>
 
 </html>

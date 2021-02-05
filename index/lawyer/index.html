@@ -23,11 +23,14 @@
 					<div class="head2">
 						<div class="head_back"><img src="../static/img/bai_back.png" mode="" onclick="javascript:history.back(-1);"></img></div>
 						<div class="head_center bai_12_bold">律师主页</div>
-						<div class=" head_right hei_9_bold"></div>
+						<div class=" head_right hei_9_bold">
+							<image :src="type==1 ? '../static/img/guanzhu_on_icon.png' : '../static/img/guan_no.png'"    mode="" style="width: 1.25rem;height: 1.1875rem;margin-right: 0.9375rem;"  @click="guanzhu"></image>
+							<image src="../static/img/fenxiang.png" mode=""style="width: 1.1875rem;height: 1.125rem;"  @click="share"></image>
+						</div>
 					</div>
 				</div>
 			</div>
-			<div class="ls_padd" v-if=" lvshi">
+			<div class="ls_padd" v-if="lvshi">
 				<div class="ls_top">
 					<div class="ls_tx">
 						<img :src="img_url + lvshi.photourl" mode="" class="ls_tx_img"></img>
@@ -267,24 +270,30 @@
 				</div>
 				<div class="zhanwei2" style="height: 3.75rem;"></div>
 				<div class="bottom">
-					<div class="bottom_fenxiang" @click="share">
+					<!-- <div class="bottom_fenxiang" @click="share">
 						<img src="../static/img/share.png" mode=""></img>
 						<div class="hui_8">分享</div>
-					</div>
-					<div class="bottom_guanzhu" @click="guanzhu">
+					</div> -->
+					<!-- <div class="bottom_guanzhu" @click="guanzhu">
 						<img :src="type==1 ? '../static/img/guanzhu_on_icon.png' : '../static/img/guanzhu_icon.png'" mode="" style="width: 41rpx;height: 38rpx;"></img>
 						<div class="hui_8">{{type==1?'已关注':'关注'}}</div>
-					</div>
-					<div class="bottom_pingjia" @click="go_chat()">
+					</div> -->
+					<!-- <div class="bottom_pingjia" @click="go_chat()">
 						<img src="../static/img/siliao.png" mode=""></img>
 						<div class="hui_8">私聊</div>
+					</div> -->
+					<div class="liao " @click="go_chat()">
+						<img src="../static/img/lawyer_chat.png" mode=""></img>
+					<div class="lv_9">
+						聊一聊
+					</div>	
 					</div>
 					<div class="dianhua lv_8">
 						<!-- <img src="../static/img/dianhua_lv.png" mode=""></img> -->
 						<div class="lv_7 bottom_jiage" v-if="baojia&&baojia.jianmian" @click="tan(0,baojia.jianmian)">
 							￥<span class="lv_10">{{baojia.jianmian}}</span>
 						</div>
-						<div class="bai_7 bottom_jiage" v-if="!baojia || !baojia.jianmian ">
+						<div class="lv_9 bottom_jiage" v-if="!baojia || !baojia.jianmian ">
 							<span class="lv_10">未报价</span>
 						</div>
 						见面咨询
@@ -578,9 +587,7 @@
 				},
 				// 分享
 				share() {
-					uni.navigateTo({
-						url: 'sucai?state=1'
-					})
+					location.href='../user/sucai.html'
 				},
 				// 获取报价
 				huoqu_baojia() {
@@ -611,6 +618,12 @@
 						console.log("err", err);
 					})
 
+				},
+				go_pay(lawyerid,type){
+					
+					console.log(   this.leixing_index,this.shichang_txt)
+				
+					location.href='../consult/zixun_pay.html?lawyerid='+lawyerid+'&type='+ this.leixing_index +'&time='+this.shichang_txt+'&pay_money='+this.pay_money
 				},
 				go_chat() {
 

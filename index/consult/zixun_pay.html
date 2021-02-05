@@ -120,8 +120,9 @@
 		}
 		.wen_neirong {
 			width: 100%;
-			padding: 0rpx 0.5rem 0.3125rem 0;
+			padding: 0.5rem 0.5rem 0.3125rem 0.5rem;
 			box-sizing: border-box;
+			    background-color: #f8f8f8;
 		}
 		.wen_neirong_txt {
 			height: 3.125rem;
@@ -129,9 +130,10 @@
 			word-break: break-all;
 		}
 		.wen_neirong_textarea {
-			height: 8.25rem;
+			height: 6.25rem;
 			border: none;
 			resize: none;
+			
 		}
 
 		.height_auto {
@@ -363,9 +365,9 @@
 								{{ fenlei[typeid].typename }}
 							</span>
 						</div> -->
-						<div class="pay_list">
+						<div class="pay_list" @click="tan_leixing">
 							<span class="qian_9">咨询类型</span>
-							<div   @click="tan_leixing">
+							<div   >
 								<span class="hei_9">{{leixing==''?'选择咨询类型':leixing}}</span>
 								<img src="../static/lsimg/go_r.png" mode="" style="width: 0.375rem;height: 0.625rem;margin-left:0.1875rem;vertical-align: middle;"></img>
 							</div>
@@ -472,6 +474,9 @@
 				if ($_GET.pay_money) {
 					this.pay_money = $_GET.pay_money
 				}
+				if ($_GET.time) {
+					this.time = $_GET.time
+				}
 
 				if ($_GET.consultid) {
 					this.laiyuan = 2
@@ -507,7 +512,7 @@
 
 				}
 				this.huoqu_shanchang()
-
+this.huoqu_user()
 			},
 			methods: {
 				huoqu_shanchang() {
@@ -515,6 +520,14 @@
 					ajax('/mapi/lawyer/getshanchang', "POST", '', (res) => { // POST或GET请求直接传参
 						this.zhuanchang_arry = res.data.shanchang;
 						this.huoqu_lvshi();
+					}, function(err) {
+						console.log("err", err);
+					})
+				},
+				huoqu_user() {
+				
+					ajax('/mapi/user/user', "POST", '', (res) => { // POST或GET请求直接传参
+					this.phone=res.data.user.mobile
 					}, function(err) {
 						console.log("err", err);
 					})
@@ -527,7 +540,7 @@
 					}
 					ajax('/mapi/lawyer/lawyer', "POST", data, (res) => { // POST或GET请求直接传参
 						this.lvshi = res.data.lawyer;
-						this.phone = res.data.lawyer.mobile
+						
 					}, function(err) {
 						console.log("err", err);
 					})
@@ -553,8 +566,38 @@
 							this.time = '3天'
 						} else if (res.data.consult.zixunshicahng == 720) {
 							this.time = '1个月'
-						}
-
+						}else{
+						this.time=res.data.consult.zixunshicahng+'小时'
+					     }
+                        if(res.data.consult.baojiamode=='hetong_shenhe'){
+                        	this.time='合同审核'
+                        	this.type=3
+                        }
+                        if(res.data.consult.baojiamode=='hetong_daixie'){
+                        	this.time='代写合同'
+                        	this.type=3
+                        }
+                        if(res.data.consult.baojiamode=='hetong_wenshu'){
+                        	this.time='代写文书'
+                        	this.type=3
+                        }
+                        if(res.data.consult.baojiamode=='lvshi_huijian'){
+                        	this.time='律师会见'
+                        	this.type=4
+                        }
+                        
+                        if(res.data.consult.baojiamode=='lvshihan'){
+                        	this.time='发律师函'
+                        	this.type=4
+                        }
+                        if(res.data.consult.baojiamode=='anjianzhidao'){
+                        	this.time='案件指导'
+                        	this.type=4
+                        }
+                        if(res.data.consult.baojiamode=='jianmian'){
+                        	this.time='1次'
+                        	this.type=0
+                        }
 						this.leixing = this.type_arry[res.data.consult.typeid].typename;
 					}, function(err) {
 						console.log("err", err);
@@ -583,28 +626,20 @@
 
 
 					if (this.phone == '') {
-						uni.showToast({
-							title: '请填写手机号码',
-							duration: 2000,
-							icon: 'none'
-						});
+						
+						vant.Toast('请填写手机号码')
+						
 						return false
 					}
 
 					if (this.neirong == '') {
-						uni.showToast({
-							title: '请输入咨询内容',
-							duration: 2000,
-							icon: 'none'
-						});
+						
+						vant.Toast('请输入咨询内容')
 						return false
 					}
 					if (this.typeid == '') {
-						uni.showToast({
-							title: '请选择咨询类别',
-							duration: 2000,
-							icon: 'none'
-						});
+						
+						vant.Toast('请选择咨询类别')
 						return false
 					}
 
@@ -654,7 +689,7 @@
 					var data = {
 						consultid: consultid
 					}
-					ajax('/index/consult/addconsultpay', "POST", data, (res) => { // POST或GET请求直接传参
+					ajax('/mapi/consult/payh5', "POST", data, (res) => { // POST或GET请求直接传参
 						if (res.code == 0) {
 							window.open('' + res.data.response);
 						}

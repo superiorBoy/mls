@@ -371,7 +371,7 @@ this.huoqu_weituo()
 					this.weituo_list=[]
 					this.is_all=true
 					this.biaoti=''
-					this.huoqu_weituo()
+					this.huoqu_list()
 					
 					console.log('下拉刷新')
 				},
@@ -381,7 +381,7 @@ this.huoqu_weituo()
 						vant.Toast('已加载全部');
 					} else {
 						this.page++
-						this.huoqu_weituo()
+						this.huoqu_list()
 					}
 				},
 				huoqu_weituo() {
@@ -407,6 +407,8 @@ this.huoqu_weituo()
 					this.weituo_list=this.weituo_list.concat(res.data.entrustlist);
 					if (res.data.entrustlist.length < 10) {
 						this.is_all = true;
+					}else{
+						this.is_all=false
 					}
 						this.loading = false
 						this.isLoading = false
@@ -433,7 +435,7 @@ this.huoqu_weituo()
 				this.weituo_list=[]
 				this.page=0
 				this.biaoti=''
-				this.is_all=false
+				this.is_all=true
 				this.huoqu_weituo()
 			},
 			// 停止委托---删除委托
@@ -449,10 +451,10 @@ this.huoqu_weituo()
 				}
 				ajax('/index/zixun/upentrust', "POST", data, (res) => { // POST或GET请求直接传参
 			
-			vant.Toast('操作成功');
+			           vant.Toast('操作成功');
 						this.weituo_list=[]
 						this.page=0
-						this.is_all=false
+						this.is_all=true
 						this.huoqu_weituo()
 					
 				}, function(err) {
@@ -485,7 +487,7 @@ this.huoqu_weituo()
 
 					this.page=0
 					this.weituo_list=[]
-					this.is_all=false
+					this.is_all=true
 					this.tan_show=false
 					this.huoqu_list()
 

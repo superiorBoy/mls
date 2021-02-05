@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="keyword" content="" />
+		<meta name="description" content="" />
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<link rel="stylesheet" type="text/css" href="../css/gonggong.css" />
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vant@2.12/lib/index.css" />
+		<link rel="stylesheet" type="text/css" href="../css/swiper.min.css" />
+		<link rel="stylesheet" type="text/css" href="../css/font.css" />
+		<style>
+.head {
+	border-bottom: 2px solid #ade6d3;
+	background-color: #ade6d3;
+}
+
+.head_right img {
+	width: 1.5625rem;
+	height:0.3125rem;
+}
+
+.app_top {
+	width: 100%;
+	height: 22.5rem;
+}
+.app_bottom {
+	text-align: center;
+}
+.yaoqingma {
+	width: 13.125rem;
+	height: 2.125rem;
+	background-color: #ffffff;
+	border-radius: 1.0625rem;
+	border: solid 1px #535353;
+	display: flex;
+	align-items: center;
+	padding: 0 0.1875rem 0 1rem;
+	box-sizing: border-box;
+	justify-content: space-between;
+	margin: 1.5rem auto 0.5rem;
+}
+.copy {
+	width:3.4375rem;
+	height: 1.8125rem;
+	background-color: #0eb77e;
+	border-radius: 0.9375rem;
+	line-height: 1.8125rem;
+}
+.xiazai {
+	padding: 0px 0.9375rem 1.125rem;
+	margin-top: 2.625rem;
+}
+.xiazai button {
+	height: 2.5rem;
+	background-color: #0eb77e;
+	border-radius: 1.25rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	margin-bottom: 1.25rem;
+}
+.tishi {
+	text-align: left;
+	margin-bottom: 1.25rem;
+	line-height: 1.25rem;
+}
+		</style>
+	</head>
+	<body>
+
+		<div id="app">
+			<div class="body">
+
+				<div class="head">
+					<div class="head_back">
+						<img src="../static/img/back.png" mode="" onclick="javascript:history.back(-1);" /></img>
+					</div>
+					<div class="head_center hei_12_bold"></div>
+					<div class=" head_right hei_10_bold">
+						
+					</div>
+				</div>
+
+				<div class="zi_body ">
+					<img src="../static/img/app.png" mode="" class="app_top"></img>
+				
+					<div class="app_bottom">
+						<div class="yaoqingma hei_7" v-if="yaoqing">
+						<p id="yaoqinglianjie">{{ yaoqing }}</p>	
+							<div class="copy bai_7 fuzhu1111"  data-clipboard-action="copy" data-clipboard-target="#yaoqinglianjie">复制</div>
+						</div>
+						<div class="hei_8"  v-if="yaoqing">
+							请先
+							<span class="hong_8">复制邀请码</span>
+							,该邀请码用于
+							<span class="hong_8">激活</span>
+							软件使用资格
+						</div>
+						<div class="xiazai ">
+							<button type="" class="bai_8" @click="down_ios">
+								<img src="../static/img/ios.png" mode="" style="width:0.875rem;height: 1rem;"></img>
+								iphone版本下载
+							</button>
+							<button type="" class="bai_8" @click="down_anzhuo">
+								<img src="../static/img/anzhuo.png" mode="" style="width: 1rem;height: 1rem;"></img>
+								Android版本下载
+							</button>
+							<div class="tishi qian_8">
+								<span class="hong_8">温馨提示：</span>
+								如果点击按钮无法下载，可点击右上角的【...】 选择在浏览器中打开下载APP
+							</div>
+						</div>
+					</div>
+				</div>
+
+				
+
+
+			</div>
+		
+		
+
+		</div>
+
+	</body>
+	<script src="../js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../js/vue.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../js/http.js" type="text/javascript" charset="utf-8"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vant@2.12/lib/vant.min.js"></script>
+    <script src="../js/get.js" type="text/javascript" charset="utf-8"></script>
+	<script src="https://cdn.jsdelivr.net/clipboard.js/1.5.12/clipboard.min.js"></script>
+	<script type="text/javascript">
+		var app = new Vue({
+			el: "#app",
+			data() {
+				return {
+				yaoqing: '',
+				down: ''
+
+				}
+			},
+
+			created() {
+
+				// this.huoqu_liushui()
+               this.yaoqing=$_GET.yaoqing
+                 this.xiazai()
+			},
+			methods: {
+				
+
+				xiazai(){
+					ajax('/mapi/index/banben', "POST", '', (res) => { // POST或GET请求直接传参
+						this.down = res.data.banben;
+					}, function(err) {
+						console.log("err", err);
+					})
+				},
+				down_ios() {
+					window.location.href = this.down.iosurl;
+				},
+				down_anzhuo() {
+					window.location.href = this.down.androidurl;
+				},
+				copy(){
+					
+				}
+			
+
+			}
+		})
+		var clipboard = new Clipboard('.fuzhu1111');
+		console.log(clipboard)
+		clipboard.on('success', function (e) {
+		    console.log(e);
+		    vant.Toast('复制成功')
+		});
+		clipboard.on('error', function (e) {
+		    console.log(e);
+		});
+	</script>
+
+</html>

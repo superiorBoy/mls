@@ -9,15 +9,26 @@
 		<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 		<link rel="stylesheet" type="text/css" href="../css/gonggong.css" />
 		<link rel="stylesheet" type="text/css" href="../css/swiper.min.css" />
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vant@2.12/lib/index.css" />
 		<link rel="stylesheet" type="text/css" href="../css/font.css" />
 		<link rel="stylesheet" type="text/css" href="../css/index.css" />
 		<style type="text/css">
-			a{
+			a {
 				color: #333333;
 				text-decoration: none;
 			}
+
 			.body {
 				padding-bottom: 4rem;
+			}
+			.footer_item1 .on{
+				display: inline-block ;
+			}
+			.footer_item1 .no{
+				display: none ;
+			}
+			.footer_item1{
+				color: #0eb77e;
 			}
 		</style>
 	</head>
@@ -27,41 +38,47 @@
 			<div class="body">
 				<div class="index_top ">
 					<div class="index_top_dingwei">
-						<div class="dingwei bai_7">
+						<div class="dingwei bai_7" @click="tan_chengshi">
 							<img src="../static/img/dingwei.png" mode=""></img>
 							<span class="dizhi">定位中</span>
+							
+						</div>
+						<div class="logo">
+							<img src="../static/img/logo.png">
 						</div>
 						<div class="index_sousuo qian_24">
-							<img src="../static/img/sousuo.png" mode=""></img>
+							<!-- <img src="../static/img/sousuo.png" mode=""></img>
 							<input confirm-type="search" @confirm="confirm" type="text" v-model="sou_txt" placeholder="详实输入案情经过，获得更精准的解答"
-							 class="hei_26" />
+							 class="hei_26" /> -->
+							<img src="../static/img/index_sou.png" onclick="location.href='../zixun/hy_tiwen.html'">
 						</div>
 					</div>
 
 					<div class="tab">
-						<div class="tab_left bai_8">
-							<div class="swiper-wrapper">
+						<div class="tab_left bai_8" onclick="location.href='../consult/wen.html'">
+							<div class="over_item" v-for="item in tabList">{{item.typename}}</div>
+							<!-- <div class="swiper-wrapper">
 								<div class="swiper-slide" v-for="item in tabList">{{item.typename}}</div>
 
-							</div>
+							</div> -->
 						</div>
 						<img src="../static/img/qita.png" mode=""></img>
 					</div>
-	             </div>
-					<div class="lunbo">
-						<div class="swiper-container index_lunbo">
-							<div class="swiper-wrapper">
-								<div class="swiper-slide" v-for="item in banner"><img :src="item.img"></div>
-							</div>
-						</div>
-
-						<div class="dots">
-							<block v-for="(item, index) in banner">
-								<div :class="['dot', index == current ? 'active' : '']"></div>
-							</block>
+				</div>
+				<div class="lunbo">
+					<div class="swiper-container index_lunbo">
+						<div class="swiper-wrapper">
+							<div class="swiper-slide" v-for="item in banner"><img :src="item.img"></div>
 						</div>
 					</div>
-			
+
+					<div class="dots">
+						<block v-for="(item, index) in banner">
+							<div :class="['dot', index == current ? 'active' : '']"></div>
+						</block>
+					</div>
+				</div>
+
 
 				<div class="index_tab hei_8">
 					<div class="index_tab_item">
@@ -70,39 +87,43 @@
 							<div>问律师</div>
 						</a>
 					</div>
-					
-                  <a href="zhaolvshi.html" class="index_tab_item">
+
+					<a href="zhaolvshi.html" class="index_tab_item">
 						<img src="../static/img/tab2.png" mode=""></img>
 						<div>找律师</div>
 					</a>
-					<a href="zhishi.html" class="index_tab_item">
+					<a href="../consult/wen.html" class="index_tab_item">
 						<img src="../static/img/tab3.png" mode=""></img>
-						<div>法律知识</div>
+						<div>精选问答</div>
 					</a>
-					<a url="zhishi.html" class="index_tab_item">
+					<a href="zhishi.html" class="index_tab_item">
 						<img src="../static/img/tab4_4.png" mode=""></img>
-						<div>法律法规</div>
+						<div>法律知识</div>
 					</a>
 					<a href="zhaolvshi.html" class="index_tab_item ">
 						<img src="../static/img/tab5.png" mode=""></img>
 						<div>在线咨询</div>
 					</a>
-					<a url="dianhua_zixun" class="index_tab_item">
+					<a href="../consult/dianhua.html" class="index_tab_item">
 						<img src="../static/img/tab6.png" mode=""></img>
 						<div>电话咨询</div>
 					</a>
 
-					<a url="tuanzhang" class="index_tab_item">
-						<img src="../static/img/tab7.png" mode=""></img>
-						<div>VIP</div>
+					<a href="../zixun/hy_weituo.html" class="index_tab_item">
+						<img src="../static/img/tab7_1.png" mode=""></img>
+						<div>案件委托</div>
 					</a>
 
-					<a url="yaoqing" class="index_tab_item">
-						<img src="../static/img/tab8.png" mode=""></img>
-						<div>邀请好友</div>
+					<a href="../user/hy_shengji.html" class="index_tab_item" v-if="is_yaoqing==1">
+						<img src="../static/img/tab7.png" mode=""></img>
+						<div>升级团长</div>
+					</a>
+					<a href="zhishi.html" class="index_tab_item" v-if="is_yaoqing==2">
+						<img src="../static/img/tab7.png" mode=""></img>
+						<div>法律百科</div>
 					</a>
 				</div>
-                     
+
 				<div class="index_wenti">
 					<a href="../zixun/hy_tiwen.html"><img src="../static/img/guanggao.png" mode=""></img></a>
 					<div class="index_wenti_bottom hei_7">
@@ -219,8 +240,8 @@
 									<div class="index_zixun_item_bottom qian_7">
 										<div class="shijian">
 											<img src="../static/img/shijian.png" mode=""></img>
-                                           {{time(item.addtime)}} 
-											
+											{{time(item.addtime)}}
+
 										</div>
 										<div class="biaoqian">
 											<img src="../static/img/biaoqian.png" mode=""></img>
@@ -242,8 +263,8 @@
 										<div class="shijian">
 											<img src="../static/img/shijian.png" mode=""></img>
 											<!-- <span class="hong_22">5</span> -->
-											
-											{{time(item.replytime)}} 
+
+											{{time(item.replytime)}}
 										</div>
 										<div class="biaoqian">
 											<img src="../static/img/biaoqian.png" mode=""></img>
@@ -264,7 +285,7 @@
 					查看更多咨询>>
 				</button>
 
-				
+
 
 				<div class="zhuanti">
 					<div class="index_fazhi hei_10_bold">
@@ -302,32 +323,37 @@
 
 
 
-<div class="footer hui_8">
-	<div class="footer_item" >
-		<p><img src="../static/img/on_shouye_icon.png" ></p>
-		<p class="lv_8">首页</p>
-	</div>
+			<!-- 	<div class="footer hui_8">
+					<div class="footer_item">
+						<p><img src="../static/img/on_shouye_icon.png"></p>
+						<p class="lv_8">首页</p>
+					</div>
 
-	<div class="footer_item"  onclick="location.href='../index/zhaolvshi.html'">
-		<p><img src="../static/img/lvshi_icon.png" ></p>
-		<p>律师</p>
-	</div>
-	<div class="footer_item"  onclick="location.href='../zixun/hy_tiwen.html'">
-		<div class="tuqi">
-			<img src="../static/img/fly.png" mode=""></img>
-		</div>
-	</div>
-	<div class="footer_item" onclick="location.href='../zixun/chat_list.html'">
-		<p><img src="../static/img/xiaoxi_icon.png" ></p>
-		<p>消息</p>
-	</div>
-	<div class="footer_item" onclick="location.href='../user/index.html'">
-		<p><img src="../static/img/my_icon.png" ></p>
-		<p>我的</p>
-	</div>
+					<div class="footer_item" onclick="location.href='../index/zhaolvshi.html'">
+						<p><img src="../static/img/lvshi_icon.png"></p>
+						<p>律师</p>
+					</div>
+					<div class="footer_item" onclick="location.href='../zixun/hy_tiwen.html'">
+						<div class="tuqi">
+							<img src="../static/img/fly.png" mode=""></img>
+						</div>
+					</div>
+					<div class="footer_item" onclick="location.href='../zixun/chat_list.html'">
+						<p><img src="../static/img/xiaoxi_icon.png"></p>
+						<p>消息</p>
+						<p class="weidu" v-if="weidu_num>0">{{weidu_num}}</p>
+					</div>
+					<div class="footer_item" onclick="location.href='../user/index.html'">
+						<p><img src="../static/img/my_icon.png"></p>
+						<p>我的</p>
+					</div>
+				</div> -->
+<div id="footer">
+	
 </div>
-
-
+<van-popup v-model="chengshi_show" round position="bottom">
+				<van-area title="选择城市" :area-list="areaList" :columns-num="2" @confirm='city_queding' @cancel="city_quxiao" />
+			</van-popup>
 
 			</div>
 
@@ -336,10 +362,11 @@
 	<script src="../js/vue.min.js" type="text/javascript" charset="utf-8"></script>
 	<script type="text/javascript" src="http://api.map.baidu.com/api?ak=PlhFWpA02aoURjAOpnWcRGqw7AI8EEyO&v=2.0&services=false"></script>
 	<script src="../js/swiper.min.js" type="text/javascript" charset="utf-8"></script>
-    <script src="../js/http.js" type="text/javascript" charset="utf-8"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vant@2.12/lib/vant.min.js"></script>
+	<script src="../js/http.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../js/city.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../js/cookie.js" type="text/javascript" charset="utf-8"></script>
 	<script type="text/javascript">
-	
-	
 		var app = new Vue({
 			el: "#app",
 			data() {
@@ -373,99 +400,161 @@
 					down_url: '',
 					tiao_type: 1,
 					zhineng: '',
-					
+					is_yaoqing: 2,
+					weidu_num: 0,
+					chengshi_show:false,
+					areaList:[]
+
 				}
 			},
 			ready: function() {
-				
-			        
-			    },
-				created() {
-					
-					this.huoqu_index()
-					this.huoqu_leixing()
-					this.huoqu_url()
-					this.huoqu_zhishi()
-					this.huoqu_tiaozhuan()
-					this.huoqu_zhineng()
-				},
+
+
+			},
+			created() {
+                this.areaList = city_list()
+				this.huoqu_index()
+				this.huoqu_leixing()
+				this.huoqu_url()
+				this.huoqu_zhishi()
+				this.huoqu_tiaozhuan()
+				this.huoqu_zhineng()
+				this.huo_qu_is_yaoqing()
+				this.huoqu_is_login()
+			},
 			methods: {
-	
-				// 获取知识一级
-				huoqu_zhishi(){
-					
-					ajax('/mapi/index/knowledgetype', "POST", '', (res)=>{ // POST或GET请求直接传参
-					      this.fa_zhishi = res.data.type[1];
-					  }, function(err){
-								
-					      console.log("err",err);
-					  })
-				
+				huo_qu_is_yaoqing() {
+					ajax('/mapi/index/openinvite', "POST", '', (res) => { // POST或GET请求直接传参
+						this.weidu_num = res.data.messagecount
+					}, function(err) {
+						console.log("err", err);
+					})
 				},
-				zixun_xq(consultid){
-					window.location.href='../consult/zixun_xq.html?consultid='+consultid
+				tan_chengshi(){
+					console.log('4444')
+					this.chengshi_show=true
+				},
+				// 城市确定
+				city_queding(e) {
+					this.dizhi = e[1].name
+					$('.dizhi').text(e[1].name)
+					$.cookie('index_dizhi',e[1].name,{expires:1});
+					// localStorage.setItem('index_dizhi', JSON.stringify(e[1].name))
+					this.chengshi_show=false
+				},
+				// 城市取消
+				city_quxiao() {
+					this.chengshi_show=false
+				},
+				huoqu_is_login() {
+					ajax('/index/login/islogin', "POST", '', (res) => { // POST或GET请求直接传参
+						if (res.data.user != '') {
+							this.huo_qu_weidu()
+						} else {
+						}
+					}, function(err) {
+
+						console.log("err", err);
+					})
+				},
+				huo_qu_weidu() {
+
+					ajax('/mapi/consult/messagecount', "POST", '', (res) => { // POST或GET请求直接传参
+						this.weidu_num = res.data.messagecount
+					}, function(err) {
+
+						console.log("err", err);
+					})
+
+				},
+				// 获取知识一级
+				huoqu_zhishi() {
+
+					ajax('/mapi/index/knowledgetype', "POST", '', (res) => { // POST或GET请求直接传参
+						this.fa_zhishi = res.data.type[1];
+					}, function(err) {
+
+						console.log("err", err);
+					})
+
+				},
+				zixun_xq(consultid) {
+					window.location.href = '../consult/zixun_xq.html?consultid=' + consultid
+				},
+				tochat(lawyerid) {
+					if (this.tiao_type == 1) {
+
+						location.href = '../zixun/hy_zaixianchat.html?lawyerid=' + lawyerid
+					} else {
+						location.href = '../lawyer/index.html?lawyerid=' + lawyerid
+
+					}
 				},
 				// 获取跳转链接
-				huoqu_tiaozhuan(){
-					
-					ajax('/mapi/index/getzixunjump', "POST", '',(res)=>{ // POST或GET请求直接传参
-					      this.tiao_type = res.data.zhan.zixunjump;
-					  }, function(err){
-								
-					      console.log("err",err);
-					  })
-					
+				huoqu_tiaozhuan() {
+
+					ajax('/mapi/index/getzixunjump', "POST", '', (res) => { // POST或GET请求直接传参
+						this.tiao_type = res.data.zhan.zixunjump;
+					}, function(err) {
+
+						console.log("err", err);
+					})
+
 				},
-					// 查看智能服务报价
-				huoqu_zhineng(){
-				
-				ajax('/mapi/index/getzixun', "POST", '',(res)=>{ // POST或GET请求直接传参
-				      this.zhineng = res.data.zhan;
-				  }, function(err){
-							
-				      console.log("err",err);
-				  })
-						
+				// 查看智能服务报价
+				huoqu_zhineng() {
+
+					ajax('/mapi/index/getzixun', "POST", '', (res) => { // POST或GET请求直接传参
+						this.zhineng = res.data.zhan;
+					}, function(err) {
+
+						console.log("err", err);
+					})
+
 				},
-				huoqu_url(){
-					ajax('/mapi/index/geturl', "POST", '',(res)=>{ // POST或GET请求直接传参
-					      this.url = res.data.url;
-					      localStorage.setItem('img_url',res.data.url)
-					  }, function(err){
-								
-					      console.log("err",err);
-					  })
-					
-					
+				huoqu_url() {
+					ajax('/mapi/index/geturl', "POST", '', (res) => { // POST或GET请求直接传参
+						this.url = res.data.url;
+						localStorage.setItem('img_url', res.data.url)
+					}, function(err) {
+
+						console.log("err", err);
+					})
+
+
 				},
-				huoqu_leixing(){
-					
-					ajax('/mapi/index/gettype', "POST", '',(res)=>{ // POST或GET请求直接传参
-					      this.tabList = res.data.type;
-					  }, function(err){
-								
-					      console.log("err",err);
-					  })
-				
+				huoqu_leixing() {
+
+					ajax('/mapi/index/gettype', "POST", '', (res) => { // POST或GET请求直接传参
+						this.tabList = res.data.type;
+					}, function(err) {
+
+						console.log("err", err);
+					})
+
 				},
 				huoqu_index() {
-					
-					ajax('/mapi/index/index', "POST", '',(res)=>{ // POST或GET请求直接传参
-				
-					      this.data=res.data
-					  }, function(err){
-								
-					      console.log("err",err);
-					  })
-		     	
+
+					ajax('/mapi/index/index', "POST", '', (res) => { // POST或GET请求直接传参
+
+						this.data = res.data
+					}, function(err) {
+
+						console.log("err", err);
+					})
+
 				},
 
 				change(e) {
 					this.btnnum = e;
 				},
-					go_zhishi_xq(knowledgetypeid){
-						location.href='zhishi2.html?knowledgetypeid='+knowledgetypeid
-					}
+				go_zhishi_xq(knowledgetypeid) {
+					location.href = 'zhishi2.html?knowledgetypeid=' + knowledgetypeid
+				},
+				go_zhuye(lawyerid) {
+					location.href = '../lawyer/index.html?lawyerid=' + lawyerid
+
+				},
 
 			}
 		})
@@ -483,10 +572,10 @@
 
 					console.log(this.realIndex)
 					$('.index_top').removeClass('index_top0 , index_top1 , index_top2 , index_top3 , index_top4')
-					
+
 					if (this.realIndex == 0) {
-						$('.index_top').css('background', '#86dbbe')
-						$('.index_top_dingwei').css('background', '#86dbbe')
+						$('.index_top').css('background', '#0eb77e')
+						$('.index_top_dingwei').css('background', '#0eb77e')
 						$('.index_top').addClass('index_top0')
 					} else if (this.realIndex == 1) {
 						$('.index_top').css('background', '#4075fc')
@@ -509,30 +598,30 @@
 				},
 			}
 		})
-		var tab_left = new Swiper('.tab_left', {
+		// var tab_left = new Swiper('.tab_left', {
 
-			autoplay: false, //可选选项，自动滑动
-			loop: false,
-			delay: 3000,
-			slidesPerView: 5,
+		// 	autoplay: false, //可选选项，自动滑动
+		// 	loop: false,
+		// 	delay: 3000,
+		// 	slidesPerView: 5,
 
-		})
-		
-		 // $.ajax({
-		 //     url: '/mapi/index/index',
-		 //     data: {
-		        
-		 //     },
-		 //     type: 'POST',
-		 //     success: function (result) {
-		 //         var obj = eval(result);
-		        
-				
-		 //     },
-		 //     error: function (err) {
-		 //         console.log(err)
-		 //     }
-		 // })
+		// })
+
+		// $.ajax({
+		//     url: '/mapi/index/index',
+		//     data: {
+
+		//     },
+		//     type: 'POST',
+		//     success: function (result) {
+		//         var obj = eval(result);
+
+
+		//     },
+		//     error: function (err) {
+		//         console.log(err)
+		//     }
+		// })
 
 		// 定位
 		$(function() {
@@ -563,9 +652,28 @@
 					//$("#start").val(result);
 					//$("#start_location").val(result);
 					console.log(addComp)
-					$('.dizhi').text(''+addComp.city)
+
+					var cundizhi = {
+						sheng: addComp.province,
+						shi: addComp.city,
+						qu: addComp.district,
+					}
+					localStorage.setItem('dizhi', JSON.stringify(cundizhi))
+					// var index_dizhi=window.localStorage.getItem('index_dizhi')
+				var index_dizhi=$.cookie('index_dizhi');   
+				
+					if(index_dizhi){
+						// index_dizhi=JSON.parse(index_dizhi)
+						$('.dizhi').text(index_dizhi)
+					}else{
+						
+					$('.dizhi').text('' + addComp.city)
+					}
+						
 				});
 			}
 		});
+		// document.title = '123456';
+		$('#footer').load('../comment/footer.html')
 	</script>
 </html>

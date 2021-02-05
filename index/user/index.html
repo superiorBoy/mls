@@ -191,6 +191,15 @@
 		.body {
 			padding-bottom: 4rem;
 		}
+		.footer_item5 .on{
+			display: inline-block ;
+		}
+		.footer_item5 .no{
+			display: none ;
+		}
+		.footer_item5{
+			color: #0eb77e;
+		}
 		</style>
 	</head>
 	<body>
@@ -222,7 +231,7 @@
 						<div class="my_ziliao_item_top hei_9">{{geshu.shoucang}}</div>
 						<div class="my_ziliao_item_bottom hei_7">收藏</div>
 					</a>
-					<a href="../user/hy_tuandui.html" class="my_ziliao_item">
+					<a href="../user/hy_tuandui.html" class="my_ziliao_item" v-if="is_yaoqing==1">
 						<div class="my_ziliao_item_top hei_9">{{geshu.tuandui}}</div>
 						<div class="my_ziliao_item_bottom hei_7">团队</div>
 					</a>
@@ -270,7 +279,7 @@
 						</div>
 					</div>
 				
-					<div class="my_guanli tuiguang_guanli">
+					<div class="my_guanli tuiguang_guanli" v-if="is_yaoqing==1">
 						<div class="my_title hei_9_bold">推广中心</div>
 						<div class="my_list">
 							<a href="hy_shengji.html" class="jiedan_item">
@@ -290,7 +299,7 @@
 								<img src="../static/img/hy_tuiguang4.png" mode=""></img>
 								<div class="hei_7 ">营销素材</div>
 							</a>
-							<a url="app_down" class="jiedan_item">
+							<a  class="jiedan_item" @click="go_app_down">
 								<img src="../static/img/hy_tuiguang5.png" mode=""></img>
 								<div class="hei_7 ">APP下载</div>
 							</a>
@@ -331,7 +340,7 @@
 
 
 
-			<div class="footer hui_8">
+			<!-- <div class="footer hui_8">
 				<div class="footer_item" onclick="location.href='../index/index.html'">
 					<p><img src="../static/img/shouye_icon.png"></p>
 					<p>首页</p>
@@ -349,12 +358,16 @@
 				<div class="footer_item" onclick="location.href='../zixun/chat_list.html'">
 					<p><img src="../static/img/xiaoxi_icon.png"></p>
 					<p >消息</p>
+					<p class="weidu" v-if="weidu_num>0">{{weidu_num}}</p>
 				</div>
 				<div class="footer_item" >
 					<p><img src="../static/img/on_my_icon.png"></p>
 					<p class="lv_8">我的</p>
 				</div>
-			</div>
+			</div> -->
+<div id="footer">
+	
+</div>
 
 		</div>
 
@@ -373,18 +386,30 @@
 					user:'',
 				    is_login:false,
 				    geshu:'',
-				    baojia:''
+				    baojia:'',
+					yaoqing:'',
+					is_yaoqing:2,
+
 				}
 			},
 
 			created() {
+				
 				this.huiqu_login()
+				this.huo_qu_is_yaoqing()
 			},
 			methods: {
 				qiehuan() {
-					uni.reLaunch({
-						url: '../ls/my'
-					});
+					location.href='tishi.html'
+				},
+				huo_qu_is_yaoqing(){
+					ajax('/mapi/index/openinvite', "POST", '', (res) => { // POST或GET请求直接传参
+						this.is_yaoqing=res.data.openinvite
+					
+					}, function(err) {
+					
+						console.log("err", err);
+					})
 				},
 				huoqu_user(){
 					ajax('/mapi/user/user', "POST", '', (res) => { // POST或GET请求直接传参
@@ -407,21 +432,9 @@
 					this.huoqu_user()
 					this.huoqu_geshu()
 					this.huoqu_baojia()
+					this.huoqu_lianjie()
 					
-					ajax('/mapi/consult/messagecount', "POST", '', (res) => { // POST或GET请求直接传参
-						if(res.data.messagecount>0){
-							
-						}else{
-							 
-						}
-					
-					}, function(err) {
-					
-						console.log("err", err);
-					})
-					
-								
-					
+
 					
 				}else{
 					this.is_login=false
@@ -433,7 +446,19 @@
 			})
 
 		},
-huoqu_geshu(){
+		go_app_down(){
+			location.href='app_down.html?yaoqing='+this.yaoqing
+		},	
+		huoqu_lianjie(){
+			ajax('/mapi/user/yaoqing', "POST", '', (res) => { // POST或GET请求直接传参
+				this.yaoqing = res.data.randcode1;
+			
+			}, function(err) {
+			
+				console.log("err", err);
+			})
+		},
+    huoqu_geshu(){
 	ajax('/mapi/index/usercount', "POST", '', (res) => { // POST或GET请求直接传参
 		this.geshu=res.data.count
 	
@@ -517,6 +542,7 @@ huoqu_geshu(){
 
 			}
 		})
+		$('#footer').load('../comment/footer.html')
 	</script>
 
 </html>

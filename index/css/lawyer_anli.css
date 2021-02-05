@@ -20,7 +20,7 @@
 .ls_tx_img {
 	width: 4.75rem;
 	height:4.75rem;
-	margin-top: -4.75rem;
+	margin-top: -2.75rem;
 	border-radius: 100%;
 }
 .is_ren {
@@ -320,7 +320,7 @@
 	margin-left: 0.8125rem;
 }
 .bottom_jiage{
-	margin:0.5rem 0 0.1875rem;
+	    margin: 0.8rem 0 0.1875rem;
 }
 
 .tan_jiage_top{
@@ -344,6 +344,7 @@
 		display: inline-block;
 		padding:  0 0.625rem;
 		margin-right: 0.25rem;
+		line-height: 1.4rem;
 }
 .tan_shanchang span:last-child{
 	margin-right: 0;
